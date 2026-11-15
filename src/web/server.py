@@ -24,6 +24,7 @@ SAFE_ERRORS = (api.ApiError, ConfigurationError, ValueError, OSError, sqlite3.Er
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "Screener/1.0"
+    daily_only = False
 
     def log_message(self, fmt, *args):  # keep the console readable; errors are logged below
         pass
@@ -56,7 +57,12 @@ class Handler(BaseHTTPRequestHandler):
                     kind += "; charset=utf-8"
                 return self._send(HTTPStatus.OK, path.read_bytes(), kind)
             if parts.path == "/api/context":
-                return self._json(HTTPStatus.OK, api.context())
+                context = api.context()
+                if self.daily_only:
+                    context["sources"] = [source for source in context["sources"] if source["id"] == "daily"]
+                return self._json(HTTPStatus.OK, context)
+            if self.daily_only and parts.path.startswith("/api/") and query.get("source", "daily") != "daily":
+                raise api.ApiError("Trang công khai chỉ cung cấp dữ liệu SSI cuối ngày.")
             if parts.path == "/api/runs":
                 return self._json(HTTPStatus.OK, api.runs(query.get("source", "")))
             if parts.path == "/api/timeline":
