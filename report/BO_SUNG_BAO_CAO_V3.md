@@ -1,5 +1,8 @@
 # Bản nháp bổ sung báo cáo theo nguồn SSI FastConnect V3
 
+> Cập nhật 15/11/2026: phương pháp cuối ngày hiện hành là **daily-v2**. Dùng [đặc tả phương pháp](CO_SO_PHUONG_PHAP.md) và [bằng chứng mới](../evidence/daily_v2/value/KIEM_TRA_PHIEN_KE_TIEP.md) cho phần chấm điểm và kiểm chứng. Các mô tả bốn yếu tố/kiểm thử giả lập bên dưới thuộc phần thử nghiệm hoặc lịch sử, không thay cho kết quả daily-v2.
+
+
 Bản nháp này dùng để thay hoặc bổ sung các mục tương ứng của `MSSV_HoTen_BaoCao.pdf` khi đã có dữ liệu thật. Các ô `[ĐIỀN SAU]` chỉ được điền bằng số liệu từ `evidence/v3_smoke`, `evidence/v3_sessions` và `runtime/ssi_daily.sqlite`. Không điền bằng dữ liệu giả lập.
 
 ## Căn cứ chọn nguồn (thêm vào Mục 1 và Mục 2)

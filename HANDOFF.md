@@ -1,28 +1,55 @@
 # Bàn giao dự án bộ lọc cổ phiếu VN30
 
-**Ngày cập nhật 09/11/2026.** File này giúp người tiếp quản hiểu đề tài, mở lại sản phẩm, tìm bằng chứng và tiếp tục từ đúng chỗ đang dừng.
+**Ngày cập nhật 15/11/2026.** File này giúp người tiếp quản hiểu đề tài, mở lại sản phẩm, tìm bằng chứng và tiếp tục từ đúng chỗ đang dừng.
 
-**Trạng thái:** sản phẩm đã chạy công khai với dữ liệu SSI thật ở chế độ cuối ngày. **Chưa có bản nộp được:** stream mới thu một buổi chiều, lịch tự động chưa chạy lần nào, báo cáo, video, ZIP phải làm lại.
+
+## Cập nhật giao diện ngày 15/11/2026
+
+Đã giảm mật độ thông tin: một hàng tổng quan, cấu hình và thời gian thu thập mở khi cần; bảng hạng bỏ nền màu từng ô, tăng khoảng cách dòng; dữ liệu tính điểm và biểu đồ phụ nằm trong mục mở rộng. Các tab phân tích dùng toàn chiều rộng. Kiểm chứng tách các biến thể trọng số khỏi bảng so sánh chính. Công thức, điểm và dữ liệu giữ nguyên. Đã kiểm tra lọc Top 5, các mục mở rộng, bố cục màn hình nhỏ và 19 kiểm thử web hiện có. Bản giao diện nằm trong đợt commit cùng daily-v2; xem lịch sử Git và trạng thái triển khai để xác định bản công khai.
+
+## Cập nhật phương pháp ngày 15/11/2026 — ưu tiên đọc mục này
+
+- Đã sửa bản cuối ngày thành **daily-v2**: cân bằng mua–bán ngoại `(B−S)/(B+S)`, cùng đơn vị giá trị/khối lượng; số 0 khác dữ liệu thiếu, loại số âm/boolean/không hữu hạn. Hiển thị quy mô mua/bán/ròng.
+- Bảng hạng, tab Kiểm chứng và CSV dùng cùng phương pháp và lựa chọn ngoại. Top/Bottom bao gồm đồng điểm ở ranh giới thứ 5.
+- Kiểm chứng chốt danh sách trước khi ghép lợi suất; không thay mã thiếu giá tương lai; không nối qua khoảng trống phiên chưa xác nhận. Mặc định chỉ dùng ngày làm việc liền nhau; có thể cung cấp lịch phiên đã đối chiếu qua CLI.
+- Đã bổ sung so từng yếu tố, bỏ yếu tố trên cùng tập mã, đổi trọng số định trước và che từng đầu vào để đo độ nhạy. Bỏ t-test/kết luận tự động và ước lượng số phiên cần thiết trước đây.
+- Đã đồng bộ `webdata/ssi_daily.sqlite` từ bản dữ liệu 20 phiên đã thu trước đó (19/10–13/11/2026), 600 dòng VN30. Bản cũ được giữ tại `runtime/daily_v2_previous_webdata.sqlite`. Không gọi SSI hay dùng token mới trong lần sửa này.
+- Bằng chứng mới: [theo giá trị](evidence/daily_v2/value/KIEM_TRA_PHIEN_KE_TIEP.md), [theo khối lượng](evidence/daily_v2/volume/KIEM_TRA_PHIEN_KE_TIEP.md). Mỗi bộ có đầu vào cố định, mã SHA-256, cấu hình, phiên bản thư viện/mã, thành viên và kết quả từng tình huống.
+- 19 cặp ngày được xét; 18 cặp tính được IC. Phiên 12/11 thiếu dữ liệu ngoại nên không có điểm. Cấu hình cân bằng: IC giá trị ~0,00953, khối lượng ~0,00927; chỉ là mô tả, chưa xác lập khả năng dự báo.
+- Checklist và kết quả nghiệm thu: [DAILY_V2_NGHIEM_THU.md](docs/DAILY_V2_NGHIEM_THU.md).
+- Đặc tả hiện hành: [CO_SO_PHUONG_PHAP.md](report/CO_SO_PHUONG_PHAP.md). Lệnh tái lập trong README (`validate-daily`, không cần xác thực).
+- Đã chạy toàn bộ 361 kiểm thử offline qua; đã kiểm tra giao diện cục bộ và đổi lựa chọn khối ngoại. Phiên bản này đã được chuẩn bị trong đợt commit/push theo yêu cầu người dùng; trạng thái chạy công khai cần đối chiếu lần triển khai tương ứng.
+- Bản trong phiên bốn yếu tố giữ phạm vi thử nghiệm riêng; các kết luận lịch sử bên dưới phải đọc theo phiên bản và thời điểm của chúng. Báo cáo/video nộp cần dùng daily-v2 nếu chọn phạm vi cuối ngày.
+
+---
+
+**Trạng thái:** sản phẩm đã chạy công khai với dữ liệu SSI thật ở chế độ cuối ngày. Stream đã chạy trên GitHub Actions hai buổi ngày 10/11. Đủ 5/5 điều kiện để bật điểm trong phiên, nhưng chưa bật. **Chưa có bản nộp được:** stream mới có 3 nửa phiên và chưa có phiên trọn vẹn. Lịch tự động của GitHub không chạy đúng giờ nên phải bấm tay mỗi sáng. Báo cáo, video và ZIP phải làm lại.
 
 | Hạng mục | Hiện trạng |
 |---|---|
 | Trang web | https://cuoiki.vercel.app, mở sẵn nguồn **Cuối ngày · SSI thật** |
-| Mã nguồn | [MasonTahieu/CuoiKi](https://github.com/MasonTahieu/CuoiKi), nhánh `main`, repo công khai. **312/312 kiểm thử** offline |
+| Mã nguồn | [MasonTahieu/CuoiKi](https://github.com/MasonTahieu/CuoiKi), nhánh `main`, repo công khai. Bản sửa xác thực ngày 11/11 đạt **338/338 kiểm thử** offline và đã lên GitHub ở commit [`c2d6660`](https://github.com/MasonTahieu/CuoiKi/commit/c2d6660) |
 | Phạm vi | Chỉ rổ VN30. Giảng viên đã xác nhận dùng SSI làm nguồn chính và phạm vi này |
-| Dữ liệu ngày (REST) | 15 phiên VN30 thật (19/10–06/11/2026) trong `webdata/ssi_daily.sqlite`. Không cần OTP |
-| Tự động hằng ngày | GitHub Actions lấy dữ liệu lúc 15:20 thứ Hai–thứ Sáu, Vercel hiển thị. Đã chạy tay thành công một lần. Lần theo lịch 09/11 chưa chạy lúc 16:15, nên đã thêm hai lần dự phòng 15:50 và 16:20 |
-| Stream trong phiên | **Đã thu thật buổi chiều 09/11, không cần OTP**, đủ 30 mã. Tổng cuối ngày khớp REST (tỷ lệ 1,0). Ngưỡng đã đặt riêng theo số đo: 30/30 mã dùng được khi khớp lệnh liên tục |
-| Thu stream tự động | Workflow `ssi-stream.yml`: khung 08:55–11:35 và 12:55–15:05, thứ Hai–thứ Sáu, mỗi khung ba lần kích hoạt dự phòng. Chỉ commit bản tóm tắt vào `evidence/v3_sessions/stream/`, không lưu nhật ký thô. **Chưa thu được phiên nào bằng lịch này** |
-| Mô hình 4 yếu tố | Mới chạy trên dữ liệu giả lập. `SSI_SEMANTICS_VERIFIED` vẫn `false` nên điểm trong phiên trên dữ liệu thật đang khóa |
+| Dữ liệu ngày (REST) | 16 phiên VN30 thật (19/10–09/11/2026) trong `webdata/ssi_daily.sqlite`. Không cần OTP |
+| Tự động hằng ngày | GitHub Actions lấy dữ liệu theo lịch 15:20, 15:50 và 16:20 thứ Hai–thứ Sáu, Vercel hiển thị. Lịch chạy trễ: phiên 09/11 chạy lúc 01:50 và 02:56 sáng hôm sau. Phiên 10/11 chưa chạy lúc 19:05. Muốn có ngay thì bấm tay workflow **SSI daily summaries** sau 15:20 |
+| Stream trong phiên | **Đã thu thật, không cần OTP**, đủ 30 mã: chiều 09/11 trên máy; sáng và chiều 10/11 trên GitHub. Tổng cuối ngày khớp REST (tỷ lệ 1,0, đo ngày 09/11). Chiều 10/11 dừng sớm lúc 14:33 vì SSI từ chối xác thực, xem [mục 2c](#công-việc-còn-lại) |
+| Thu stream tự động | Workflow `ssi-stream.yml`: khung 08:55–11:35 và 12:55–15:05, thứ Hai–thứ Sáu. Chỉ commit bản tóm tắt vào `evidence/v3_sessions/stream/`, không lưu nhật ký thô. **Lịch không chạy đúng giờ** (ngày 10/11 các lần theo lịch chạy lúc 15:23–15:50, quá khung nên tự thoát). Phải bấm tay, xem [Thu 10 phiên](#thu-stream-10-phiên-việc-hằng-ngày) |
+| Mô hình 4 yếu tố | Mới chạy trên dữ liệu giả lập. `SSI_SEMANTICS_VERIFIED` vẫn `false`, nên điểm trong phiên trên dữ liệu thật đang khóa. **Đủ 5/5 điều kiện** từ 10/11 (đã thấy cờ `LO` lúc 13:00). Người học quyết định có bật hay không |
 | Báo cáo, video, ZIP | Gói ngày 05/11 lỗi thời và đã gỡ. Có sẵn bản nháp phần V3 và phần cơ sở tài chính |
 
-**Việc gần nhất:** sau 11:35 ngày 10/11, đọc `evidence/v3_sessions/stream/` xem lịch buổi sáng có chạy, giờ bắt đầu thế nào và đã có cờ `LO` chưa. Không chạy lúc khoảng 15:20 vì workflow dùng cùng API Key. Xem [Công việc còn lại](#công-việc-còn-lại).
+**Việc gần nhất:**
+1. Sáng 11/11, trong khoảng 08:00–08:50, bấm **Run workflow** cho **SSI stream capture** hai lần, theo [Thu 10 phiên](#thu-stream-10-phiên-việc-hằng-ngày).
+2. Bản sửa xác thực ngày 11/11 đã lên GitHub ở commit `c2d6660`. Các workflow mới trên `main` sẽ dùng bản sửa. Các workflow đã tạo trước khi push vẫn dùng phiên bản tại thời điểm được tạo.
+3. Quyết định có bật `SSI_SEMANTICS_VERIFIED` không.
+
+Xem [Công việc còn lại](#công-việc-còn-lại).
 
 **Kết quả chính trên dữ liệu thật:**
-- **Khối ngoại gồm cả giao dịch thỏa thuận:** FPT và VNM ngày 09/11 có bước nhảy mua và bán khớp đến từng đồng với thỏa thuận REST. Giá trị khớp thì không gồm thỏa thuận. Trường hợp xấu nhất, tổng điểm vẫn có Spearman trung bình 0,95 và giữ 3,8/5 mã top 5. Ghi chú trên web cần đổi từ "chưa xác minh" sang nội dung này. [Kết quả](evidence/v3_history/KHOI_NGOAI_THOA_THUAN.md)
+- **Khối ngoại gồm cả giao dịch thỏa thuận:** FPT và VNM ngày 09/11 có bước nhảy mua và bán khớp đến từng đồng với thỏa thuận REST. Giá trị khớp thì không gồm thỏa thuận. Trường hợp xấu nhất, tổng điểm vẫn có Spearman trung bình 0,95 và giữ 3,8/5 mã top 5. Trang web đã ghi "Khối ngoại gồm thỏa thuận". [Kết quả](evidence/v3_history/KHOI_NGOAI_THOA_THUAN.md)
+- **Stream trên GitHub, 10/11:** sáng 10:17–11:35 nhận 90.855 gói, chiều 12:55–14:33 nhận 191.257 gói. Cả hai buổi không có lỗi giải mã, không gói nào bị từ chối. Mỗi lần đổi token (khoảng 14 phút một lần), kết nối mở lại trong 1–4 giây. Trong khớp lệnh liên tục có 26–29/30 mã dùng được; 1–3 mã thiếu trường ở mỗi mốc, chưa rõ là mã nào. Spearman giữa hai mốc cách nhau 15 phút là 0,74–0,88. [Sáng](evidence/v3_sessions/stream/stream-2026-11-10-sang.json) · [Chiều](evidence/v3_sessions/stream/stream-2026-11-10-chieu.json)
 - **Stream so với REST (09/11):** khối lượng, giá trị, mua bán của khối ngoại và giá mở cửa đều khớp, tỷ lệ 0,9999999–1,0000002 trên 29–30 mã. [Kết quả](evidence/v3_smoke/20261109-dong-cua/KET_QUA.md)
 - **Stream 5 phút (09/11, 13:18–13:23):** nhận 8.414 gói, lỗi giải mã 0, từ chối 0, mất kết nối 0, trùng 369 (4,4%). Với ngưỡng thử 90/30 giây, 30/30 mã dùng được và thứ hạng 13:20 so với 13:23 có Spearman 0,93. Đây chỉ là một mẫu ngắn giữa phiên chiều. [Kết quả](evidence/v3_smoke/20261109-131820/SMOKE.md)
-- **Kiểm tra phiên kế tiếp:** chưa có bằng chứng điểm cuối ngày liên hệ với lợi suất phiên sau (IC +0,031, t = +0,50, 14 cặp phiên). Mẫu chỉ phân biệt được IC từ khoảng 0,13; muốn thấy IC 0,05 cần khoảng 90 phiên. [Kết quả](evidence/v3_sessions/KIEM_TRA_PHIEN_KE_TIEP.md)
+- **Kiểm tra phiên kế tiếp cũ:** kết quả daily-v1 đã được thay thế bởi bằng chứng daily-v2 ở đầu file. Ước lượng số phiên cần thiết và suy luận theo t cũ đã bị rút bỏ; không dùng để bảo vệ.
 - **Lý do bỏ HNX30:** 11/30 mã giao dịch dưới 1 tỷ đồng mỗi phiên, 43% dòng thiếu dữ liệu khối ngoại. [Số liệu](evidence/v3_history/PHAM_VI_VN30.md)
 - **REST thật:** giá trị khớp = giá bình quân × khối lượng (trung vị tỷ lệ 1,0000). `securitiesSummary?index=` trả về chính chỉ số nên code lấy theo từng mã. [Kết quả REST](evidence/v3_history/KET_QUA_REST_THAT.md)
 
@@ -54,6 +81,7 @@ Dự án ban đầu hướng tới VN30 và VPBankS NEO API. Đã lấy được
 | 12. Thu hẹp về VN30 (07/11) | Client, thu thập, xếp hạng, API, giao diện, kịch bản giả lập và bằng chứng chỉ còn VN30. Dữ liệu HNX30 được lưu số liệu rồi gỡ khỏi kho. | [Lý do](evidence/v3_history/PHAM_VI_VN30.md) |
 | 13. Giao diện bổ sung (07/11) | Dải nhịp thị trường, thẻ Lịch sử hạng (bản đồ nhiệt), thẻ Kiểm chứng, tô màu ô yếu tố theo phân vị, biểu đồ động lượng × dòng tiền ngoại. Dữ liệu demo đổi nhãn "Minh họa", xếp sau nguồn thật. | [DESIGN.md](DESIGN.md) |
 | 14. Rà phương pháp (07–08/11) | Kiểm tra phiên kế tiếp tính theo lợi suất mua được (mở cửa → đóng cửa phiên sau), nêu ngưỡng phát hiện của mẫu. Thêm cơ sở tài chính có nguồn. Trang ghi rõ phạm vi khối ngoại chưa xác minh, dữ liệu thật không còn nhãn "Demo". | [Kết quả](evidence/v3_sessions/KIEM_TRA_PHIEN_KE_TIEP.md) · [Cơ sở tài chính](report/CO_SO_PHUONG_PHAP.md) |
+| 15. Stream thật và thu tự động (09–10/11) | Thu chiều 09/11 trên máy, đối chiếu với REST lúc đóng cửa. Sửa thời gian TRADE có mili giây, thời gian chờ kết nối lại, danh sách thành phần chỉ còn một dòng, và ngưỡng riêng cho khối ngoại. Xác minh khối ngoại gồm thỏa thuận. Thêm lệnh `stream-window` và workflow `ssi-stream.yml`. Ngày 10/11 thu hai buổi trên GitHub. 312/312 kiểm thử. | [Đóng cửa 09/11](evidence/v3_smoke/20261109-dong-cua/KET_QUA.md) · [Thỏa thuận](evidence/v3_history/KHOI_NGOAI_THOA_THUAN.md) · [Tóm tắt stream](evidence/v3_sessions/stream/) |
 
 ## Phương pháp chấm điểm
 
@@ -64,7 +92,7 @@ Dự án ban đầu hướng tới VN30 và VPBankS NEO API. Đã lấy được
 | Dòng tiền ngoại tương đối | Mặc định dùng `(giá trị ngoại mua − bán) / tổng giá trị khớp` cùng phạm vi. Có cấu hình đối chiếu riêng theo khối lượng. |
 | Mất cân bằng cung cầu | `(tổng lượng chào mua − tổng lượng chào bán) / tổng lượng chào hai bên`, lấy ba mức mỗi bên. |
 
-Đây là mô hình trong phiên (`intraday-v1`). Chế độ cuối ngày dùng phương pháp riêng `daily-v1`: ba yếu tố động lượng (đóng cửa so với mở cửa), thanh khoản (chỉ giá trị khớp) và dòng tiền ngoại, trọng số 33/33/33 hoặc 50/25/25, không có sổ lệnh nên không có cung–cầu. Hai phương pháp không so trực tiếp với nhau.
+Đây là mô hình trong phiên (`intraday-v1`). Chế độ cuối ngày hiện dùng `daily-v2` (xem đặc tả mới): ba yếu tố động lượng (đóng cửa so với mở cửa), thanh khoản (chỉ giá trị khớp) và dòng tiền ngoại, trọng số 33/33/33 hoặc 50/25/25, không có sổ lệnh nên không có cung–cầu. Hai phương pháp không so trực tiếp với nhau.
 
 Điểm từng yếu tố là phân vị 0–100 trong nhóm hợp lệ tại cùng mốc. Mô hình trong phiên dùng trọng số **25/25/25/25**, hoặc **40/20/20/20** khi ưu tiên động lượng. Điểm hòa nhận cùng hạng. Mỗi nhóm cần **ít nhất 10 mã hợp lệ**. Dữ liệu thiếu, quá cũ, ngoài phiên liên tục LO hoặc thiếu xác minh nguồn thật có thể khiến mã chưa được chấm. Bộ lọc mã và ngưỡng điểm trên giao diện áp dụng sau khi tính hạng.
 
@@ -84,8 +112,9 @@ Nguồn dữ liệu → Giải mã và thu thập → Nhật ký SQLite
 | `src/ssi_api/` | Profile SSI, REST v2, decoder v2/V3, collector và công cụ phát lại. V3: `v3_client.py` (đăng nhập và REST), `v3_stream.py` (WebSocket), `v3_decoder.py`, `v3_ops.py` (smoke, thu phiên, lịch sử, đối chiếu), `v3_sample.py` (gói tin giả lập). `stream_collector.py` chọn bộ giải mã theo profile. |
 | `src/analytics/sessions.py` | Đánh giá nhiều phiên: độ phủ theo mốc, Spearman giữa các mốc và giữa các cấu hình, khoảng cập nhật để chọn ngưỡng dữ liệu cũ, độ bền yếu tố theo ngày. |
 | `src/analytics/validation.py` | Kiểm tra phiên kế tiếp: IC, chênh lệch top–bottom, ngưỡng phát hiện. `evaluate-v3` tự ghi lại kết quả vào `evidence/v3_sessions/`. |
-| `src/ranking/daily.py`, `src/data/daily_store.py` | Phương pháp `daily-v1` và kho dữ liệu ngày. |
-| `SSI_V3.ps1` | Năm lệnh `kiemtra`, `smoke`, `lichsu`, `phien`, `danhgia`. |
+| `src/ranking/daily.py`, `src/data/daily_store.py` | Phương pháp `daily-v2` và kho dữ liệu ngày. |
+| `SSI_V3.ps1` | Năm lệnh `kiemtra`, `smoke`, `lichsu`, `phien`, `danhgia`. Chưa có `stream-window`; lệnh đó chạy bằng `python -X utf8 -m src.cli stream-window --otp-mode none`. |
+| `.github/workflows/ssi-stream.yml` | Thu stream theo khung giờ, ghi bản tóm tắt `stream-<ngày>-sang.json` và `stream-<ngày>-chieu.json`. Hai lần chạy dùng chung nhóm `ssi-stream` nên lần thứ hai xếp hàng chờ lần đầu. |
 | `src/data/` | Lưu và đọc SQLite, chuẩn hóa, chất lượng và tạo dữ liệu giả lập. |
 | `src/finance/factors.py`, `src/ranking/engine.py` | Bốn yếu tố, phân vị, trọng số, ngưỡng hợp lệ và xếp hạng. |
 | `src/web/` | Giao diện chính từ 06/11: `server.py` (HTTP thư viện chuẩn, chỉ 127.0.0.1), `api.py` (JSON từ pipeline sẵn có), `static/` (HTML/CSS/JS). Chạy bằng `RUN_APP.ps1`. |
@@ -141,6 +170,25 @@ Công cụ dựng lại nằm trong `runtime/task7-build/` (không đưa lên Gi
 
 Bản ZIP cũ đã được nghiệm thu ngày 05/11/2026. Gói không kèm tệp `.env` cá nhân, khóa API, kho SQLite vận hành hay lịch sử Git. File HANDOFF này là ghi chú bàn giao bổ sung trong thư mục mã nguồn. [Biên bản và SHA-256](evidence/task7/KIEM_TRA_GOI.md)
 
+## Thu stream 10 phiên: việc hằng ngày
+
+**Vì sao phải thu:** đề yêu cầu tự thu và lưu đủ dữ liệu để kiểm chứng mọi nhận định về diễn biến theo thời gian. Đề khuyến nghị tối thiểu 5 phiên và ưu tiên 10 phiên. SSI không cho lấy lại dữ liệu trong phiên của ngày đã qua, nên ngày nào không thu thì mất.
+
+**Cách làm mỗi ngày giao dịch (thứ Hai–thứ Sáu):**
+1. Trong khoảng 08:00–08:50, mở [SSI stream capture](https://github.com/MasonTahieu/CuoiKi/actions/workflows/ssi-stream.yml). Từ trang Actions, chọn **SSI stream capture** ở cột trái thì nút mới hiện.
+2. Bấm **Run workflow**, để trống ô số giây, bấm nút xanh. Làm lại lần nữa. Lần đầu chờ đến 08:55 rồi thu đến 11:35. Lần thứ hai xếp hàng, chạy khi lần đầu xong, chờ đến 12:55 rồi thu đến 15:05.
+3. Không cần tắt: mỗi lần tự dừng và tự commit bản tóm tắt. Bấm trên điện thoại cũng được; nếu không thấy nút, bật chế độ trang cho máy tính.
+4. Bấm muộn (sau 08:55) thì lần thu bắt đầu ngay và thiếu phần đầu khung. Bấm sau 15:05 thì lần chạy tự thoát, không hại gì.
+5. Từ 08:00 đến 15:20, không chạy stream trên máy và không đổi khóa SSI. SSI chỉ giữ một phiên cho mỗi API Key.
+
+**Lịch tự động trong workflow vẫn giữ**, nhưng GitHub chỉ chạy lịch khi còn tài nguyên, trễ có khi tới 10 giờ. Phương án thay việc bấm tay: Task Scheduler trên máy bấm hộ bằng token chỉ cấp cho repo này, hoặc dịch vụ cron bên ngoài. Hai cách này cần người học tự tạo token. Chưa chọn.
+
+| Ngày | Sáng (08:55–11:35) | Chiều (12:55–15:05) | Ghi chú |
+|---|---|---|---|
+| 09/11 | không thu | 13:34–15:05, trên máy | Có đối chiếu REST lúc đóng cửa |
+| 10/11 | 10:17–11:35 | 12:55–14:33 | Sáng bấm muộn. Chiều dừng sớm vì lỗi xác thực |
+| 11, 12, 13, 16, 17, 18, 19, 20/11 | | | Còn 8 ngày để đủ 10 ngày |
+
 ## Công việc còn lại
 
 **1. Smoke test đã xong (09/11/2026), kết quả đo được**
@@ -151,7 +199,7 @@ Bản ZIP cũ đã được nghiệm thu ngày 05/11/2026. Gói không kèm tệ
 - 5 phút không nhận gói `market.flag`, nên phiên vẫn suy theo lịch.
 - `securitiesSummary` của hôm nay trả 0 dòng khi đang trong phiên, nên chỉ đối chiếu được sau đóng cửa.
 - Bản thu 13:34–15:05 (144.055 gói, không lỗi giải mã) bổ sung: gói ROOM trễ đến 30,5 giây; `MARKET_FLAG` báo `ATC` lúc 14:30 và `C` lúc 14:45, không có `PT`; không có gói TRADE trong ATC, kết quả khớp ATC đến sau 14:45. [Số liệu](evidence/v3_smoke/20261109-dong-cua/KET_QUA.md)
-- Sau 15:20, kiểm tra lịch tự động: workflow có chạy không, và Vercel có tự triển khai từ commit dữ liệu không. Trang phải hiện phiên 09/11. Đây là lần đầu lịch tự chạy.
+- Lịch dữ liệu ngày đã tự chạy cho phiên 09/11, nhưng trễ khoảng 10 giờ (01:50 và 02:56 sáng 10/11). Kho hiện có phiên 09/11.
 
 **2. Đã sửa ngày 09/11 sau bản thu**
 - **Lỗi 1, bộ thu lúc đổi token:** token sống 15 phút, SDK mở lại kết nối mỗi khoảng 14 phút, `collect_stream` coi là mất kết nối và thời gian chờ `2^n` giây không đặt lại. Đã đặt lại sau 60 giây có dữ liệu và giới hạn chờ 30 giây. Khoảng 1 phút sau mỗi lần đổi token, các mã vẫn thiếu trường khối ngoại đến đợt ROOM kế tiếp; ghi rõ điều này trong báo cáo.
@@ -160,13 +208,21 @@ Bản ZIP cũ đã được nghiệm thu ngày 05/11/2026. Gói không kèm tệ
 - Lịch phiên dự phòng: 14:45 chuyển sang `C` theo cờ thật, bỏ `PT`.
 
 **2b. Việc tiếp theo về stream**
-- Theo dõi lịch GitHub: nếu trễ nhiều hoặc bị bỏ qua, phiên đó thiếu dữ liệu đầu khung. Task Scheduler trên máy là phương án dự phòng.
+- Bấm tay mỗi sáng đến khi đủ 10 ngày, theo [Thu 10 phiên](#thu-stream-10-phiên-việc-hằng-ngày). Hoặc chọn một phương án bấm hộ.
 - Nhật ký thô không được lưu vì repo công khai và khoảng 4 GB mỗi phiên. Bản tóm tắt có độ trễ, nhịp, cờ phiên, kết nối, đánh giá theo mốc và đối chiếu REST. Muốn phát lại với ngưỡng khác thì phải thu trên máy.
-- Thu ít nhất 5 phiên, ưu tiên 10 phiên. Workflow `ssi-stream.yml` tự chạy; chạy tay được bằng `python -m src.cli stream-window`. Không chạy stream trên máy trùng giờ với workflow, vì cùng API Key.
 - `.\SSI_V3.ps1 -Lenh danhgia`: kiểm tra lại ngưỡng bằng phân vị khoảng cập nhật, ghi căn cứ cho ngưỡng tối thiểu 10 mã.
-- Đối chiếu khối ngoại trong phiên với dữ liệu ngày, làm rõ số khối ngoại có gồm giao dịch thỏa thuận không.
-- Bật `SSI_SEMANTICS_VERIFIED=true` khi đạt các điều kiện ở mục 4 của [hướng dẫn V3](docs/V3_KET_NOI.md).
+- ~~Khối ngoại có gồm giao dịch thỏa thuận không~~: đã xác minh là có, xem [kết quả](evidence/v3_history/KHOI_NGOAI_THOA_THUAN.md).
+- `SSI_SEMANTICS_VERIFIED`: đủ 5/5 điều kiện ở mục 4 của [hướng dẫn V3](docs/V3_KET_NOI.md). Đơn vị, giá trị khớp và khối ngoại đã có từ đối chiếu ngày 09/11. Cờ `ATC` có ngày 09/11 và 10/11, cờ `LO` có lúc 13:00 ngày 10/11. Chưa có chênh âm lớn hơn 5 giây. Còn chờ người học quyết định bật.
+- Ghi tên các mã báo `MISSING_FIELDS` vào bản tóm tắt. Hiện chỉ có số đếm (1–3 mã mỗi mốc), nên chưa biết là mã ít giao dịch hay lỗi trường.
+- Thêm `stream-window` vào `SSI_V3.ps1`, sửa đoạn mô tả giới hạn OTP đã cũ trong tài liệu.
 - Thêm thanh khoản tương đối (so với trung bình 20 phiên của chính mã) khi đủ dữ liệu, vì điểm thanh khoản hiện gần như đo quy mô.
+
+**2c. Lỗi mới ngày 10/11: SSI từ chối xác thực lúc 14:33**
+- Lúc đổi token 14:33, bước lấy danh sách VN30 bị SSI từ chối (`AuthError`). Bộ thu coi đây là lỗi adapter và dừng hẳn. Bước đối chiếu REST sau đó cũng lỗi. Buổi chiều mất 14:33–15:05, gồm cả ATC.
+- Không phải do token hết hạn: đo lại lúc 19:05, access token sống 900 giây, refresh token sống 8 giờ. Lúc đó không có lần chạy GitHub nào khác, và phiên làm việc với Claude cũng không chạy gì từ 14:20 đến 14:39. Có thể khóa đã được dùng đăng nhập ở nơi khác, hoặc SSI hủy phiên phía máy chủ. Chưa rõ nguyên nhân.
+- **Đã sửa ngày 11/11 trong commit `c2d6660`:** với `--otp-mode none`, khi REST hoặc bước lấy/đổi token WebSocket bị từ chối xác thực, đăng nhập lại một lần rồi thử lại thao tác. Nếu xác thực vẫn thất bại, vô hiệu hóa phiên để bước đối chiếu cuối phiên cũng dừng gọi mạng. Lỗi xác thực khi lấy thành phần VN30 được chuyển thành `auth_failed` trong nhật ký và bản tóm tắt. Nhật ký chỉ ghi thông báo cố định.
+- **Kiểm thử bản sửa:** 338/338 kiểm thử toàn dự án đạt, cùng lệnh `src.cli check`. Các ca mới bao gồm REST phục hồi thành công, đăng nhập lại thất bại, yêu cầu thử lại thất bại, token WebSocket hết hạn hoặc refresh bị từ chối, giữ loại lỗi SDK để worker dừng, giữ cách xử lý OTP `prompt`/`smart`, và thu từ kết nối lại qua SQLite với đủ 30 mã giả lập. Thử nghiệm offline, cần theo dõi hành vi SSI thật sau khi đưa bản sửa lên GitHub.
+- Độ trễ chiều 10/11 cao hơn buổi sáng: QUOTE p99 26,8 giây (sáng tối đa 1,9 giây), TRADE p99 22,1 giây. Chưa rõ lý do; cần xem buổi chiều các ngày sau có lặp lại không.
 
 **3. Hoàn thiện bài nộp**
 - Viết lại báo cáo PDF 8–12 trang theo khung 10 mục của đề, dùng [bản nháp V3](report/BO_SUNG_BAO_CAO_V3.md) và [cơ sở tài chính](report/CO_SO_PHUONG_PHAP.md). Đọc bài gốc trước khi trích chi tiết hơn bản nháp, vì các nguồn mới được đối chiếu qua tóm tắt.
@@ -179,8 +235,9 @@ Bản ZIP cũ đã được nghiệm thu ngày 05/11/2026. Gói không kèm tệ
 **Phương án dự phòng:** nếu stream không xử lý kịp, sản phẩm vẫn nộp được bằng dữ liệu ngày thật, vì đề chấp nhận ít nhất 2 nhóm API thay cho luồng WebSocket. Khi đó báo cáo phải ghi rõ mô hình 4 yếu tố mới kiểm trên dữ liệu giả lập.
 
 **Điểm chưa chắc chắn, chỉ kiểm được bằng dữ liệu thật:**
-- cờ phiên buổi sáng (ATO, LO) chưa quan sát được;
-- `securitiesByBoard` trả 1 dòng theo quy luật nào, và lịch 15:20 của GitHub Actions trễ bao lâu (09/11 chưa chạy lúc 15:52);
+- cờ ATO và cờ `LO` lúc 09:15 chưa quan sát được, vì chưa lần thu nào bắt đầu trước 09:00. Đã thấy `LO` lúc 13:00 và `BREAK` lúc 11:30;
+- `securitiesByBoard` trả 1 dòng theo quy luật nào. Đã gặp lúc 15:49, chưa gặp trong giờ giao dịch;
+- nguyên nhân lỗi xác thực lúc 14:33 ngày 10/11 (mục 2c);
 - `priceChangePercent` xử lý ngày giao dịch không hưởng quyền thế nào (`refPrice` đang trống, mẫu chưa có ngày như vậy).
 
 **Chạy test trên máy này:** thư mục tạm mặc định của pytest bị chặn quyền, sinh lỗi `PermissionError` ở bước chuẩn bị. Thêm `-p no:cacheprovider --basetemp=<thư mục ghi được>`.

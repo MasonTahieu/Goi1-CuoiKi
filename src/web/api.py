@@ -1,4 +1,4 @@
-"""JSON payloads for the web UI. Pure functions over the existing pipeline; no HTTP here.
+"""JSON payloads for the web UI, including on-demand FastConnect charts.
 
 Sources:
   demo-board    synthetic 24-ticker scoreboard (legacy stockInfo events, state_at)
@@ -10,6 +10,7 @@ from datetime import timedelta
 from functools import lru_cache
 import csv
 import io
+import json
 import math
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -22,6 +23,7 @@ from src.data.synthetic import demo_events, demo_groups
 from src.providers import load_provider_settings
 from src.ranking.engine import FACTOR_NAMES, rank_groups
 from src.ranking import daily as daily_rank
+from src.ssi_api.v3_ohlc import CHART_RANGES, DEFAULT_RANGE, chart_candles, chart_client, chart_start
 
 from src.data.daily_store import default_daily_path
 
@@ -180,8 +182,8 @@ def _is_journal(source):
         return True
     if source == "demo-board":
         return False
-    settings = load_settings()
-    return _store_kind(load_provider_settings(settings.provider))[0] == "journal"
+    with SSIJournal(_journal_path(source)) as journal:
+        return journal.has_collection()
 
 
 def _daily_frame():
@@ -268,8 +270,12 @@ def _journal_frame(report):
 # Measured 09/11/2026: evidence/v3_history/KHOI_NGOAI_THOA_THUAN.md
 FOREIGN_SCOPE_NOTE = {
     "label": "Khối ngoại gồm thỏa thuận",
-    "detail": "Số khối ngoại của SSI gồm cả giao dịch thỏa thuận, còn giá trị khớp thì không. Một lô thỏa thuận một phía "
-              "có thể đẩy điểm khối ngoại của mã đó, và dữ liệu ngày không tách riêng được phần này."}
+    "detail": "Số khối ngoại của SSI gồm cả giao dịch thỏa thuận. Bản cuối ngày dùng (mua − bán)/(mua + bán), "
+              "đo cân bằng mua–bán, không đo quy mô vốn hay riêng áp lực khớp lệnh. Mua ít và mua nhiều đều có thể đạt 1 khi bán bằng 0."}
+INTRADAY_FOREIGN_SCOPE_NOTE = {
+    "label": "Khối ngoại gồm thỏa thuận · thử nghiệm",
+    "detail": "Bản trong phiên vẫn dùng ngoại ròng/tổng khớp. Số ngoại có thể gồm thỏa thuận nhưng mẫu số chỉ gồm khớp lệnh; "
+              "đây là phương pháp thử nghiệm riêng, chưa được xác nhận bởi kiểm chứng daily-v2."}
 COMPARE = {"prev": "mốc dữ liệu liền trước", "30": "30 giây trước", "60": "1 phút trước",
            "300": "5 phút trước", "900": "15 phút trước"}
 
@@ -312,10 +318,11 @@ def _daily_snapshot(point, weights, foreign, compare):
         raise ApiError("Kho dữ liệu ngày chưa có phiên nào.")
     as_of = point if point in moments else moments[-1]
     day = as_of[:10]
+    session = frame[frame["tradingDate"] == day]
     weight_map = {**dict.fromkeys(FACTOR_NAMES, 0.0), **daily_rank.WEIGHTS[weights]}
     groups = {}
     for group in GROUPS:
-        part = frame[(frame["index_group"] == group) & (frame["tradingDate"] == day)]
+        part = session[session["index_group"] == group]
         ranked = daily_rank.rank_daily(part.to_dict("records"), weights, foreign)
         rows = []
         for rec in (ranked.to_dict("records") if not ranked.empty else []):
@@ -334,6 +341,9 @@ def _daily_snapshot(point, weights, foreign, compare):
                 "raw": {"momentum": daily_rank.daily_momentum(rec),
                         "turnover": turnover if turnover is not None and turnover >= 0 else None, "spread_bps": None,
                         "depth_vnd": None, "foreign_ratio": _num(rec.get("foreign_ratio")), "imbalance": None,
+                        "foreign_buy": _num(rec.get("foreign_buy")), "foreign_sell": _num(rec.get("foreign_sell")),
+                        "foreign_gross": _num(rec.get("foreign_gross")), "foreign_net": _num(rec.get("foreign_net")),
+                        "foreign_activity": rec.get("foreign_activity") if ok else None,
                         "closePrice": _num(rec.get("closePrice")), "openPrice": _num(rec.get("openPrice")),
                         "totalTradingVolume": _num(rec.get("totalTradingVolume")),
                         "change_pct": _num(rec.get("priceChangePercent")),
@@ -350,7 +360,7 @@ def _daily_snapshot(point, weights, foreign, compare):
                          "config_id": first["config_id"] if first is not None else None,
                          "cohort_id": first["cohort_id"] if first is not None else None,
                          "method": daily_rank.METHOD, "usable": None, "rows": rows}
-    fetched = frame["fetched_at"].max() if "fetched_at" in frame and len(frame) else None
+    fetched = session["fetched_at"].max() if not session.empty else None
     result = {
         "source": "ssi", "source_kind": "daily", "run": DAILY_RUN, "as_of": as_of, "last_recorded": fetched,
         "mode": load_settings().mode, "synthetic": False, "profile": "fastconnect_v3",
@@ -442,19 +452,22 @@ def heatmap(source, weights="balanced", foreign="value"):
             "days": [{"id": _day_id(d), "label": f"{d[8:10]}/{d[5:7]}"} for d in days], "rows": rows}
 
 
-def validation(source, weights="balanced"):
+def validation(source, weights="balanced", foreign="value"):
     """Forward check of the end-of-day score against the next session's return."""
     from src.analytics.validation import forward_check, verdict
     _require_daily(source, "Kiểm chứng")
-    if weights not in daily_rank.WEIGHTS:
-        raise ApiError("Cấu hình trọng số không hợp lệ.")
-    result = forward_check(_daily_frame(), weights=(weights,))
+    if weights not in daily_rank.WEIGHTS or foreign not in daily_rank.FOREIGN:
+        raise ApiError("Cấu hình trọng số hoặc khối ngoại không hợp lệ.")
+    result = forward_check(_daily_frame(), weights=(weights,), foreign=foreign)
     part = result["weights"][weights]
     return {"method": result["method"], "sessions": result["sessions"], "pairs": result["pairs"],
             "top_n": result["top_n"], "returns": result["returns"], "weights": weights,
-            "weights_label": daily_rank.WEIGHT_LABELS[weights],
+            "weights_label": daily_rank.WEIGHT_LABELS[weights], "foreign": foreign,
+            "ranking_method": result["ranking_method"], "calendar": result["calendar"],
+            "skipped_pairs": result["skipped_pairs"], "date_from": result["date_from"], "date_to": result["date_to"],
+            "screening": {k: v for k, v in part["screening"].items() if k != "details"},
             "summary": {"ic": part["ic"], "spread": part["top_minus_bottom_pp"], "ic_close": part["ic_close"],
-                        "spread_close": part["top_minus_bottom_close_pp"], "power": part["power"]},
+                        "spread_close": part["top_minus_bottom_close_pp"]},
             "factor_ic": part["factor_ic"], "series": part["pairs"], "verdict": verdict(part)}
 
 
@@ -562,7 +575,7 @@ def snapshot(source, run=None, point=None, weights="balanced", foreign="value", 
         "source": data_source, "source_kind": source, "run": run, "as_of": as_of, "last_recorded": last_recorded,
         "mode": settings.mode, "synthetic": data_source == "synthetic",
         "verified": data_source == "synthetic" or bool(provider.semantics_verified),
-        "scope_note": None if data_source == "synthetic" else FOREIGN_SCOPE_NOTE,
+        "scope_note": None if data_source == "synthetic" else INTRADAY_FOREIGN_SCOPE_NOTE,
         "profile": report.get("profile") if report else None,
         "connection": {"state": connection_state, "label": label, "severity": severity,
                        "epoch": report.get("connection_epoch") if report else None},
@@ -581,33 +594,72 @@ def snapshot(source, run=None, point=None, weights="balanced", foreign="value", 
 
 # -- history and export ---------------------------------------------------------------------------
 
-def history(source, run, point, symbol):
-    """Recorded last-price points of one symbol up to the chosen moment."""
+def _price_point(at, row, volume_field):
+    return {"at": at, "price": _num(row.get("closePrice")),
+            "open": _num(row.get("openPrice")), "high": _num(row.get("highPrice")),
+            "low": _num(row.get("lowPrice")), "volume": _num(row.get(volume_field))}
+
+
+def _live_chart(point, symbol, timeframe, window):
+    window = window or DEFAULT_RANGE[timeframe]
+    if window not in CHART_RANGES[timeframe]:
+        raise ApiError("Khoảng xem không hợp lệ cho khung nến này.")
+    frame = _daily_frame()
+    if symbol not in frame["symbol"].values:
+        raise ApiError("Chọn một mã trong danh sách VN30.")
+    cutoff = timestamp(point or _day_id(frame["tradingDate"].max()))
+    current = timestamp(now())
+    if cutoff > current or cutoff.year < 2000:
+        raise ApiError("Mốc thời gian biểu đồ không hợp lệ.")
+    start = chart_start(timeframe, window, cutoff.date(), current.date())
+    bars = chart_candles(chart_client(), symbol, timeframe, start, cutoff) if start <= cutoff.date() else []
+    points = [{key: bar[key] for key in ("at", "open", "high", "low", "price", "volume")} for bar in bars]
+    return {"symbol": symbol, "points": points, "basis": "ohlc"}
+
+
+def history(source, run, point, symbol, timeframe=None, window=None):
+    """Get a selected candle chart or the recorded prices for the ranking sidebar."""
+    if timeframe is not None:
+        if source != "daily" or timeframe not in CHART_RANGES:
+            raise ApiError("Chọn nguồn SSI cuối ngày và khung nến 1 ngày hoặc 5 phút.")
+        return _live_chart(point, symbol, timeframe, window)
     series = []
     if source == "daily":
         frame = _daily_frame()
         part = frame[frame["symbol"] == symbol].sort_values("tradingDate")
-        cutoff = str(point)[:10] if point else None
+        if point:
+            part = part[part["tradingDate"] <= str(point)[:10]]
         for rec in part.to_dict("records"):
-            if (cutoff is None or rec["tradingDate"] <= cutoff) and _num(rec.get("closePrice")) is not None:
-                d = rec["tradingDate"]
-                series.append({"at": _day_id(d), "label": f"{d[8:10]}/{d[5:7]}", "price": _num(rec["closePrice"])})
+            d = rec["tradingDate"]
+            bar = _price_point(_day_id(d), rec, "totalTradingVolume")
+            if bar["price"] is not None:
+                series.append({**bar, "label": f"{d[8:10]}/{d[5:7]}"})
         return {"symbol": symbol, "points": series}
     if _is_journal(source):
         through = int(point) if point and str(point).isdigit() else None
+        if through is not None and through < 1:
+            raise ApiError("event_id phải là số nguyên dương.")
+        cutoff = " AND id<=?" if through is not None else ""
+        args = (run, symbol, through) if through is not None else (run, symbol)
         with SSIJournal(_journal_path(source)) as journal:
-            for event in journal.events(run, through):
-                if event["channel"] != "ssiDecoded":
-                    continue
-                payload = event["payload"]["payload"]
-                if payload.get("symbol") == symbol and _num(payload.get("closePrice")) is not None:
-                    series.append({"at": event["payload"].get("source_at") or event["received_at"], "price": _num(payload["closePrice"])})
+            records = journal.db.execute(
+                "SELECT received_at,payload FROM events WHERE run=? AND channel='ssiDecoded' "
+                "AND json_extract(payload,'$.payload.symbol')=? "
+                "AND json_extract(payload,'$.payload.closePrice') IS NOT NULL"
+                + cutoff + " ORDER BY id DESC LIMIT 300", args,
+            ).fetchall()
+        for received_at, raw in reversed(records):
+            event = json.loads(raw)
+            bar = _price_point(event.get("source_at") or received_at, event["payload"], "lastTradeVolume")
+            if bar["price"] is not None:
+                series.append(bar)
     else:
         cutoff = timestamp(point) if point else None
         for e in _legacy_events(source):
             if e["channel"] == "stockInfo" and e["payload"].get("symbol") == symbol and (cutoff is None or timestamp(e["received_at"]) <= cutoff):
-                if _num(e["payload"].get("closePrice")) is not None:
-                    series.append({"at": e["received_at"], "price": _num(e["payload"]["closePrice"])})
+                bar = _price_point(e["received_at"], e["payload"], "lastTradeVolume")
+                if bar["price"] is not None:
+                    series.append(bar)
     return {"symbol": symbol, "points": series[-300:]}
 
 
@@ -617,7 +669,8 @@ def export_csv(source, run=None, point=None, weights="balanced", foreign="value"
     columns = ["source", "run", "as_of", "index_group", "symbol", "rank", "total_score",
                *[f"score_{f}" for f in FACTOR_NAMES], *[f"weight_{f}" for f in FACTOR_NAMES],
                "foreign_basis", "method_version", "config_id", "cohort_id", "status", "reasons", "warnings",
-               "compare_as_of", "prev_rank", "rank_change", "total_change"]
+               "compare_as_of", "prev_rank", "rank_change", "total_change",
+               "foreign_ratio", "foreign_buy", "foreign_sell", "foreign_net", "foreign_gross", "foreign_activity"]
     writer = csv.DictWriter(out, fieldnames=columns)
     writer.writeheader()
     for name, g in data["groups"].items():
@@ -632,5 +685,6 @@ def export_csv(source, run=None, point=None, weights="balanced", foreign="value"
                              "cohort_id": g["cohort_id"], "status": row["status"]["label"],
                              "reasons": " | ".join(row["status"]["details"]), "warnings": " | ".join(row["warnings"]),
                              "compare_as_of": (data["compare"] or {}).get("as_of"), "prev_rank": row.get("prev_rank"),
-                             "rank_change": row.get("rank_change"), "total_change": row.get("total_change")})
+                             "rank_change": row.get("rank_change"), "total_change": row.get("total_change"),
+                             **{key: row["raw"].get(key) for key in ("foreign_ratio", "foreign_buy", "foreign_sell", "foreign_net", "foreign_gross", "foreign_activity")}})
     return "\ufeff" + out.getvalue()

@@ -63,6 +63,9 @@ def test_demo_journal_replays_v3_and_reports_disconnect_per_stock(demo):
     assert {r["status"]["kind"] for r in rows} == {"disconnected"} and rows[0]["status"]["details"]
     history = api.history("demo-journal", v3, None, latest["groups"]["VN30"]["rows"][0]["symbol"])
     assert len(history["points"]) == 2
+    assert history["points"][0]["volume"] == 100
+    earlier = api.history("demo-journal", v3, reconnecting, history["symbol"])
+    assert earlier["points"] == history["points"][:1]
 
 
 def test_compare_reports_rank_and_score_change_against_an_earlier_moment(demo):
@@ -95,7 +98,6 @@ def test_compare_on_a_journal_uses_a_strictly_earlier_recorded_moment(demo):
 
 def test_daily_source_ranks_three_factors_and_names_missing_foreign_data(demo, monkeypatch, tmp_path):
     from src.data.daily_store import DailyStore
-    from src.data.store import now
     days = ["2026-11-05", "2026-11-06"]
     rows = []
     for d, day in enumerate(days):
@@ -105,15 +107,17 @@ def test_daily_source_ranks_three_factors_and_names_missing_foreign_data(demo, m
                 foreign_missing = group == "VN30" and i < 3
                 rows.append({"symbol": f"{prefix}{i:02d}", "index_group": group, "tradingDate": day,
                              "openPrice": 10_000 + 100 * i, "closePrice": 10_000 + 100 * i + 50 * ((i + d) % 5 - 2),
+                             "highPrice": 10_150 + 100 * i, "lowPrice": 9_850 + 100 * i,
                              "totalTradingValue": 1e9 * (i + 1 + d), "totalTradingVolume": 1e5 * (i + 1),
                              "foreignBuyValue": None if foreign_missing else 1e7 * i,
-                             "foreignSellValue": None if foreign_missing else 1e7 * (11 - i),
+                             "foreignSellValue": None if foreign_missing else 1e7 * max(0, 11 - i),
                              "foreignBuyVolume": None, "foreignSellVolume": None})
     rows.append({"symbol": "VN30", "index_group": "INDEX", "tradingDate": days[-1], "openPrice": 1800.0, "closePrice": 1810.0,
                  "totalTradingValue": 7e12})
     path = tmp_path / "daily.sqlite"
     with DailyStore(path) as store:
-        store.upsert("ssi", rows, now())
+        for day in days:
+            store.upsert("ssi", [row for row in rows if row["tradingDate"] == day], f"{day}T16:30:00+07:00")
     monkeypatch.setattr(api, "DAILY_DB", path)
     sources = api.context()["sources"]
     assert [s["id"] for s in sources] == ["daily", "demo-board", "demo-journal"]
@@ -123,7 +127,7 @@ def test_daily_source_ranks_three_factors_and_names_missing_foreign_data(demo, m
     assert data["method_kind"] == "daily" and data["source"] == "ssi" and data["compare"]["as_of"].startswith("2026-11-05")
     vn = data["groups"]["VN30"]
     assert set(data["groups"]) == {"VN30"}
-    assert vn["members"] == 14 and vn["ranked"] == 11 and vn["method"] == "daily-v1"  # the INDEX row is not a member
+    assert vn["members"] == 14 and vn["ranked"] == 11 and vn["method"] == "daily-v2"  # the INDEX row is not a member
     row = vn["rows"][0]
     assert row["scores"]["imbalance"] is None and row["contributions"]["imbalance"] is None
     assert sum(v for v in row["contributions"].values() if v is not None) == pytest.approx(row["total"])
@@ -137,6 +141,11 @@ def test_daily_source_ranks_three_factors_and_names_missing_foreign_data(demo, m
     assert missing[0]["raw"]["turnover"] == 2e9
     assert data["pulse"]["total_value"] == sum(range(2, 16)) * 1e9
     assert [p["label"] for p in api.history("daily", "ssi-daily", None, "AAA03")["points"]] == ["05/11", "06/11"]
+    first_point = "2026-11-05T15:00:00+07:00"
+    points = api.history("daily", "ssi-daily", first_point, "AAA03")["points"]
+    assert points == [{"at": first_point, "label": "05/11", "price": 10350, "open": 10300,
+                       "high": 10450, "low": 10150, "volume": 400000}]
+    assert api.snapshot("daily", point=first_point)["last_recorded"] == "2026-11-05T16:30:00+07:00"
     with pytest.raises(api.ApiError):
         api.snapshot("daily", weights="bogus")
 

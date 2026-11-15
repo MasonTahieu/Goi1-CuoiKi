@@ -2,7 +2,7 @@
 import pandas as pd
 import pytest
 
-from src.analytics.validation import adjustment_note, forward_check, power, verdict, write_evidence
+from src.analytics.validation import adjustment_note, forward_check, verdict, write_evidence
 
 
 def rows(days=4, size=12, momentum=lambda i, d: 0.2 * i, close_change=lambda i, d: 0.0):
@@ -10,7 +10,7 @@ def rows(days=4, size=12, momentum=lambda i, d: 0.2 * i, close_change=lambda i, 
     out = []
     for d in range(days):
         for i in range(size):
-            out.append({"symbol": f"S{i:02d}", "index_group": "VN30", "tradingDate": f"2026-11-0{d + 1}",
+            out.append({"symbol": f"S{i:02d}", "index_group": "VN30", "tradingDate": pd.bdate_range("2026-11-02", periods=days)[d].date().isoformat(),
                         "openPrice": 10_000, "closePrice": 10_000 * (1 + momentum(i, d) / 100),
                         "totalTradingValue": 1e9 * (i + 1), "foreignBuyValue": 1e7 * i, "foreignSellValue": 1e7,
                         "priceChangePercent": close_change(i, d)})
@@ -62,24 +62,25 @@ def test_adjustment_note_follows_the_data(tmp_path):
     assert "S03 2026-11-03" in adjustment_note(flagged) and "chưa được kiểm chứng" not in adjustment_note(flagged)
 
 
-def test_power_states_what_the_sample_can_detect():
-    assert power({"pairs": 16, "sd": 0.2})["detectable_ic"] == pytest.approx(0.1)
-    assert power({"pairs": 16, "sd": 0.2})["sessions_for_target"] == 65  # (2 * .2 / .05)^2 pairs + 1 session
-    assert power({"pairs": 1, "sd": None})["detectable_ic"] is None
-
-
-def test_verdict_says_no_evidence_yet_rather_than_no_power(tmp_path):
+def test_verdict_is_descriptive_even_for_extreme_ic_and_evidence_reproduces(tmp_path):
+    import json
+    import hashlib
     flat = forward_check(rows(momentum=lambda i, d: 0.2 * i if d == 0 else 0.0))["weights"]["balanced"]
     assert flat["ic"]["pairs"] == 0 and verdict(flat) == "Chưa đủ phiên để kiểm tra."
-    noisy = forward_check(rows(days=9, momentum=lambda i, d: (((i * 7 + d * d * 3) % 5) - 2.0) * 0.3))["weights"]["balanced"]
-    if abs(noisy["ic"]["t"]) < 2:
-        assert verdict(noisy).startswith("Chưa có bằng chứng") and "phân biệt được IC" in verdict(noisy)
-    strong = {"ic": {"pairs": 9, "mean": 0.3, "sd": 0.2, "t": 4.5, "positive_share": 1}, "power": {}}
-    assert "cần thêm phiên" in verdict(strong)
-    write_evidence(forward_check(rows()), tmp_path)
+    strong = {"ic": {"pairs": 9, "mean": 1.0, "sd": 0.0, "positive_share": 1}}
+    assert "chưa xác lập" in verdict(strong)
+    frame = rows()
+    result = forward_check(frame)
+    assert "power" not in result["weights"]["balanced"]
+    assert "t" not in result["weights"]["balanced"]["ic"]
+    write_evidence(result, tmp_path, frame)
     text = (tmp_path / "KIEM_TRA_PHIEN_KE_TIEP.md").read_text(encoding="utf-8")
-    assert "Lợi suất mua được" in text and "+1,000" in text and "Điều chỉnh quyền" in text and "ngoài mẫu" not in text
-    assert len(pd.read_csv(tmp_path / "kiem_tra_phien_ke_tiep.csv")) == 3
+    assert "Lợi suất mở cửa–đóng cửa" in text and "+1,000" in text and "Điều chỉnh quyền" in text
+    payload = (tmp_path / "input_daily.json").read_bytes()
+    manifest = json.loads((tmp_path / "manifest.json").read_text(encoding="utf-8"))
+    assert manifest["input_sha256"] == hashlib.sha256(payload).hexdigest()
+    assert forward_check(pd.DataFrame(json.loads(payload))) == result
+    assert len(pd.read_csv(tmp_path / "kiem_tra_phien_ke_tiep.csv")) == 6
 
 
 def test_unranked_rows_and_index_rows_are_excluded():

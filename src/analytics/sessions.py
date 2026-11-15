@@ -172,14 +172,11 @@ def evaluate_journal(path, *, every_minutes=15, semantics_verified=False, explor
 
 def daily_factors(frame):
     """Daily context factors from securitiesSummary (no order book: imbalance is not available)."""
+    from src.ranking.daily import daily_factors as factors
     data = frame.copy()
-    for col in ("openPrice", "closePrice", "totalTradingValue", "foreignBuyValue", "foreignSellValue"):
-        data[col] = pd.to_numeric(data[col], errors="coerce")
-    valid = (data["openPrice"] > 0) & (data["closePrice"] > 0) & (data["totalTradingValue"] > 0)
-    data["momentum"] = np.where(valid, 100 * (data["closePrice"] / data["openPrice"] - 1), np.nan)
-    data["turnover"] = np.where(valid, data["totalTradingValue"], np.nan)
-    data["foreign_ratio"] = np.where(valid & data["foreignBuyValue"].notna() & data["foreignSellValue"].notna(),
-                                     (data["foreignBuyValue"] - data["foreignSellValue"]) / data["totalTradingValue"], np.nan)
+    raw = [factors(row)[0] or {} for row in data.to_dict("records")]
+    for column in ("momentum", "turnover", "foreign_ratio"):
+        data[column] = [row.get(column, np.nan) for row in raw]
     return data
 
 
@@ -197,7 +194,8 @@ def evaluate_daily(frame):
         persistence = {}
         for factor in ("momentum", "turnover", "foreign_ratio"):
             values = []
-            for a, b in zip(days, days[1:]):
+            from src.analytics.validation import _session_pairs
+            for a, b in _session_pairs(days)[0]:
                 left = part[part["tradingDate"] == a].set_index("symbol")[factor].dropna().to_dict()
                 right = part[part["tradingDate"] == b].set_index("symbol")[factor].dropna().to_dict()
                 rho = spearman(left, right)

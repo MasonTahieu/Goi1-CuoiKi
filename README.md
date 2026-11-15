@@ -84,20 +84,23 @@ python -X utf8 -m src.ssi_api.decode_sample
 .\RUN_APP.ps1
 ```
 
-Từ 06/11/2026, `RUN_APP.ps1` mở **giao diện web mới** tại http://127.0.0.1:8501. Server là Python thư viện chuẩn (`src/web/server.py`), giao diện là HTML/CSS/JS tự viết (`src/web/static/`), chạy offline, không cần cài thêm gói. Giao diện Streamlit cũ vẫn mở được bằng `.\RUN_APP.ps1 -Streamlit`.
+Từ 06/11/2026, `RUN_APP.ps1` mở **giao diện web mới** tại http://127.0.0.1:8501. Máy chủ dùng Python (`src/web/server.py`), giao diện dùng HTML/CSS/JS (`src/web/static/`). Bảng xếp hạng đọc được khi ngoại tuyến. Biểu đồ nến SSI cần kết nối FastConnect. Giao diện Streamlit cũ vẫn mở được bằng `.\RUN_APP.ps1 -Streamlit`.
 
 Giao diện mới là dashboard nền tối theo chuẩn các ứng dụng chứng khoán Việt:
 - thanh trên cùng có nhãn rổ VN30 kèm số mã đã xếp hạng, trạng thái kết nối và mốc phân tích;
 - bốn chỉ số tổng quan;
 - dòng tóm tắt cập nhật theo mốc đang xem và các bộ lọc nhanh Tất cả, Top 5, Tăng hạng, Chưa xếp hạng;
+- giá của từng mã trong bảng và tab **Biểu đồ** để xem nến, giá và khối lượng từ SSI. Chọn khung **1 ngày** hoặc **5 phút**. Kéo ngang để đổi đoạn đang xem, cuộn ngay trên biểu đồ hoặc chụm hai ngón để thu phóng. Nhấp đúp hoặc dùng nút đặt lại để về khoảng xem ban đầu;
 - bảng xếp hạng: thanh điểm tổng chia theo phần đóng góp, mỗi yếu tố có thanh phân vị riêng, mỗi mã có một nhãn trạng thái;
 - khung bên phải giải thích vì sao mã đứng hạng đó, kèm đường giá đã ghi nhận và biểu đồ điểm tổng của cả nhóm;
 - hai tab Chất lượng dữ liệu và Phương pháp.
 - so sánh với một mốc trước (mặc định mốc dữ liệu liền trước; chọn được 30 giây, 1, 5, 15 phút hoặc tắt): mũi tên và số bậc thay đổi cạnh hạng, chênh hạng và chênh điểm trong khung giải thích, vạch trắng đánh dấu điểm cũ trên biểu đồ. CSV ghi thêm `compare_as_of`, `prev_rank`, `rank_change`, `total_change`.
 
-Trạng thái màn hình (nguồn, lần thu thập, mốc, nhóm, trọng số, mã đang chọn) nằm trên URL, nên một kết quả có thể mở lại đúng như cũ.
+Trạng thái màn hình (nguồn, lần thu thập, mốc, nhóm, trọng số, mã và khung nến đang chọn) nằm trên URL, nên một kết quả có thể mở lại đúng như cũ.
 
-Nguồn **"Cuối ngày · SSI thật"** xuất hiện ở mọi chế độ khi đã có `runtime/ssi_daily.sqlite` (tạo bằng `.\SSI_V3.ps1 -Lenh lichsu`). Nguồn này xếp hạng theo dữ liệu tổng hợp từng phiên của SSI, dùng được cả ngoài giờ giao dịch. Đây là phương pháp riêng `daily-v1` với 3 yếu tố: động lượng đóng cửa so với mở cửa, thanh khoản theo giá trị khớp, dòng tiền ngoại; trọng số 33/33/33 hoặc 50/25/25. Không có sổ lệnh nên không có cung–cầu. Mã thiếu dữ liệu khối ngoại không được xếp hạng.
+Nguồn **"Cuối ngày · SSI thật"** xuất hiện ở mọi chế độ khi đã có `runtime/ssi_daily.sqlite` (tạo bằng `.\SSI_V3.ps1 -Lenh lichsu`). Nguồn này xếp hạng theo dữ liệu tổng hợp từng phiên của SSI, dùng được cả ngoài giờ giao dịch. Đây là phương pháp riêng `daily-v2` với 3 yếu tố: động lượng đóng cửa so với mở cửa, thanh khoản theo giá trị khớp, cân bằng mua–bán khối ngoại `(mua − bán)/(mua + bán)`; trọng số 33/33/33 hoặc 50/25/25. Không có sổ lệnh nên không có cung–cầu. Mã thiếu dữ liệu khối ngoại không được xếp hạng.
+
+Trong nguồn **Cuối ngày · SSI thật**, tab **Biểu đồ** gọi [API nến SSI FastConnect](https://developers.ssi.com.vn/en/docs/api-reference/data-ohlc) khi chọn mã, khung nến hoặc khoảng xem. Máy chủ dùng `SSI_API_PROFILE=fastconnect_v3`, `SSI_API_KEY` và `SSI_API_SECRET` để đọc dữ liệu thị trường. Khung ngày có các mốc 1, 5 và 10 năm tùy lịch sử từng mã. Khung 5 phút có dữ liệu trong phạm vi một năm gần nhất. Nến được giữ trong bộ nhớ để vẽ biểu đồ trong lần xem. Bảng xếp hạng dùng dữ liệu tổng hợp hoặc nhật ký SSI của nguồn đang chọn.
 
 Mặc định DATA_PROVIDER=ssi, APP_MODE=demo. Chế độ demo có hai nguồn:
 - **bảng điểm giả lập**: 24 mã hư cấu;
@@ -171,3 +174,22 @@ Trọng số cân bằng/ưu tiên động lượng là baseline. Cần đánh g
 Điểm chỉ hỗ trợ sàng lọc, chưa có kiểm định dự báo. Không triển khai giao dịch tiền thật.
 
 Bản đồ NEO và các bằng chứng cũ giữ làm lịch sử; tài liệu hiện hành là kế hoạch SSI và docs/CHUYEN_SANG_SSI.md.
+
+## Kiểm chứng phương pháp cuối ngày (daily-v2)
+
+Đặc tả hiện hành: [Cơ sở phương pháp](report/CO_SO_PHUONG_PHAP.md). Bản cuối ngày dùng cân bằng mua–bán khối ngoại, tách dữ liệu thiếu khỏi số 0, giữ đồng điểm ở ranh giới Top 5. Tab Kiểm chứng theo đúng trọng số và đơn vị ngoại đang chọn; hiển thị độ nhạy sàng lọc và lợi suất phiên sau chỉ như mô tả bổ sung.
+
+Chạy offline, không đăng nhập SSI:
+
+```powershell
+python -m src.cli validate-daily --daily-db webdata/ssi_daily.sqlite --foreign value --output evidence/daily_v2/value
+python -m src.cli validate-daily --daily-db webdata/ssi_daily.sqlite --foreign volume --output evidence/daily_v2/volume
+```
+
+Để giữ ảnh chụp lần cũ, đổi `--output` sang thư mục đợt mới khi bổ sung dữ liệu. Tái lập từ đúng dữ liệu đã lưu (tự kiểm SHA-256 nếu có manifest bên cạnh):
+
+```powershell
+python -m src.cli validate-daily --input-json evidence/daily_v2/value/input_daily.json --foreign value --output runtime/reproduce_daily_v2
+```
+
+Nếu báo cáo gốc dùng lịch phiên đã xác nhận, truyền lại cùng `--calendar path/to/calendar.json`; tệp gồm `source` (nguồn đối chiếu) và `sessions` (danh sách ngày ISO). Khi chưa có, bỏ các khoảng trống ngày làm việc thay vì đoán phiên kế tiếp. Bằng chứng hai đơn vị nằm trong [value](evidence/daily_v2/value/KIEM_TRA_PHIEN_KE_TIEP.md) và [volume](evidence/daily_v2/volume/KIEM_TRA_PHIEN_KE_TIEP.md).

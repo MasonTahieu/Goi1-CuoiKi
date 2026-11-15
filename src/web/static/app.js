@@ -1,11 +1,12 @@
 "use strict";
 (() => {
   const FACTORS = ["momentum", "liquidity", "foreign", "imbalance"];
-  const FLABEL = { momentum: "Động lượng", liquidity: "Thanh khoản", foreign: "Dòng tiền ngoại", imbalance: "Cung–cầu" };
+  const FLABEL = { momentum: "Động lượng", liquidity: "Thanh khoản", foreign: "Khối ngoại", imbalance: "Cung–cầu" };
   const FCOLOR = { momentum: "#4C8DFF", liquidity: "#31C2D6", foreign: "#A48BFF", imbalance: "#E58BC8" };
-  const FRGB = { momentum: "76, 141, 255", liquidity: "49, 194, 214", foreign: "164, 139, 255", imbalance: "229, 139, 200" };
-  const VIEWS = ["rank", "history", "validate", "quality", "method"];
+  const VIEWS = ["rank", "stock", "history", "validate", "quality", "method"];
   const RANK_FILTERS = ["all", "top", "rising", "unranked"];
+  const MAX_VISIBLE_CANDLES = 3000;
+  const STOCK_LEFT = 57, STOCK_RIGHT = 13;
   const MODE = { demo: "Demo", replay: "Phát lại", live: "Trực tiếp" };
   const BAD = new Set(["disconnected", "halt", "invalid"]);
   const $ = (id) => document.getElementById(id);
@@ -22,13 +23,14 @@
     ctx: null, source: null, run: null, point: null, weights: "balanced", foreign: "value", group: "VN30",
     sort: { key: "rank", dir: 1 }, search: "", min: 0, rankFilter: "all", selected: null, view: "rank", compare: "prev",
     runs: [], timeline: [], data: null, timer: null, refresh: 0, requestId: 0,
-    chart: "score", heat: null, heatKey: "", valid: null, validKey: "",
+    chart: "score", price: null, stockRange: null, stockTimeframe: "1d", stockHistory: null, stockWindow: null,
+    heat: null, heatKey: "", valid: null, validKey: "",
   };
 
   // ---------- URL state ----------
   function readHash() {
     const p = new URLSearchParams(location.hash.slice(1));
-    for (const [k, key] of [["src", "source"], ["run", "run"], ["pt", "point"], ["g", "group"], ["w", "weights"], ["f", "foreign"], ["sel", "selected"], ["view", "view"], ["cmp", "compare"], ["ch", "chart"], ["rf", "rankFilter"]]) {
+    for (const [k, key] of [["src", "source"], ["run", "run"], ["pt", "point"], ["g", "group"], ["w", "weights"], ["f", "foreign"], ["sel", "selected"], ["view", "view"], ["cmp", "compare"], ["ch", "chart"], ["rf", "rankFilter"], ["tf", "stockTimeframe"]]) {
       if (p.has(k)) state[key] = p.get(k);
     }
   }
@@ -38,6 +40,7 @@
     put("src", state.source); put("run", state.run); put("pt", state.point); put("g", state.group);
     put("w", state.weights); put("f", state.foreign); put("sel", state.selected); put("view", state.view); p.set("cmp", state.compare || ""); put("ch", state.chart);
     if (state.rankFilter !== "all") put("rf", state.rankFilter);
+    if (state.stockTimeframe === "5m") put("tf", state.stockTimeframe);
     history.replaceState(null, "", "#" + p.toString());
   }
 
@@ -64,6 +67,7 @@
     if (!VIEWS.includes(state.view)) state.view = "rank";
     if (!["score", "scatter"].includes(state.chart)) state.chart = "score";
     if (!RANK_FILTERS.includes(state.rankFilter)) state.rankFilter = "all";
+    if (state.stockTimeframe !== "5m") state.stockTimeframe = "1d";
     try {
       state.ctx = await get("/api/context");
     } catch (err) { return fatal(err); }
@@ -104,7 +108,7 @@
   }
 
   function bindEvents() {
-    $("source").onchange = (e) => { state.source = e.target.value; state.run = null; state.point = null; state.selected = null; bindWeights(); fillCompare(); loadRuns(); };
+    $("source").onchange = (e) => { state.source = e.target.value; state.run = null; state.point = null; state.selected = null; state.stockRange = null; bindWeights(); fillCompare(); loadRuns(); };
     $("run").onchange = (e) => { state.run = e.target.value; state.point = null; loadTimeline(); };
     $("point").onchange = (e) => { state.point = e.target.value; loadSnapshot(); };
     $("compare").onchange = (e) => { state.compare = e.target.value; loadSnapshot(); };
@@ -132,6 +136,19 @@
       const q = new URLSearchParams({ source: state.source, run: state.run || "", point: state.point || "", weights: state.weights, foreign: state.foreign, group: state.group, compare: state.compare || "" });
       location.href = "/api/export.csv?" + q;
     };
+    $("stock-symbol").onchange = (e) => select(e.target.value);
+    $("stock-timeframe").onchange = (e) => {
+      state.stockTimeframe = e.target.value;
+      state.stockRange = null;
+      writeHash();
+      renderStockView();
+    };
+    $("stock-range").onchange = (e) => {
+      state.stockRange = e.target.value;
+      state.stockWindow = null;
+      renderStockView();
+    };
+    bindStockNavigation();
     document.querySelectorAll(".group-tabs button").forEach((b) => (b.onclick = () => { state.group = b.dataset.group; state.selected = null; render(); }));
     document.querySelectorAll(".view-tabs button").forEach((b) => (b.onclick = () => { state.view = b.dataset.view; render(); }));
     $("chart-mode").onclick = (e) => {
@@ -221,6 +238,7 @@
     const d = state.data;
     if (!d) return;
     writeHash();
+    document.querySelector(".workspace").classList.toggle("reading-view", state.view !== "rank");
     const conn = d.connection;
     $("conn").innerHTML = `<span class="dot ${esc(conn.severity)}"></span><span>${esc(conn.label)}${conn.epoch ? ` · lần ${conn.epoch}` : ""}</span>`;
     $("clock").textContent = d.method_kind === "daily" ? day(d.as_of) : clock(d.as_of);
@@ -237,11 +255,12 @@
     document.querySelectorAll(".group-tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.group === state.group)));
     document.querySelectorAll(".view-tabs button").forEach((b) => b.setAttribute("aria-selected", String(b.dataset.view === state.view)));
     for (const v of VIEWS) $("view-" + v).hidden = state.view !== v;
+    $("price").hidden = state.view === "stock";
     $("footer-source").textContent = `Nguồn ${d.source === "synthetic" ? "giả lập" : d.source.toUpperCase()}${d.profile ? " · " + d.profile : ""} · giờ UTC+7`;
     const wl = isDaily() ? (d.weights.id === "balanced" ? "33/33/33" : "50/25/25") : (d.weights.id === "balanced" ? "25/25/25/25" : "40/20/20/20");
     $("controls-summary").textContent = `${isDaily() ? day(d.as_of) : clock(d.as_of)} · ${wl} · ${d.foreign === "value" ? "ngoại theo giá trị" : "ngoại theo khối lượng"}${compareAt() ? " · so với " + compareAt() : ""}`;
     renderPulse(); renderMetrics(); renderNotice(); renderRank(); renderQuality(); renderMethod();
-    renderHistory(); renderValidate();
+    renderStockView(); renderHistory(); renderValidate();
   }
 
   function renderMetrics() {
@@ -255,7 +274,11 @@
       : `${fmt(leader.total)} điểm` + (leader.rank_change > 0 ? ` · từ hạng ${leader.prev_rank}` : leader.prev_rank === 1 ? " · giữ hạng 1" : "");
     $("m-asof").textContent = d.method_kind === "daily" ? day(d.as_of) : clock(d.as_of);
     $("m-asof-note").textContent = d.method_kind === "daily" ? "cuối phiên" : day(d.as_of);
-    if (d.freshness_seconds != null) {
+    $("m-fresh-label").textContent = isDaily() ? "Thu dữ liệu SSI (UTC+7)" : "Độ mới dữ liệu";
+    if (isDaily() && d.last_recorded) {
+      $("m-fresh").textContent = clock(d.last_recorded);
+      $("m-fresh-note").textContent = day(d.last_recorded);
+    } else if (d.freshness_seconds != null) {
       $("m-fresh").textContent = `${fmt(d.freshness_seconds, 0)} giây`;
       $("m-fresh-note").textContent = `từ bản ghi gần nhất · ngưỡng giá ${fmt(d.policy.max_age_seconds, 0)} giây`;
     } else {
@@ -271,19 +294,10 @@
     const summary = $("snapshot-summary");
     summary.hidden = !group?.members;
     if (summary.hidden) return;
-    const { as_of: at, pulse } = state.data;
-    const when = isDaily() ? `Phiên ${day(at)}` : `${clock(at)} · ${day(at)}`;
-    const parts = [];
-    if (pulse?.priced) {
-      const coverage = pulse.priced < pulse.members ? ` (${pulse.priced}/${pulse.members} mã có giá so sánh)` : "";
-      parts.push(`${pulse.advancers} tăng, ${pulse.unchanged} đứng, ${pulse.decliners} giảm so với ${pulse.basis}${coverage}`);
-    }
-    parts.push(`${group.ranked}/${group.members} mã đã xếp hạng`);
-    if (leader) {
-      const leaders = group.rows.filter((row) => row.rank === 1);
-      parts.push(leaders.length > 1 ? `${leaders.length} mã đồng hạng nhất` : `${leader.symbol} dẫn đầu (${fmt(leader.total)} điểm)`);
-    }
-    $("snapshot-summary-text").textContent = `${when} · ${parts.join(" · ")}`;
+    const leaders = group.rows.filter((row) => row.rank === 1);
+    const lead = leaders.length > 1 ? `${leaders.length} mã đồng hạng nhất`
+      : leader ? `${leader.symbol} dẫn đầu với ${fmt(leader.total)} điểm` : "";
+    $("snapshot-summary-text").textContent = `${group.ranked}/${group.members} mã đã xếp hạng${lead ? " · " + lead : ""}`;
     const unranked = group.members - group.ranked;
     const action = $("summary-unranked");
     action.hidden = unranked <= 0;
@@ -342,14 +356,6 @@
     return `<span class="${cls}" aria-hidden="true">${parts}</span>`;
   }
   function applyWidths(root) { root.querySelectorAll("[data-w]").forEach((n) => (n.style.width = Math.max(0, Math.min(100, Number(n.dataset.w))) + "%")); }
-  // Percentile tint behind each factor score: same hue as the factor, stronger when the score is higher.
-  function applyTints(root) {
-    root.querySelectorAll("[data-tint]").forEach((n) => {
-      const v = Math.max(0, Math.min(100, Number(n.dataset.tint)));
-      n.style.backgroundColor = `rgba(${FRGB[n.dataset.f]}, ${(0.2 * Math.pow(v / 100, 2.2)).toFixed(3)})`;
-    });
-  }
-
   function statusTag(row) {
     if (row.rank != null) {
       const own = ownWarnings(row);
@@ -364,7 +370,7 @@
     if (!state.data) return;
     const rows = visibleRows();
     const g = groupData();
-    const choices = state.rankFilter === "all" ? g.rows : rows;
+    const choices = state.view === "stock" || state.rankFilter === "all" ? g.rows : rows;
     if (!choices.some((r) => r.symbol === state.selected)) {
       state.selected = (choices.find((r) => r.rank === 1) || choices[0])?.symbol ?? null;
     }
@@ -398,14 +404,17 @@
     else body = rows.map((r) => `
       <tr data-symbol="${esc(r.symbol)}" tabindex="0" aria-selected="${r.symbol === state.selected}" class="${r.rank == null ? "unranked" : ""}">
         <td class="rank num"><span class="rank-cell"><b>${r.rank ?? "—"}</b>${deltaTag(r)}</span></td>
-        <td class="sym">${esc(r.symbol)}</td>
+        <td class="sym">
+          <button type="button" class="ticker-link" aria-label="Xem biểu đồ ${esc(r.symbol)}">${esc(r.symbol)}</button>
+          <small class="ticker-price">${r.raw.closePrice == null ? "—" : fmt(r.raw.closePrice, 0) + " đ"}</small>
+        </td>
         <td class="total"><span class="total-cell"><b class="num">${fmt(r.total)}</b>${r.rank != null ? stackBar(r) : ""}</span></td>
-        ${shownFactors().map((f) => `<td class="factor"${r.scores[f] != null ? ` data-tint="${r.scores[f]}" data-f="${f}"` : ""}><span class="factor-cell">${r.scores[f] != null ? `<span class="bar"><i class="c-${f}" data-w="${r.scores[f]}"></i></span><span class="num">${fmt(r.scores[f], 0)}</span>` : `<span></span><span class="muted">—</span>`}</span></td>`).join("")}
+        ${shownFactors().map((f) => `<td class="factor"><span class="factor-cell"><span class="num">${fmt(r.scores[f], 0)}</span></span></td>`).join("")}
         <td class="state">${statusTag(r)}</td>
       </tr>`).join("");
     const table = $("rank-table");
     table.innerHTML = `<caption class="sr-only">Xếp hạng ${esc(state.group)}</caption><thead><tr>${th}</tr></thead><tbody>${body}</tbody>`;
-    applyWidths(table); applyTints(table);
+    applyWidths(table);
     table.querySelectorAll("th button[data-sort]").forEach((b) => (b.onclick = () => {
       const key = b.dataset.sort;
       state.sort = { key, dir: state.sort.key === key ? -state.sort.dir : 1 };
@@ -413,7 +422,15 @@
     }));
     table.querySelectorAll("tbody tr[data-symbol]").forEach((tr) => {
       tr.onclick = () => select(tr.dataset.symbol);
+      tr.querySelector(".ticker-link").onclick = (e) => {
+        e.stopPropagation();
+        state.selected = tr.dataset.symbol;
+        state.view = "stock";
+        render();
+        $("stock-symbol").focus();
+      };
       tr.onkeydown = (e) => {
+        if (e.target !== tr) return;
         if (e.key === "Enter" || e.key === " ") { e.preventDefault(); select(tr.dataset.symbol); }
         if (e.key === "ArrowDown" || e.key === "ArrowUp") {
           e.preventDefault();
@@ -434,7 +451,7 @@
   function select(symbol) {
     state.selected = symbol;
     document.querySelectorAll("#rank-table tbody tr").forEach((tr) => tr.setAttribute("aria-selected", String(tr.dataset.symbol === symbol)));
-    writeHash(); renderDetail(); renderChart(); drawHeatmap();
+    writeHash(); renderDetail(); renderStockView(); renderChart(); drawHeatmap();
   }
 
   function rawLine(f, raw) {
@@ -444,7 +461,12 @@
     if (isDaily() && f === "momentum") return `Đóng cửa ${fmt(raw.closePrice, 0)} so với mở cửa ${fmt(raw.openPrice, 0)}: <span class="${raw.momentum > 0 ? "up" : raw.momentum < 0 ? "down" : "ref"}">${signed(raw.momentum, 2)} %</span>`;
     if (f === "momentum") return `Giá ${fmt(raw.closePrice, 0)} so với mở cửa ${fmt(raw.openPrice, 0)}: <span class="${raw.momentum > 0 ? "up" : raw.momentum < 0 ? "down" : "ref"}">${signed(raw.momentum, 2)} %</span>`;
     if (f === "liquidity") return `Giá trị khớp ${money(raw.turnover)} · chênh lệch ${fmt(raw.spread_bps, 0)} bps · độ sâu ${money(raw.depth_vnd)}`;
-    if (f === "foreign") return `Ngoại ròng / giá trị khớp ${signed(raw.foreign_ratio, 3)}`;
+    if (isDaily() && f === "foreign") {
+      const amount = (v) => state.foreign === "volume" ? `${fmt(v, 0)} CP` : money(v);
+      return `Cân bằng mua–bán ${signed(raw.foreign_ratio, 3)} · Mua ${amount(raw.foreign_buy)} · Bán ${amount(raw.foreign_sell)} · Ròng ${amount(raw.foreign_net)}`
+        + (raw.foreign_activity === false ? " · Không có giao dịch ngoại; quy ước tỷ lệ bằng 0" : "");
+    }
+    if (f === "foreign") return `Ngoại ròng / ${state.foreign === "volume" ? "khối lượng khớp" : "giá trị khớp"} ${signed(raw.foreign_ratio, 3)}`;
     return `Mất cân bằng chào mua–bán ba mức ${signed(raw.imbalance, 2)}`;
   }
 
@@ -473,7 +495,10 @@
       <div class="factors">${shownFactors().map((f) => `
         <div class="frow"><span class="name"><i class="c-${f}"></i>${FLABEL[f]}</span>
           <span class="bar"><i class="c-${f}" data-w="${r.scores[f] ?? 0}"></i></span><b class="num">${fmt(r.scores[f], 0)}</b>
-          ${rawLine(f, r.raw) ? `<span class="raw">${rawLine(f, r.raw)}</span>` : ""}</div>`).join("")}</div>
+</div>`).join("")}</div>
+      <details class="raw-details"><summary>Dữ liệu và cách tính từng yếu tố</summary>
+        ${shownFactors().filter((f) => rawLine(f, r.raw)).map((f) => `<div class="raw-item"><b>${FLABEL[f]}</b><p>${rawLine(f, r.raw)}</p></div>`).join("")}
+      </details>
       ${ownWarnings(r).length ? `<ul class="warnings">${ownWarnings(r).map((w) => `<li>${icon("info")}${esc(w)}</li>`).join("")}</ul>` : ""}`;
     applyWidths(el);
     loadPrice(r);
@@ -491,7 +516,10 @@
     const el = $("price");
     const symbol = row.symbol;
     const snapshot = state.data;
-    if (state.price?.snapshot === snapshot && state.price.symbol === symbol) return;
+    if (state.price?.snapshot === snapshot && state.price.symbol === symbol && !state.price.error) {
+      drawPrice();
+      return;
+    }
     const isCurrent = () => state.data === snapshot && state.selected === symbol;
     state.price = null;
     el.replaceChildren();
@@ -502,14 +530,20 @@
       drawPrice();
     } catch (err) {
       if (!isCurrent()) return;
+      state.price = { snapshot, symbol, error: err.message };
       el.innerHTML = `<h4>Giá khớp đã ghi nhận</h4><p class="muted">${esc(err.message)}</p>`;
+      drawStockChart();
     }
   }
 
   function drawPrice() {
     const el = $("price"), p = state.price;
-    if (!p || p.symbol !== state.selected) return;
-    el.innerHTML = `<h4>${isDaily() ? "Giá đóng cửa các phiên" : "Giá khớp đã ghi nhận"} · ${esc(p.symbol)}</h4>` + priceChart(p.points, p.open, Math.max(240, el.clientWidth - 32));
+    if (!p || p.error || p.symbol !== state.selected) return;
+    if (!el.hidden) {
+      el.innerHTML = `<h4>${isDaily() ? "Giá đóng cửa các phiên" : "Giá khớp đã ghi nhận"} · ${esc(p.symbol)}</h4>`
+        + priceChart(p.points, p.open, Math.max(240, el.clientWidth - 32));
+    }
+    drawStockChart();
   }
 
   function priceChart(points, open, W) {
@@ -531,6 +565,294 @@
       ${points.map((p, i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(p.price).toFixed(1)}" r="2.5" fill="${color}"/>`).join("")}
       <text x="${P.l}" y="${H - 4}">${points[0].label || clock(points[0].at)}</text><text x="${W - P.r}" y="${H - 4}" text-anchor="end">${points[points.length - 1].label || clock(points[points.length - 1].at)}</text>
     </svg>`;
+  }
+
+  function renderStockView() {
+    if (state.view !== "stock") {
+      state.stockHistory = null;
+      state.stockWindow = null;
+      return;
+    }
+    const rows = groupData()?.rows ?? [];
+    const symbols = rows.map((row) => row.symbol).sort().map((symbol) => ({ id: symbol, label: symbol }));
+    const dayBars = isDaily() && state.stockTimeframe === "1d";
+    const unit = isDaily() ? "nến" : "điểm";
+    const ranges = dayBars ? [
+      ...[5, 10, 30, 60].map((count) => ({ id: String(count), label: `${count} phiên` })),
+      ...[1, 5, 10].map((years) => ({ id: `${years}y`, label: `${years} năm` })),
+    ] : [30, 100].map((count) => ({ id: String(count), label: `${count} ${unit}` }));
+    if (isDaily() && !dayBars) ranges.push({ id: "1m", label: "1 tháng" }, { id: "1y", label: "1 năm" });
+    if (!isDaily()) ranges.push({ id: "all", label: "Tối đa 300 điểm gần nhất" });
+    if (!ranges.some((range) => range.id === state.stockRange)) {
+      state.stockRange = dayBars ? "1y" : isDaily() ? "100" : "all";
+    }
+    fillSelect($("stock-symbol"), symbols, state.selected);
+    fillSelect($("stock-range"), ranges, state.stockRange);
+    $("stock-symbol").disabled = !symbols.length;
+    $("stock-range").disabled = !symbols.length;
+    $("stock-timeframe-field").hidden = !isDaily();
+    $("stock-timeframe").value = state.stockTimeframe;
+    $("stock-timeframe").disabled = !symbols.length;
+    if (isDaily() && state.selected) loadStockHistory();
+    drawStockChart();
+  }
+
+  async function loadStockHistory() {
+    const request = { snapshot: state.data, symbol: state.selected, timeframe: state.stockTimeframe, range: state.stockRange };
+    const previous = state.stockHistory;
+    if (previous?.snapshot === request.snapshot && previous.symbol === request.symbol
+        && previous.timeframe === request.timeframe && previous.range === request.range && !previous.error) return;
+    state.stockHistory = request;
+    try {
+      const result = await get("/api/history", {
+        source: "daily", point: request.snapshot.as_of, symbol: request.symbol, timeframe: request.timeframe, range: request.range,
+      });
+      if (state.stockHistory !== request) return;
+      if (result.basis !== "ohlc") {
+        throw new Error("Chưa đọc được dữ liệu từ API biểu đồ.");
+      }
+      request.points = result.points;
+      request.basis = result.basis;
+    } catch (err) {
+      if (state.stockHistory !== request) return;
+      request.error = err.message;
+    }
+    drawStockChart();
+  }
+
+  function stockPlotFraction(graph, clientX) {
+    const bounds = graph.getBoundingClientRect();
+    const width = graph.viewBox.baseVal.width;
+    return ((clientX - bounds.left) * width / bounds.width - STOCK_LEFT) / (width - STOCK_LEFT - STOCK_RIGHT);
+  }
+
+  function stockWindowCount(total, count) {
+    return Math.min(total, MAX_VISIBLE_CANDLES, Math.max(5, count));
+  }
+
+  let stockRedraw = null;
+  function setStockWindow(start, count, inspectAt = null) {
+    const viewport = state.stockWindow;
+    if (!viewport) return false;
+    const total = viewport.data.points.length;
+    const boundedCount = stockWindowCount(total, count);
+    const boundedStart = Math.max(0, Math.min(total - boundedCount, Math.round(start)));
+    if (boundedCount === viewport.count && boundedStart === viewport.start) return false;
+    viewport.count = boundedCount;
+    viewport.start = boundedStart;
+    viewport.inspectAt = inspectAt;
+    stockRedraw ??= requestAnimationFrame(() => {
+      stockRedraw = null;
+      drawStockChart();
+    });
+    return true;
+  }
+
+  function zoomStock(factor, position, inspectAt) {
+    const viewport = state.stockWindow;
+    if (!viewport) return false;
+    const total = viewport.data.points.length;
+    const requested = factor < 1 ? Math.floor(viewport.count * factor) : Math.ceil(viewport.count * factor);
+    const count = stockWindowCount(total, requested);
+    const anchor = position ?? (viewport.start + viewport.count === total ? 1 : 0.5);
+    return setStockWindow(viewport.start + (viewport.count - count) * anchor, count, inspectAt);
+  }
+
+  function resetStockWindow() {
+    const viewport = state.stockWindow;
+    if (!viewport) return;
+    const points = viewport.data.points;
+    const count = stockWindowCount(points.length, stockRangeCount(points, state.stockRange));
+    setStockWindow(points.length - count, count);
+  }
+
+  function bindStockNavigation() {
+    $("stock-nav").onclick = (e) => {
+      const action = e.target.closest("button[data-nav]")?.dataset.nav;
+      const viewport = state.stockWindow;
+      if (!action || !viewport) return;
+      if (action === "reset") resetStockWindow();
+      else if (action === "in" || action === "out") zoomStock(action === "in" ? 0.75 : 1.35);
+      else {
+        const shift = Math.max(1, Math.floor(viewport.count / 3));
+        setStockWindow(viewport.start + (action === "back" ? -shift : shift), viewport.count);
+      }
+    };
+    const surface = $("stock-chart");
+    const pointers = new Map();
+    let gesture = null;
+    const measure = () => {
+      const [first, second] = pointers.values();
+      if (!second) return { center: first.x, distance: 0 };
+      return { center: (first.x + second.x) / 2, distance: Math.max(1, Math.hypot(first.x - second.x, first.y - second.y)) };
+    };
+    const beginGesture = () => {
+      const viewport = state.stockWindow, graph = surface.querySelector(".stock-svg");
+      gesture = null;
+      if (pointers.size && viewport && graph) {
+        const { center, distance } = measure();
+        gesture = { viewport, count: viewport.count, distance,
+                    anchor: viewport.start + viewport.count * stockPlotFraction(graph, center) };
+      }
+      surface.classList.toggle("is-dragging", Boolean(gesture));
+    };
+    surface.onpointerdown = (e) => {
+      if (e.button !== 0 || !e.target.closest(".stock-svg") || pointers.size >= 2) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      surface.setPointerCapture(e.pointerId);
+      beginGesture();
+    };
+    surface.onpointermove = (e) => {
+      const viewport = state.stockWindow, graph = surface.querySelector(".stock-svg");
+      if (!pointers.has(e.pointerId) || !gesture || viewport !== gesture.viewport || !graph) return;
+      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
+      const { center, distance } = measure();
+      const requested = distance ? Math.round(gesture.count * gesture.distance / distance) : gesture.count;
+      const count = stockWindowCount(viewport.data.points.length, requested);
+      setStockWindow(gesture.anchor - count * stockPlotFraction(graph, center), count, center);
+    };
+    const endGesture = (e) => { if (pointers.delete(e.pointerId)) beginGesture(); };
+    surface.onpointerup = surface.onpointercancel = surface.onlostpointercapture = endGesture;
+    surface.ondblclick = resetStockWindow;
+    surface.addEventListener("wheel", (e) => {
+      const graph = e.target.closest(".stock-svg");
+      if (!graph || !e.deltaY) return;
+      const delta = e.deltaY * (e.deltaMode === 1 ? 16 : e.deltaMode === 2 ? 120 : 1);
+      const factor = Math.exp(0.002 * Math.max(-160, Math.min(160, delta)));
+      const position = Math.max(0, Math.min(1, stockPlotFraction(graph, e.clientX)));
+      if (zoomStock(factor, position, e.clientX) || e.ctrlKey || e.metaKey) e.preventDefault();
+    }, { passive: false });
+  }
+
+  function stockQuote(point) {
+    const dayBars = isDaily() && state.stockTimeframe === "1d";
+    const minuteBars = isDaily() && state.stockTimeframe === "5m";
+    const entries = [
+      [dayBars ? "Giá đóng cửa" : minuteBars ? "Giá đóng nến" : "Giá khớp", `${fmt(point.price, 0)} đ`],
+      ["Mở cửa", fmt(point.open, 0)],
+      ["Cao nhất", fmt(point.high, 0)],
+      ["Thấp nhất", fmt(point.low, 0)],
+      [dayBars ? "KL cả phiên" : minuteBars ? "KL nến 5 phút" : "KL tại điểm", fmt(point.volume, 0)],
+    ];
+    const at = dayBars ? day(point.at) : `${clock(point.at)} · ${day(point.at)}`;
+    $("stock-quote").innerHTML = entries.map(([label, value], i) =>
+      `<div><dt>${label}</dt><dd>${value}${i === 0 ? `<small>${esc(at)}</small>` : ""}</dd></div>`
+    ).join("");
+  }
+
+  function stockRangeCount(points, range) {
+    if (isDaily() && state.stockTimeframe === "5m" && range === "1y") return Math.min(points.length, 300);
+    const count = Number(range);
+    return Math.min(points.length, MAX_VISIBLE_CANDLES, Number.isFinite(count) ? count : points.length);
+  }
+
+  function drawStockChart() {
+    if (state.view !== "stock") return;
+    const el = $("stock-chart"), note = $("stock-chart-note"), nav = $("stock-nav");
+    const data = isDaily() ? state.stockHistory : state.price;
+    const current = data?.snapshot === state.data && data?.symbol === state.selected
+      && (!isDaily() || (data.timeframe === state.stockTimeframe && data.range === state.stockRange));
+    if (!state.selected || !current || data.error || !data.points?.length) {
+      $("stock-quote").replaceChildren();
+      nav.hidden = true;
+      state.stockWindow = null;
+      note.textContent = "";
+      const message = !state.selected ? "Chọn một mã để xem giá."
+        : current && data.error ? data.error
+          : !current || !data.points ? (isDaily() ? `Đang lấy nến ${state.selected} từ SSI FastConnect…` : "Đang tải dữ liệu giá…")
+            : isDaily()
+              ? "SSI FastConnect chưa trả nến cho mã trong khoảng đã chọn."
+              : "Chưa ghi nhận điểm giá cho mã này đến mốc đã chọn.";
+      el.innerHTML = `<p class="empty">${esc(message)}</p>`;
+      return;
+    }
+    const total = data.points.length;
+    const initialCount = stockWindowCount(total, stockRangeCount(data.points, state.stockRange));
+    if (state.stockWindow?.data !== data) {
+      state.stockWindow = { data, start: total - initialCount, count: initialCount };
+    }
+    const { start, count } = state.stockWindow;
+    const points = data.points.slice(start, start + count);
+    nav.hidden = false;
+    nav.querySelector('[data-nav="back"]').disabled = start === 0;
+    nav.querySelector('[data-nav="next"]').disabled = start + count === total;
+    nav.querySelector('[data-nav="in"]').disabled = count <= 5;
+    nav.querySelector('[data-nav="out"]').disabled = count === Math.min(total, MAX_VISIBLE_CANDLES);
+    nav.querySelector('[data-nav="reset"]').disabled = start + count === total && count === initialCount;
+    const candles = isDaily() && points.every((p) => [p.open, p.high, p.low, p.price].every(Number.isFinite)
+      && p.low <= Math.min(p.open, p.price) && p.high >= Math.max(p.open, p.price));
+    const volumes = points.filter((p) => Number.isFinite(p.volume) && p.volume >= 0);
+    const volumeMax = Math.max(1, ...volumes.map((p) => p.volume));
+    const prices = candles ? points.flatMap((p) => [p.low, p.high]) : points.map((p) => p.price);
+    const minPrice = Math.min(...prices), maxPrice = Math.max(...prices);
+    const pad = (maxPrice - minPrice) * 0.08 || Math.max(1, Math.abs(minPrice) * 0.003);
+    const W = Math.max(240, el.clientWidth), H = W < 500 ? 284 : 380;
+    const L = STOCK_LEFT, R = W - STOCK_RIGHT, T = 14, B = H - (volumes.length ? 90 : 28);
+    const volumeTop = B + 20, volumeBottom = H - 25;
+    const step = (R - L) / points.length;
+    const x = (i) => L + (i + 0.5) * step;
+    const y = (price) => B - ((price - minPrice + pad) / (maxPrice - minPrice + 2 * pad)) * (B - T);
+    const w = Math.max(1, Math.min(16, step * 0.64));
+    const color = (p) => p.price === p.open ? "var(--text-3)" : p.price > p.open ? "var(--up)" : "var(--down)";
+    const axis = [0, 1, 2, 3, 4].map((i) => {
+      const v = minPrice - pad + (maxPrice - minPrice + 2 * pad) * i / 4;
+      const h = y(v);
+      return `<line class="grid" x1="${L}" x2="${R}" y1="${h}" y2="${h}"/><text x="${L - 7}" y="${h + 4}" text-anchor="end">${fmt(v, 0)}</text>`;
+    }).join("");
+    const priceMarks = candles ? points.map((p, i) => {
+      const c = color(p), h = Math.abs(y(p.open) - y(p.price));
+      return `<g class="stock-candle"><line x1="${x(i)}" x2="${x(i)}" y1="${y(p.high)}" y2="${y(p.low)}" stroke="${c}"/>
+        <rect x="${x(i) - w / 2}" y="${Math.min(y(p.open), y(p.price))}" width="${w}" height="${Math.max(1, h)}" fill="${c}"/></g>`;
+    }).join("") : `<path class="stock-line" d="${points.map((p, i) => `${i ? "L" : "M"}${x(i)},${y(p.price)}`).join(" ")}"/>`;
+    const volumeMarks = volumes.length ? `<text x="${L}" y="${volumeTop - 5}">Khối lượng</text>` + points.map((p, i) => {
+      if (!Number.isFinite(p.volume) || p.volume < 0) return "";
+      const h = (p.volume / volumeMax) * (volumeBottom - volumeTop);
+      return `<rect class="stock-volume" x="${x(i) - w / 2}" y="${volumeBottom - h}" width="${w}" height="${h}" fill="${candles ? color(p) : "var(--accent)"}"/>`;
+    }).join("") : "";
+    const first = points[0], last = points.at(-1);
+    const dayBars = isDaily() && state.stockTimeframe === "1d";
+    const axisTime = (p) => dayBars ? day(p.at) : p.label || `${day(p.at).slice(0, 5)} ${clock(p.at).slice(0, 5)}`;
+    const restoreFocus = el.contains(document.activeElement);
+    el.innerHTML = `<svg class="chart stock-svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" tabindex="0"
+        role="img" aria-label="Biểu đồ giá ${esc(data.symbol)}" aria-describedby="stock-chart-note">
+      ${axis}${priceMarks}${volumeMarks}
+      <line class="stock-crosshair" y1="${T}" y2="${volumes.length ? volumeBottom : B}"/>
+      <circle class="stock-point" r="3.5"/>
+      <text x="${L}" y="${H - 5}">${esc(axisTime(first))}</text>
+      ${points.length > 1 ? `<text x="${R}" y="${H - 5}" text-anchor="end">${esc(axisTime(last))}</text>` : ""}
+    </svg>`;
+    const basis = data.basis === "ohlc" ? "SSI FastConnect" : "Nhật ký";
+    const chartType = candles ? (dayBars ? "Nến ngày" : "Nến 5 phút") : dayBars ? "Đường giá đóng cửa" : "Đường giá khớp";
+    note.textContent = `${points.length}/${total} ${isDaily() ? "nến" : "điểm"} · ${chartType} · ${basis} · VNĐ · UTC+7. Cuộn hoặc chụm hai ngón để thu phóng, kéo ngang để xem thêm. Nhấp đúp để đặt lại.`;
+    const graph = el.querySelector("svg");
+    const crosshair = graph.querySelector(".stock-crosshair"), marker = graph.querySelector(".stock-point");
+    let index = -1;
+    const show = (next) => {
+      const chosen = Math.max(0, Math.min(points.length - 1, next));
+      if (chosen === index) return;
+      index = chosen;
+      const p = points[index], px = x(index);
+      stockQuote(p);
+      crosshair.setAttribute("x1", px);
+      crosshair.setAttribute("x2", px);
+      marker.setAttribute("cx", px);
+      marker.setAttribute("cy", y(p.price));
+      graph.setAttribute("aria-label", `Biểu đồ ${data.symbol}, ${axisTime(p)}, giá ${fmt(p.price, 0)} đồng`);
+    };
+    const pointAtPointer = (e) => show(Math.floor(stockPlotFraction(graph, e.clientX) * count));
+    graph.onpointermove = pointAtPointer;
+    graph.onpointerdown = pointAtPointer;
+    graph.onkeydown = (e) => {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") show(index + (e.key === "ArrowLeft" ? -1 : 1));
+      else if (e.key === "+" || e.key === "-") zoomStock(e.key === "+" ? 0.75 : 1.35, (index + 0.5) / count);
+      else if (e.key === "0") resetStockWindow();
+      else return;
+      e.preventDefault();
+    };
+    const { inspectAt } = state.stockWindow;
+    if (inspectAt == null) show(points.length - 1);
+    else pointAtPointer({ clientX: inspectAt });
+    if (restoreFocus) graph.focus({ preventScroll: true });
   }
 
   function renderChart() {
@@ -577,9 +899,9 @@
   function renderMethod() {
     const d = state.data, g = groupData();
     $("method").innerHTML = `
-      ${d.method_kind === "daily" ? `<div><h3>Đang xem chế độ cuối ngày</h3><p>Xếp hạng theo dữ liệu tổng hợp từng phiên của SSI (REST securitiesSummary, từng mã). Ba yếu tố: động lượng = % đóng cửa so với mở cửa; thanh khoản = điểm phân vị của giá trị khớp cả phiên; dòng tiền ngoại = (mua − bán của khối ngoại) / giá trị khớp. Trọng số 33/33/33 hoặc 50/25/25. Không có sổ lệnh nên không có cung–cầu, độ sâu và chênh lệch giá. Mã thiếu dữ liệu khối ngoại (SSI trả trống) không được xếp hạng. Đây là phương pháp khác (daily-v1), không so trực tiếp với bảng trong phiên.</p>${d.scope_note ? `<p>${esc(d.scope_note.detail)}</p>` : ""}</div>` : ""}
-      <div><h3>Sản phẩm làm gì</h3><p>Xếp hạng tương đối các cổ phiếu trong rổ VN30 tại một mốc của phiên khớp lệnh liên tục, để thu hẹp danh sách cần nghiên cứu tiếp. Không dự báo giá, không đặt lệnh. Phạm vi chỉ gồm VN30: trên dữ liệu SSI 15 phiên, HNX30 có 11/30 mã giao dịch dưới 1 tỷ đồng mỗi phiên và 43% dòng thiếu dữ liệu khối ngoại, nên động lượng và dòng tiền ngoại của nhóm này không đủ tin cậy để xếp hạng.</p></div>
-      <div><h3>Bốn yếu tố</h3><ul>
+      ${d.method_kind === "daily" ? `<div><h3>Đang xem chế độ cuối ngày</h3><p>Xếp hạng theo dữ liệu tổng hợp từng phiên của SSI (REST securitiesSummary, từng mã). Ba yếu tố: động lượng = % đóng cửa so với mở cửa; thanh khoản = điểm phân vị của giá trị khớp cả phiên; cân bằng mua–bán khối ngoại = (mua − bán)/(mua + bán), cùng đơn vị giá trị hoặc khối lượng. Hai số bằng 0: quy ước tỷ lệ bằng 0 và ghi không có giao dịch; số trống khác số 0. Tỷ lệ này không đo quy mô vốn. Giá trị âm hoặc không hợp lệ bị loại. Trọng số 33/33/33 hoặc 50/25/25. Không có sổ lệnh nên không có cung–cầu, độ sâu và chênh lệch giá. Mã thiếu dữ liệu khối ngoại (SSI trả trống) không được xếp hạng. Đây là phương pháp khác (daily-v2), không so trực tiếp với bảng trong phiên.</p>${d.scope_note ? `<p>${esc(d.scope_note.detail)}</p>` : ""}</div>` : ""}
+      <div><h3>Sản phẩm làm gì</h3><p>Xếp hạng tương đối các cổ phiếu VN30 theo các tiêu chí công bố, giúp nhà đầu tư và môi giới ưu tiên danh sách theo dõi. Bản cuối ngày dùng ba yếu tố; bản trong phiên là phương pháp thử nghiệm riêng. Không dự báo giá, không đặt lệnh. Phạm vi chỉ gồm VN30: trên dữ liệu SSI 15 phiên, HNX30 có 11/30 mã giao dịch dưới 1 tỷ đồng mỗi phiên và 43% dòng thiếu dữ liệu khối ngoại, nên động lượng và dòng tiền ngoại của nhóm này không đủ tin cậy để xếp hạng.</p></div>
+      <div><h3>Bốn yếu tố của bản trong phiên thử nghiệm</h3><ul>
         <li><b>Động lượng</b>: % thay đổi từ giá mở cửa đến giá khớp gần nhất.</li>
         <li><b>Thanh khoản</b>: trung bình điểm phân vị của giá trị khớp, độ sâu ba mức giá mỗi bên và chênh lệch mua–bán (hẹp hơn tốt hơn).</li>
         <li><b>Dòng tiền ngoại</b>: (mua − bán của nhà đầu tư nước ngoài) / tổng giá trị khớp, hoặc theo khối lượng.</li>
@@ -589,14 +911,25 @@
         <li><b>Thanh khoản</b>: thanh khoản liên hệ với lợi suất kỳ vọng (Amihud, 2002). Sản phẩm dùng giá trị khớp, độ sâu và chênh lệch giá thay cho thước đo của Amihud, và có thể nghiêng về mã vốn hóa lớn.</li>
         <li><b>Dòng tiền ngoại</b>: dòng vốn của nhà đầu tư nước ngoài có tính bền và theo lợi suất quá khứ (Froot, O'Connell &amp; Seasholes, 2001); ở Việt Nam họ cũng được ghi nhận giao dịch theo xu hướng (Vo, 2017).</li>
         <li><b>Cung–cầu</b>: mất cân bằng lệnh liên hệ với biến động giá ngắn hạn (Chordia, Roll &amp; Subrahmanyam, 2002; Cont, Kukanov &amp; Stoikov, 2014). Các nghiên cứu này đo dòng lệnh; sản phẩm đo khối lượng chào tại một mốc ở ba mức giá, nên đây là thước đo gần đúng.</li></ul></div>
-      <div><h3>Cách chấm</h3><p>Mỗi yếu tố đổi thành điểm phân vị 0–100 trong nhóm đủ dữ liệu; điểm tổng là tổng có trọng số. Cần tối thiểu 10 mã hợp lệ; điểm bằng nhau cùng hạng. Không xếp hạng khi thiếu hoặc cũ dữ liệu, ngoài phiên LO, mất kết nối, hoặc nguồn thật chưa xác minh. Không tự bỏ một yếu tố rồi chia lại trọng số.</p></div>
-      <div><h3>Giới hạn</h3><p>Trọng số là cấu hình thử nghiệm; thanh khoản có thể nghiêng về mã vốn hóa lớn và các yếu tố có thể tương quan. Sổ lệnh chỉ phản ánh lượng chào tại mốc ghi nhận. Dữ liệu giả lập chỉ dùng kiểm tra phần mềm.</p></div>
+      <div><h3>Cách chấm</h3><p>Mỗi yếu tố đổi thành điểm phân vị 0–100 trong nhóm đủ dữ liệu; điểm tổng là tổng có trọng số. Cần tối thiểu 10 mã hợp lệ; điểm bằng nhau cùng hạng. Bản cuối ngày loại mã thiếu hoặc sai đầu vào. Các điều kiện dữ liệu cũ, ngoài phiên LO và mất kết nối áp dụng riêng cho bản trong phiên. Điểm 90 không phải xác suất tăng giá 90%; điểm thay đổi khi tập mã hợp lệ thay đổi. Top 5 gồm tất cả mã đồng điểm ở ranh giới thứ 5. Không tự bỏ một yếu tố rồi chia lại trọng số.</p></div>
+      <div><h3>Giới hạn</h3><p>Trọng số là lựa chọn thiết kế, chưa tối ưu theo lợi suất; phân tích lịch sử dùng rổ thành viên lúc thu thập, chưa tái dựng thành phần VN30 theo từng ngày; thanh khoản có thể nghiêng về mã vốn hóa lớn và các yếu tố có thể tương quan. Sổ lệnh chỉ phản ánh lượng chào tại mốc ghi nhận. Dữ liệu giả lập chỉ dùng kiểm tra phần mềm.</p></div>
       <div><h3>Thông tin lần tính</h3><dl>
         <dt>Nguồn</dt><dd>${esc(d.source)}${d.profile ? " · " + esc(d.profile) : ""}</dd><dt>Lần thu thập</dt><dd>${esc(d.run)}</dd>
         <dt>Mốc</dt><dd>${esc(d.as_of)}</dd><dt>Phương pháp</dt><dd>${esc(g && g.method || "—")}</dd>
         <dt>Cấu hình</dt><dd>${esc(g && g.config_id || "—")}</dd><dt>Tập mã</dt><dd>${esc(g && g.cohort_id || "—")}</dd>
         <dt>Trọng số</dt><dd>${esc(d.weights.label)}</dd><dt>Khối ngoại</dt><dd>${d.foreign === "value" ? "theo giá trị" : "theo khối lượng"}</dd>
         <dt>So sánh với</dt><dd>${d.compare ? (d.compare.as_of ? esc(d.compare.as_of) + " (" + esc(d.compare.label) + ")" : "không có mốc " + esc(d.compare.label)) : "không so sánh"}</dd></dl></div>`;
+    Array.from($("method").children).forEach((section, index) => {
+      if (index < 2) return;
+      const heading = section.querySelector("h3");
+      if (!heading) return;
+      const fold = document.createElement("details"), summary = document.createElement("summary");
+      fold.className = "method-fold";
+      summary.textContent = heading.textContent;
+      heading.remove(); fold.append(summary);
+      while (section.firstChild) fold.append(section.firstChild);
+      section.replaceWith(fold);
+    });
   }
 
   // ---------- market pulse ----------
@@ -693,11 +1026,14 @@
     if (state.view !== "validate") return;
     const el = $("validate");
     if (!isDaily()) return needsDaily(el, "Kiểm chứng");
-    if (state.validKey !== state.weights) {
-      if (!state.valid) el.innerHTML = `<p class="muted loading-line">Đang đối chiếu điểm với lợi suất phiên sau…</p>`;
+    const key = JSON.stringify([state.source, state.weights, state.foreign]);
+    if (state.validKey !== key) {
+      el.innerHTML = `<p class="muted loading-line">Đang tính độ nhạy và kiểm chứng theo lựa chọn hiện tại…</p>`;
       try {
-        state.valid = await get("/api/validation", { source: state.source, weights: state.weights });
-        state.validKey = state.weights;
+        const result = await get("/api/validation", { source: state.source, weights: state.weights, foreign: state.foreign });
+        if (key !== JSON.stringify([state.source, state.weights, state.foreign])) return;
+        state.valid = result;
+        state.validKey = key;
       } catch (err) { el.innerHTML = `<div class="empty"><strong>Không tải được kiểm chứng</strong>${esc(err.message)}</div>`; return; }
     }
     drawValidate();
@@ -706,28 +1042,40 @@
   function drawValidate() {
     const v = state.valid, el = $("validate");
     if (!v || state.view !== "validate" || !isDaily()) return;
-    const ic = v.summary.ic, sp = v.summary.spread, close = v.summary.ic_close, pw = v.summary.power;
+    const opened = new Set(Array.from(el.querySelectorAll("details[open] > summary"), (s) => s.textContent));
+    const ic = v.summary.ic, sp = v.summary.spread, close = v.summary.ic_close;
     const stat = (label, value, note) => `<div><dt>${label}</dt><dd><strong class="num">${value}</strong><span>${note}</span></dd></div>`;
     const positive = ic.positive_share == null ? "—" : `${Math.round(ic.positive_share * ic.pairs)}/${ic.pairs}`;
-    const tNote = ic.t == null ? "chưa đủ cặp" : `t = ${signed(ic.t, 2)} · ${Math.abs(ic.t) >= 2 ? "|t| ≥ 2, cần xác nhận thêm" : "|t| < 2, chưa khác 0"}`;
+    const kinds = { single_factor: "Chỉ một yếu tố", ablation: "Bỏ yếu tố", weights: "Đổi trọng số", missing: "Thiếu một mã" };
+    const variantLabel = (r) => r.name === "one_missing_member" ? "Che lần lượt từng mã" : ((r.kind === "weights" && ({ balanced: "Cân bằng 33/33/33", momentum: "Ưu tiên động lượng 50/25/25" }[r.name])) || FLABEL[r.name] || r.name.replace("liquidity", "Thanh khoản").replace("momentum", "Động lượng").replace("foreign", "Khối ngoại").replace("+0.1", " +10 điểm %").replace("-0.1", " −10 điểm %"));
+    const sensitivityRows = (rows) => rows.map((r) => `<tr><td>${esc(kinds[r.kind])}</td><td>${esc(variantLabel(r))}</td><td class="num">${fmt(r.mean_jaccard, 3)}</td><td class="num">${fmt(r.min_jaccard, 3)}</td><td class="num">${r.changed_scenarios}/${r.scenarios}</td><td class="num">${fmt(r.mean_removed, 1)} / ${fmt(r.mean_added, 1)}</td></tr>`).join("");
     el.innerHTML = `
       <p class="verdict">${esc(v.verdict)}</p>
+      <p class="legend-note">${esc(v.ranking_method)} · ${esc(v.date_from)} – ${esc(v.date_to)} · ${esc(v.weights_label)} · khối ngoại theo ${v.foreign === "value" ? "giá trị" : "khối lượng"}. Phân tích hồi cứu rổ lúc thu thập; chưa xác nhận thành phần VN30 theo từng ngày quá khứ.</p>
+      <h3 class="chart-title">Độ nhạy của danh sách theo dõi</h3>
+      <details class="explanation-fold"><summary>Cách đọc kết quả độ nhạy</summary><p class="legend-note">${esc(v.screening.note)} Trọng số thử thêm ±10 điểm phần trăm cho từng yếu tố rồi chuẩn hóa tổng về 1; không chọn cấu hình theo lợi suất. Cột mã ra/vào là số trung bình so với danh sách gốc.</p></details>
+      <div class="table-wrap"><table class="ftable"><thead><tr><th>Phép so sánh</th><th>Biến thể</th><th>Jaccard TB</th><th>Nhỏ nhất</th><th>Đổi danh sách</th><th>Mã ra / vào</th></tr></thead><tbody>${sensitivityRows(v.screening.summary.filter((r) => r.kind !== "weights"))}</tbody></table></div>
+      <details class="more-analysis"><summary>Xem chi tiết các cấu hình trọng số</summary><div class="table-wrap"><table class="ftable"><thead><tr><th>Phép so sánh</th><th>Biến thể</th><th>Jaccard TB</th><th>Nhỏ nhất</th><th>Đổi danh sách</th><th>Mã ra / vào</th></tr></thead><tbody>${sensitivityRows(v.screening.summary.filter((r) => r.kind === "weights"))}</tbody></table></div></details>
+      <h3 class="chart-title">Bổ sung: lợi suất mở cửa–đóng cửa phiên kế tiếp</h3>
       <dl class="vstats">
-        ${stat("IC trung bình", signed(ic.mean, 3), tNote)}
-        ${stat("Cặp phiên có IC > 0", positive, "một nửa là mức ngẫu nhiên")}
-        ${stat(`Top ${v.top_n} − bottom ${v.top_n}`, `${signed(sp.mean, 2)} điểm %`, "lợi suất phiên sau, trung bình")}
-        ${stat("Mẫu phân biệt được", pw.detectable_ic == null ? "—" : `|IC| ≥ ${fmt(pw.detectable_ic, 2)}`, pw.sessions_for_target ? `IC ${fmt(pw.target_ic, 2)} cần khoảng ${pw.sessions_for_target} phiên` : "chưa đủ cặp")}
+        ${stat("IC trung bình", signed(ic.mean, 3), `độ lệch chuẩn ${fmt(ic.sd, 3)} · ${ic.pairs} cặp tính được`)}
+        ${stat("Cặp phiên có IC > 0", positive, "tần suất mô tả trong mẫu")}
+        ${stat(`Top ${v.top_n} − Bottom ${v.top_n}`, `${signed(sp.mean, 2)} điểm %`, `${sp.pairs} cặp đủ dữ liệu; bao gồm đồng hạng`)}
+        ${stat("Khoảng trống bị bỏ", v.skipped_pairs.length, "không nối qua phiên chưa xác nhận")}
       </dl>
-      <p class="vcompare">Nếu tính cả chênh lệch qua đêm (từ đóng cửa phiên t, không mua kịp vì điểm có sau khi đóng cửa): IC ${signed(close.mean, 3)}, t = ${signed(close.t, 2)}.</p>
-      <h3 class="chart-title">IC từng cặp phiên · lợi suất mở cửa → đóng cửa phiên sau · trọng số ${esc(v.weights_label.replace(/^\D+/, ""))} · đường đứt: trung bình ${signed(ic.mean, 3)}</h3>
+      <p class="vcompare">So sánh phụ theo priceChangePercent của SSI: IC ${signed(close.mean, 3)} trên ${close.pairs} cặp; chưa xác nhận cách điều chỉnh quyền. Không diễn giải thành lợi suất có thể giao dịch.</p>
+      <h3 class="chart-title">IC từng cặp phiên · đường đứt: trung bình ${signed(ic.mean, 3)}</h3>
       <div id="ic-chart"></div>
       <div class="vgrid">
-        <div><h3 class="chart-title">IC của từng yếu tố</h3>
-          <table class="ftable"><thead><tr><th scope="col">Yếu tố</th><th scope="col" class="n">IC trung bình</th><th scope="col" class="n">t</th></tr></thead>
-          <tbody>${["momentum", "liquidity", "foreign"].map((f) => `<tr><td><i class="sw c-${f}"></i>${FLABEL[f]}</td><td class="num n">${signed(v.factor_ic[f].mean, 3)}</td><td class="num n">${signed(v.factor_ic[f].t, 2)}</td></tr>`).join("")}</tbody></table></div>
-        <div><h3 class="chart-title">Cách đo</h3>
-          <p class="legend-note">IC là tương quan hạng Spearman giữa điểm phiên t và lợi suất phiên t+1 của các mã được xếp hạng. Không có tham số nào được ước lượng; trọng số chọn trước khi tính phép đo này. "Chưa có bằng chứng" không có nghĩa là đã chứng minh điểm không dự báo được. Có nhiều phép đo trên cùng mẫu, nên một |t| vừa trên 2 chưa đủ để coi là phát hiện. Kết quả không thay đổi cách chấm điểm.</p></div>
-      </div>`;
+        <div><h3 class="chart-title">IC của từng yếu tố trên cùng tập mã</h3>
+          <table class="ftable"><thead><tr><th>Yếu tố</th><th>IC trung bình</th><th>Số cặp</th></tr></thead>
+          <tbody>${["momentum", "liquidity", "foreign"].map((f) => `<tr><td>${FLABEL[f]}</td><td class="num">${signed(v.factor_ic[f].mean, 3)}</td><td class="num">${v.factor_ic[f].pairs}</td></tr>`).join("")}</tbody></table></div>
+        <div><h3 class="chart-title">Cách đo và giới hạn</h3>
+          <p class="legend-note">IC là tương quan hạng Spearman. Chốt Top/Bottom từ điểm ngày t; không thay mã nếu thiếu giá ngày sau. Không tính chênh lệch khi nhóm giao nhau hoặc thiếu lợi suất của thành viên. IC dùng các mã đủ lợi suất và công bố số mã. Không suy luận ý nghĩa thống kê hay số phiên đủ để phát hiện hiệu ứng. Lợi suất chưa tính chi phí, chu kỳ thanh toán và khả năng khớp lệnh.</p>
+          <p class="legend-note">${esc(v.calendar.note)}</p></div>
+      </div>
+      <details><summary>Độ phủ từng cặp phiên và lý do bỏ</summary><table class="ftable"><thead><tr><th>Ngày</th><th>Phiên sau</th><th>Có lợi suất / đã xếp hạng</th><th>Ghi chú</th></tr></thead><tbody>${v.series.map((p) => `<tr><td>${esc(p.date)}</td><td>${esc(p.next_date)}</td><td>${p.evaluated}/${p.ranked}</td><td>${esc(p.spread_reason || "Đủ dữ liệu Top/Bottom")}${p.missing_future.length ? " · Thiếu: " + esc(p.missing_future.join(", ")) : ""}</td></tr>`).join("")}${v.skipped_pairs.map((p) => `<tr><td>${esc(p.date)}</td><td>${esc(p.observed_next)}</td><td>—</td><td>${esc(p.reason)}</td></tr>`).join("")}</tbody></table></details>`;
+    el.querySelectorAll("details").forEach((d) => { d.open = opened.has(d.querySelector("summary")?.textContent); });
     const box = $("ic-chart");
     box.innerHTML = icChart(v.series, ic.mean, Math.max(280, box.clientWidth));
   }
@@ -745,7 +1093,7 @@
       const cx = P.l + step * i + step / 2, label = (i % every === 0) ? `<text x="${cx.toFixed(1)}" y="${H - 6}" text-anchor="middle">${p.date.slice(8, 10)}/${p.date.slice(5, 7)}</text>` : "";
       if (p.ic == null) return label;
       const top = y(Math.max(0, p.ic)), h = Math.max(1, Math.abs(y(p.ic) - y(0)));
-      return `<g><title>Phiên ${p.date.slice(8, 10)}/${p.date.slice(5, 7)} → ${p.next_date.slice(8, 10)}/${p.next_date.slice(5, 7)}: IC ${signed(p.ic, 3)} · ${p.ranked} mã</title><rect class="${p.ic >= 0 ? "pos" : "neg"}" x="${(cx - bw / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="2"/></g>${label}`;
+      return `<g><title>Phiên ${p.date.slice(8, 10)}/${p.date.slice(5, 7)} → ${p.next_date.slice(8, 10)}/${p.next_date.slice(5, 7)}: IC ${signed(p.ic, 3)} · ${p.evaluated}/${p.ranked} mã đủ lợi suất</title><rect class="${p.ic >= 0 ? "pos" : "neg"}" x="${(cx - bw / 2).toFixed(1)}" y="${top.toFixed(1)}" width="${bw.toFixed(1)}" height="${h.toFixed(1)}" rx="2"/></g>${label}`;
     }).join("");
     if (mean != null) out += `<line class="mean" x1="${P.l}" x2="${W - P.r}" y1="${y(mean).toFixed(1)}" y2="${y(mean).toFixed(1)}"/>`;
     return `<svg class="chart ic" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="IC của ${pts.length} cặp phiên, trung bình ${signed(mean, 3)}">${out}</svg>`;
@@ -755,7 +1103,7 @@
   function scatterChart() {
     const g = groupData(), el = $("score-chart");
     const pts = (g ? g.rows : []).filter((r) => r.raw.momentum != null && r.raw.foreign_ratio != null && r.raw.turnover > 0);
-    const basis = state.data.foreign === "volume" ? "khối lượng" : "giá trị khớp";
+    const basis = isDaily() ? (state.data.foreign === "volume" ? "tổng khối lượng mua + bán ngoại" : "tổng giá trị mua + bán ngoại") : (state.data.foreign === "volume" ? "khối lượng khớp" : "giá trị khớp");
     $("chart-title").textContent = `Động lượng × dòng tiền ngoại · cỡ chấm theo giá trị khớp · ngoại ròng tính trên ${basis}`;
     if (pts.length < 3) { el.innerHTML = `<p class="muted">Cần ít nhất 3 mã có giá, giá trị khớp và số liệu khối ngoại để vẽ.</p>`; return; }
     const W = Math.max(260, el.clientWidth), H = Math.round(Math.min(330, Math.max(230, W * 0.8)));
@@ -797,19 +1145,23 @@
     $("retry").onclick = () => location.reload();
   }
 
-  const phone = window.matchMedia("(max-width: 560px)");
-  const syncControls = () => { $("controls").open = !phone.matches; };
-  phone.addEventListener("change", syncControls);
-  syncControls();
+  document.addEventListener("toggle", (event) => {
+    if (!event.target.open || !state.data) return;
+    if (event.target.classList.contains("price-fold")) drawPrice();
+    if (event.target.classList.contains("chart-panel")) renderChart();
+  }, true);
   let resizeTimer = null;
   new ResizeObserver(() => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => { if (state.data) { renderChart(); drawPrice(); } }, 120);
   }).observe(document.querySelector(".side"));
-  let mainTimer = null;
-  new ResizeObserver(() => {
+  let mainTimer = null, mainWidth = 0;
+  new ResizeObserver((entries) => {
+    const width = entries[0].contentRect.width;
+    if (width === mainWidth) return;
+    mainWidth = width;
     clearTimeout(mainTimer);
-    mainTimer = setTimeout(() => { if (state.data) { drawHeatmap(); drawValidate(); } }, 120);
+    mainTimer = setTimeout(() => { if (state.data) { drawStockChart(); drawHeatmap(); drawValidate(); } }, 120);
   }).observe(document.querySelector(".workspace > .panel"));
 
   init();

@@ -14,6 +14,7 @@ import traceback
 from urllib.parse import parse_qs, urlsplit
 
 from src.config import ConfigurationError
+from src.neo_api.rest import NeoError
 from src.web import api
 
 STATIC = Path(__file__).resolve().parent / "static"
@@ -24,6 +25,7 @@ SAFE_ERRORS = (api.ApiError, ConfigurationError, ValueError, OSError, sqlite3.Er
 
 class Handler(BaseHTTPRequestHandler):
     server_version = "Screener/1.0"
+    daily_only = False
 
     def log_message(self, fmt, *args):  # keep the console readable; errors are logged below
         pass
@@ -56,7 +58,12 @@ class Handler(BaseHTTPRequestHandler):
                     kind += "; charset=utf-8"
                 return self._send(HTTPStatus.OK, path.read_bytes(), kind)
             if parts.path == "/api/context":
-                return self._json(HTTPStatus.OK, api.context())
+                context = api.context()
+                if self.daily_only:
+                    context["sources"] = [source for source in context["sources"] if source["id"] == "daily"]
+                return self._json(HTTPStatus.OK, context)
+            if self.daily_only and parts.path.startswith("/api/") and query.get("source", "daily") != "daily":
+                raise api.ApiError("Trang công khai chỉ cung cấp dữ liệu SSI cuối ngày.")
             if parts.path == "/api/runs":
                 return self._json(HTTPStatus.OK, api.runs(query.get("source", "")))
             if parts.path == "/api/timeline":
@@ -69,10 +76,10 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(HTTPStatus.OK, api.heatmap(query.get("source", ""), query.get("weights", "balanced"),
                                                              query.get("foreign", "value")))
             if parts.path == "/api/validation":
-                return self._json(HTTPStatus.OK, api.validation(query.get("source", ""), query.get("weights", "balanced")))
+                return self._json(HTTPStatus.OK, api.validation(query.get("source", ""), query.get("weights", "balanced"), query.get("foreign", "value")))
             if parts.path == "/api/history":
                 return self._json(HTTPStatus.OK, api.history(query.get("source", ""), query.get("run"), query.get("point"),
-                                                             query.get("symbol", "")))
+                                                             query.get("symbol", ""), query.get("timeframe"), query.get("range")))
             if parts.path == "/api/export.csv":
                 body = api.export_csv(query.get("source", ""), query.get("run"), query.get("point"), query.get("weights", "balanced"),
                                       query.get("foreign", "value"), query.get("group"), query.get("compare") or None)
@@ -80,6 +87,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._send(HTTPStatus.OK, body, "text/csv; charset=utf-8",
                                   {"Content-Disposition": f'attachment; filename="{name}"'})
             return self._json(HTTPStatus.NOT_FOUND, {"error": "Không tìm thấy đường dẫn."})
+        except NeoError as error:
+            return self._json(HTTPStatus.BAD_GATEWAY, {"error": str(error)})
         except SAFE_ERRORS as error:
             if isinstance(error, sqlite3.Error):
                 message = "Không đọc được kho SQLite. Kiểm tra đúng tệp và cấu trúc dữ liệu."

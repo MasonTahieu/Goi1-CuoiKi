@@ -1,3 +1,5 @@
+> **LƯU TRỮ — daily-v1, đã thay thế.** Không dùng kết quả hoặc ước lượng số phiên trong tài liệu này cho phiên bản mới. Xem [daily-v2 theo giá trị](../daily_v2/value/KIEM_TRA_PHIEN_KE_TIEP.md) và [khối lượng](../daily_v2/volume/KIEM_TRA_PHIEN_KE_TIEP.md).
+
 # Kiểm tra phiên kế tiếp: điểm cuối ngày và lợi suất phiên sau
 
 Dữ liệu SSI thật, rổ VN30, **17 phiên**, 16 cặp phiên liên tiếp. Không có tham số nào được ước lượng. Trọng số chọn trước khi tính phép đo này. Điểm phiên t chỉ dùng dữ liệu phiên t.

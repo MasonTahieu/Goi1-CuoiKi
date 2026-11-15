@@ -18,7 +18,7 @@ def main():
         sys.stdout.reconfigure(encoding="utf-8")
     parser = argparse.ArgumentParser(description="VN30 Screener — SSI FastConnect")
     parser.add_argument("command", choices=["check", "demo", "readiness", "connection-plan", "demo-pipeline", "collect", "replay",
-                                            "smoke-v3", "history-v3", "session-v3", "stream-window", "evaluate-v3"])
+                                            "smoke-v3", "history-v3", "session-v3", "stream-window", "evaluate-v3", "validate-daily"])
     parser.add_argument("--transport", choices=["rest", "ws"], default=None)
     parser.add_argument("--seconds", type=int, default=300)
     parser.add_argument("--trial", action="store_true", help="stream-window: thu ngay trong --seconds giây, không chờ khung giờ")
@@ -28,8 +28,39 @@ def main():
     parser.add_argument("--db", type=Path)
     parser.add_argument("--run")
     parser.add_argument("--as-of", help="Mốc ISO8601 kèm +07:00")
+    parser.add_argument("--daily-db", type=Path, help="Kho dữ liệu ngày cho validate-daily")
+    parser.add_argument("--input-json", type=Path, help="Ảnh chụp dữ liệu input_daily.json để tái lập")
+    parser.add_argument("--calendar", type=Path, help="JSON gồm source và sessions (ngày ISO), lịch đã đối chiếu của sở giao dịch")
+    parser.add_argument("--foreign", choices=["value", "volume"], default="value")
+    parser.add_argument("--output", type=Path, help="Thư mục bằng chứng cho validate-daily")
     args = parser.parse_args()
     try:
+        if args.command == "validate-daily":
+            import hashlib
+            import pandas as pd
+            from src.analytics.validation import forward_check, write_evidence
+            from src.data.daily_store import read_daily, default_daily_path
+            if args.input_json:
+                payload = args.input_json.read_bytes()
+                manifest_path = args.input_json.parent / "manifest.json"
+                if manifest_path.is_file():
+                    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+                    if hashlib.sha256(payload).hexdigest() != manifest["input_sha256"]:
+                        raise ValueError("Dữ liệu không khớp SHA-256 trong manifest.")
+                daily = pd.DataFrame(json.loads(payload))
+            else:
+                daily = read_daily(args.daily_db or default_daily_path())
+            calendar = json.loads(args.calendar.read_text(encoding="utf-8")) if args.calendar else None
+            if calendar and (not calendar.get("source") or not isinstance(calendar.get("sessions"), list)):
+                raise ValueError("Lịch phải có nguồn đối chiếu và danh sách sessions.")
+            result = forward_check(daily, foreign=args.foreign, session_dates=calendar["sessions"] if calendar else None)
+            if calendar:
+                result["calendar"]["source"] = calendar["source"]
+            output = args.output or PROJECT_ROOT / "evidence" / "daily_v2" / args.foreign
+            write_evidence(result, output, daily)
+            print(json.dumps({"output": str(output), "sessions": result["sessions"], "pairs": result["pairs"],
+                              "foreign": args.foreign, "ranking_method": result["ranking_method"]}, ensure_ascii=False))
+            return 0
         if args.command == "connection-plan":
             from src.ssi_api.connections import connection_plan
             print(json.dumps(connection_plan(),ensure_ascii=False,indent=2))
@@ -66,8 +97,8 @@ def main():
                 from src.analytics.validation import forward_check, write_evidence
                 daily = read_daily(DAILY_DB)
                 result["daily"] = evaluate_daily(daily)
-                result["forward_check"] = forward_check(daily)
-                write_evidence(result["forward_check"], output.parent)
+                result["forward_check"] = forward_check(daily, foreign=args.foreign)
+                write_evidence(result["forward_check"], PROJECT_ROOT / "evidence" / "daily_v2" / args.foreign, daily)
             output.parent.mkdir(parents=True, exist_ok=True)
             output.write_text(json.dumps(result,ensure_ascii=False,indent=2,default=str),encoding="utf-8")
             result["output"] = str(output)

@@ -5,6 +5,10 @@ from pathlib import Path
 import sqlite3
 
 
+_COLLECTION_EVENT = """(channel IN ('ssiDecoded','ssiMerged') OR
+    (channel IN ('universe','connection') AND payload LIKE '%"connection_epoch"%'))"""
+
+
 class JournalError(ValueError):
     pass
 
@@ -49,13 +53,17 @@ class SSIJournal:
     def __exit__(self,*_):
         self.db.close()
 
+    def has_collection(self):
+        return self.db.execute(
+            f"SELECT 1 FROM events WHERE {_COLLECTION_EVENT} ORDER BY id DESC LIMIT 1"
+        ).fetchone() is not None
+
     def runs(self,limit=50):
         if type(limit) is not int or not 1<=limit<=1000:
             raise JournalError("Giới hạn số run phải từ 1 đến 1000.")
         try:
-            cursor=self.db.execute("""SELECT run,COUNT(*),MIN(id),MAX(id) FROM events
-                GROUP BY run HAVING SUM(CASE WHEN channel IN ('ssiDecoded','ssiMerged') THEN 1
-                WHEN channel IN ('universe','connection') AND payload LIKE '%"connection_epoch"%' THEN 1 ELSE 0 END)>0
+            cursor=self.db.execute(f"""SELECT run,COUNT(*),MIN(id),MAX(id) FROM events
+                GROUP BY run HAVING SUM(CASE WHEN {_COLLECTION_EVENT} THEN 1 ELSE 0 END)>0
                 ORDER BY MAX(id) DESC LIMIT ?""",(limit,))
             rows=cursor.fetchall()
             return [self.describe(row[0]) for row in rows]

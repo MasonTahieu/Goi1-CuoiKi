@@ -1,6 +1,6 @@
 """End-of-day ranking from daily summaries (FastConnect V3 REST). Three factors, no order book.
 
-This is a separate method ("daily-v1"), not the intraday four-factor screen: liquidity is matched
+This is a separate method ("daily-v2"), not the intraday four-factor screen: liquidity is matched
 value only (no depth or spread) and the order-book imbalance factor does not exist at day level.
 Missing inputs leave a stock unranked with a stated reason; nothing is reweighted.
 """
@@ -12,7 +12,7 @@ import pandas as pd
 
 from src.ranking.engine import percentile
 
-METHOD = "daily-v1"
+METHOD = "daily-v2"
 FACTORS = ("momentum", "liquidity", "foreign")
 WEIGHTS = {"balanced": {"momentum": 1 / 3, "liquidity": 1 / 3, "foreign": 1 / 3},
            "momentum": {"momentum": .5, "liquidity": .25, "foreign": .25}}
@@ -23,6 +23,8 @@ MISSING_FOREIGN = "Thiếu dữ liệu khối ngoại (SSI trả trống)"
 
 
 def _num(value):
+    if isinstance(value, bool):
+        return None
     try:
         number = float(value)
     except (TypeError, ValueError):
@@ -44,17 +46,18 @@ def daily_factors(row, foreign="value"):
         return None, "Thiếu giá mở cửa hoặc đóng cửa"
     if not value or value <= 0:
         return None, "Không có giá trị khớp trong phiên"
-    buy_key, sell_key, total_key = FOREIGN[foreign]
-    buy, sell, total = _num(row.get(buy_key)), _num(row.get(sell_key)), _num(row.get(total_key))
+    buy_key, sell_key, _ = FOREIGN[foreign]
+    buy, sell = _num(row.get(buy_key)), _num(row.get(sell_key))
     if buy is None or sell is None:
         return None, MISSING_FOREIGN
-    if not total or total <= 0:
-        return None, "Không có mẫu số khối ngoại"
-    ratio = (buy - sell) / total
-    if abs(ratio) > 1:
-        return None, "Tỷ lệ khối ngoại vượt phạm vi; cần kiểm tra đơn vị"
+    if buy < 0 or sell < 0 or not math.isfinite(buy + sell):
+        return None, "Dữ liệu mua/bán khối ngoại không hợp lệ"
+    gross = buy + sell
+    # Zero activity is an explicit raw-value convention, not a neutral percentile score.
+    ratio = (buy - sell) / gross if gross else 0.0
     return {"momentum": momentum, "turnover": value, "foreign_ratio": ratio,
-            "foreign_net": buy - sell}, None
+            "foreign_buy": buy, "foreign_sell": sell, "foreign_gross": gross,
+            "foreign_activity": gross > 0, "foreign_net": buy - sell}, None
 
 
 def rank_daily(rows, weights="balanced", foreign="value", min_cohort=10):
@@ -69,6 +72,11 @@ def rank_daily(rows, weights="balanced", foreign="value", min_cohort=10):
     frame = pd.DataFrame(records)
     if frame.empty:
         return frame
+    if frame["symbol"].duplicated().any():
+        raise ValueError("Mỗi mã chỉ được xuất hiện một lần trong nhóm/ngày xếp hạng.")
+    for column in ("index_group", "tradingDate"):
+        if column in frame and frame[column].nunique(dropna=False) != 1:
+            raise ValueError("Chỉ xếp hạng một nhóm trong một ngày.")
     for name in FACTORS:
         frame[f"score_{name}"] = float("nan")
     frame["total_score"], frame["rank"] = float("nan"), float("nan")

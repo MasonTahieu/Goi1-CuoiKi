@@ -2,12 +2,15 @@
 import json
 import threading
 import urllib.error
+import urllib.parse
 import urllib.request
+from datetime import date
 
 import pytest
 
 from src.data.daily_store import DailyStore
 from src.data.store import now
+from src.neo_api.rest import NeoError
 from src.web import api
 from src.web.server import make_server
 
@@ -102,9 +105,51 @@ def test_validation_reports_the_chosen_weights_honestly(daily):
     assert v["weights"] == "momentum" and v["sessions"] == 4 and v["pairs"] == 3 and len(v["series"]) == 3
     assert set(v["factor_ic"]) == {"momentum", "liquidity", "foreign"}
     assert v["verdict"] and v["summary"]["ic"]["pairs"] == 3
-    assert set(v["returns"]) == {"tradable", "close"} and "power" in v["summary"] and "ic_close" in v["summary"]
+    assert set(v["returns"]) == {"tradable", "close"} and "power" not in v["summary"] and "ic_close" in v["summary"]
     with pytest.raises(api.ApiError, match="Cuối ngày"):
         api.validation("demo-journal")
+
+
+def test_chart_history_reads_ssi_on_demand_and_keeps_ranks(daily, monkeypatch):
+    calls = []
+    client = object()
+
+    def candles(connection, symbol, timeframe, start, cutoff):
+        assert connection is client
+        calls.append((symbol, timeframe, start))
+        return [{"at": cutoff.isoformat(), "open": 10100, "high": 10200,
+                 "low": 10000, "price": 10150, "volume": 12}]
+
+    monkeypatch.setattr(api, "now", lambda: "2026-11-11T15:00:00+07:00")
+    monkeypatch.setattr(api, "chart_client", lambda: client)
+    monkeypatch.setattr(api, "chart_candles", candles)
+    point = api.timeline("daily", api.DAILY_RUN)[1]["id"]
+    before = api.snapshot("daily", point=point)["groups"]["VN30"]
+    assert api.history("daily", None, point, "S00")["points"][0]["price"] == 10000
+    assert calls == []
+    httpd = make_server(0)
+    threading.Thread(target=httpd.serve_forever, daemon=True).start()
+    try:
+        base = f"http://127.0.0.1:{httpd.server_address[1]}/api/history?source=daily&symbol=S00"
+        with urllib.request.urlopen(f"{base}&point={urllib.parse.quote(point)}&timeframe=1d&range=10y", timeout=20) as response:
+            result = json.loads(response.read())
+        assert result["basis"] == "ohlc" and result["points"][0]["price"] == 10150
+        api.history("daily", None, point, "S01", "1d", "5y")
+        api.history("daily", None, point, "S00", "5m", "1y")
+        assert calls == [("S00", "1d", date(2016, 11, 4)), ("S01", "1d", date(2021, 11, 4)),
+                         ("S00", "5m", date(2025, 11, 11))]
+        assert api.snapshot("daily", point=point)["groups"]["VN30"] == before
+
+        def unavailable(*args):
+            raise NeoError("SSI đang không phản hồi.")
+
+        monkeypatch.setattr(api, "chart_candles", unavailable)
+        with pytest.raises(urllib.error.HTTPError) as error:
+            urllib.request.urlopen(base + "&timeframe=1d", timeout=20)
+        assert error.value.code == 502 and json.loads(error.value.read()) == {"error": "SSI đang không phản hồi."}
+    finally:
+        httpd.shutdown()
+        httpd.server_close()
 
 
 def test_server_routes_return_json_and_safe_errors(daily):
@@ -115,6 +160,12 @@ def test_server_routes_return_json_and_safe_errors(daily):
         for path in ("/api/heatmap?source=daily", "/api/validation?source=daily&weights=balanced"):
             with urllib.request.urlopen(base + path, timeout=20) as response:
                 json.loads(response.read())
+        with urllib.request.urlopen(base + "/api/validation?source=daily&weights=balanced&foreign=volume", timeout=20) as response:
+            volume = json.loads(response.read())
+        assert volume["foreign"] == "volume" and volume["summary"]["ic"]["pairs"] == 0  # fixture has no volume fields
+        with pytest.raises(urllib.error.HTTPError) as invalid:
+            urllib.request.urlopen(base + "/api/validation?source=daily&foreign=wrong", timeout=20)
+        assert invalid.value.code == 400
         with pytest.raises(urllib.error.HTTPError) as error:
             urllib.request.urlopen(base + "/api/heatmap?source=demo-board", timeout=20)
         assert error.value.code == 400 and "Cuối ngày" in json.loads(error.value.read())["error"]

@@ -3,6 +3,7 @@ from http.server import ThreadingHTTPServer
 import importlib.util
 import json
 import threading
+import urllib.error
 import urllib.request
 
 import pytest
@@ -69,10 +70,18 @@ def test_rewritten_requests_serve_page_assets_and_daily_api(vercel_server):
     status, kind, _ = get(vercel_server + "/api/index?__path=/app.css")
     assert status == 200 and "text/css" in kind
     status, _, body = get(vercel_server + "/api/index?__path=/api/context")
-    assert "daily" in [s["id"] for s in json.loads(body)["sources"]]
+    assert [s["id"] for s in json.loads(body)["sources"]] == ["daily"]
     status, _, body = get(vercel_server + "/api/index?__path=/api/snapshot&source=daily&compare=")
     data = json.loads(body)
     assert data["method_kind"] == "daily" and data["groups"]["VN30"]["ranked"] == 12
+
+
+@pytest.mark.parametrize("route,source", [("snapshot", "demo-board"), ("runs", "demo-journal"), ("timeline", "store")])
+def test_vercel_rejects_non_daily_sources(vercel_server, route, source):
+    with pytest.raises(urllib.error.HTTPError) as error:
+        get(f"{vercel_server}/api/index?__path=/api/{route}&source=daily&source={source}")
+    assert error.value.code == 400
+    assert "chỉ cung cấp dữ liệu SSI cuối ngày" in json.load(error.value)["error"]
 
 
 def test_deployment_files_keep_secrets_and_heavy_stacks_out():
@@ -93,7 +102,7 @@ def test_stream_workflow_commits_summaries_only():
     assert "stream-window" in workflow and "secrets.SSI_API_KEY" in workflow and "cancel-in-progress: false" in workflow
 
 
-def test_vercel_installs_the_same_runtime_and_ships_the_demo_data():
+def test_vercel_installs_the_same_runtime_without_shipping_demo_data():
     """Vercel reads pyproject.toml before requirements.txt; both must list the same pins."""
     import tomllib
     project = tomllib.loads((PROJECT_ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"]
@@ -101,6 +110,6 @@ def test_vercel_installs_the_same_runtime_and_ships_the_demo_data():
             if line.strip() and not line.startswith("#")]
     assert sorted(project["dependencies"]) == sorted(pins)
     ignore = (PROJECT_ROOT / ".vercelignore").read_text(encoding="utf-8").split()
-    assert "data_sample/" not in ignore and "pyproject.toml" not in ignore
+    assert "data_sample/" in ignore and "pyproject.toml" not in ignore
     config = json.loads((PROJECT_ROOT / "vercel.json").read_text(encoding="utf-8"))
-    assert "data_sample/**" in config["functions"]["api/index.py"]["includeFiles"]
+    assert "data_sample/**" not in config["functions"]["api/index.py"]["includeFiles"]

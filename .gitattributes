@@ -1,0 +1,6 @@
+# Keep checksummed evidence and its calculation code byte-stable across Windows/Linux.
+src/ranking/daily.py text eol=lf
+src/ranking/engine.py text eol=lf
+src/analytics/validation.py text eol=lf
+src/analytics/screening.py text eol=lf
+evidence/daily_v2/**/input_daily.json text eol=lf

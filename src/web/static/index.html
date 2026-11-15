@@ -60,15 +60,8 @@
     <button class="summary-action" id="summary-unranked" type="button" hidden></button>
   </div>
 
-  <dl class="metrics" aria-label="Tổng quan nhóm">
-    <div class="metric"><dt>Mã đã xếp hạng</dt><dd><strong class="num" id="m-ranked">–</strong><span id="m-ranked-note"></span></dd></div>
-    <div class="metric"><dt>Dẫn đầu nhóm</dt><dd><strong id="m-leader">–</strong><span class="num" id="m-leader-note"></span></dd></div>
-    <div class="metric"><dt>Mốc phân tích (UTC+7)</dt><dd><strong class="num" id="m-asof">–</strong><span class="num" id="m-asof-note"></span></dd></div>
-    <div class="metric"><dt>Độ mới dữ liệu</dt><dd><strong class="num" id="m-fresh">–</strong><span id="m-fresh-note"></span></dd></div>
-  </dl>
-
-  <details class="controls" id="controls" open>
-  <summary><svg class="icon"><use href="#i-filter"/></svg><span>Bộ lọc và thời điểm</span><span class="muted" id="controls-summary"></span><svg class="icon chev"><use href="#i-down"/></svg></summary>
+  <details class="controls" id="controls">
+  <summary><svg class="icon"><use href="#i-filter"/></svg><span>Phiên & cách chấm điểm</span><span class="muted" id="controls-summary"></span><svg class="icon chev"><use href="#i-down"/></svg></summary>
   <section class="toolbar" aria-label="Bộ lọc và thời điểm">
     <label class="field" id="f-source"><span>Nguồn</span><select id="source"></select></label>
     <label class="field" id="f-run"><span>Lần thu thập</span><select id="run"></select></label>
@@ -86,6 +79,14 @@
     <div class="field"><span>Trọng số</span><div class="segmented" id="weights" role="group" aria-label="Trọng số"></div></div>
     <div class="field"><span>Khối ngoại</span><div class="segmented" id="foreign" role="group" aria-label="Cách tính khối ngoại"></div></div>
   </section>
+  <details class="session-info"><summary>Thông tin nguồn và thời gian thu thập</summary>
+<dl class="metrics" aria-label="Tổng quan nhóm">
+    <div class="metric"><dt>Mã đã xếp hạng</dt><dd><strong class="num" id="m-ranked">–</strong><span id="m-ranked-note"></span></dd></div>
+    <div class="metric"><dt>Dẫn đầu nhóm</dt><dd><strong id="m-leader">–</strong><span class="num" id="m-leader-note"></span></dd></div>
+    <div class="metric"><dt>Mốc phân tích (UTC+7)</dt><dd><strong class="num" id="m-asof">–</strong><span class="num" id="m-asof-note"></span></dd></div>
+    <div class="metric"><dt id="m-fresh-label">Độ mới dữ liệu</dt><dd><strong class="num" id="m-fresh">–</strong><span id="m-fresh-note"></span></dd></div>
+  </dl>
+  </details>
   </details>
 
   <div class="workspace">
@@ -93,6 +94,7 @@
       <div class="panel-head">
         <nav class="view-tabs" role="tablist" aria-label="Khu vực">
           <button role="tab" data-view="rank" aria-selected="true">Xếp hạng</button>
+          <button role="tab" data-view="stock" aria-selected="false">Biểu đồ</button>
           <button role="tab" data-view="history" aria-selected="false">Lịch sử<span class="hide-sm"> hạng</span></button>
           <button role="tab" data-view="validate" aria-selected="false">Kiểm chứng</button>
           <button role="tab" data-view="quality" aria-selected="false">Chất lượng<span class="hide-sm"> dữ liệu</span></button>
@@ -117,17 +119,37 @@
           <label class="inline"><span>Điểm tổng ≥</span><input type="number" id="min" min="0" max="100" step="5" value="0"></label>
           <label class="inline"><span>So sánh với</span><select id="compare"></select></label>
         </div>
-        <div class="legend-row">
+        <details class="legend-row"><summary>Cách đọc bảng điểm <span>Thang 0–100 · chọn một dòng để xem chi tiết</span></summary>
           <div class="legend-keys" aria-hidden="true">
             <span><i class="c-momentum"></i>Động lượng</span>
             <span><i class="c-liquidity"></i>Thanh khoản</span>
-            <span><i class="c-foreign"></i>Dòng tiền ngoại</span>
+            <span><i class="c-foreign"></i>Khối ngoại</span>
             <span><i class="c-imbalance"></i>Cung–cầu</span>
           </div>
           <p class="legend-note" id="legend-note">Thanh điểm tổng chia theo phần đóng góp có trọng số · thanh yếu tố là điểm phân vị 0–100 trong nhóm</p>
-        </div>
+        </details>
+        <p class="mobile-table-hint">Vuốt ngang bảng để xem đủ các yếu tố →</p>
         <div class="table-wrap"><table id="rank-table"></table></div>
       </div>
+      <section id="view-stock" class="stock-view" aria-label="Biểu đồ cổ phiếu" hidden>
+        <div class="stock-toolbar">
+          <label class="inline"><span>Mã cổ phiếu</span><select id="stock-symbol"></select></label>
+          <label class="inline" id="stock-timeframe-field"><span>Khung nến</span><select id="stock-timeframe">
+            <option value="1d">1 ngày</option><option value="5m">5 phút</option>
+          </select></label>
+          <label class="inline"><span>Khoảng xem</span><select id="stock-range"></select></label>
+        </div>
+        <dl id="stock-quote" class="stock-quote"></dl>
+        <div id="stock-nav" class="stock-nav" role="group" aria-label="Điều khiển biểu đồ" hidden>
+          <button class="btn icon-only" type="button" data-nav="back" aria-label="Xem trước đó" title="Xem trước đó"><svg class="icon"><use href="#i-prev"/></svg></button>
+          <button class="btn icon-only" type="button" data-nav="next" aria-label="Xem tiếp theo" title="Xem tiếp theo"><svg class="icon"><use href="#i-next"/></svg></button>
+          <button class="btn icon-only" type="button" data-nav="out" aria-label="Thu nhỏ biểu đồ" title="Thu nhỏ biểu đồ">−</button>
+          <button class="btn icon-only" type="button" data-nav="in" aria-label="Phóng to biểu đồ" title="Phóng to biểu đồ">+</button>
+          <button class="btn icon-only" type="button" data-nav="reset" aria-label="Về khoảng xem ban đầu" title="Về khoảng xem ban đầu"><svg class="icon"><use href="#i-refresh"/></svg></button>
+        </div>
+        <div id="stock-chart"></div>
+        <p id="stock-chart-note" class="legend-note"></p>
+      </section>
       <div id="view-history" hidden><div class="view-note"><p class="legend-note" id="history-note"></p><span class="heat-key" id="heat-key" aria-hidden="true"></span></div><div class="heatmap" id="heatmap"></div></div>
       <div id="view-validate" hidden><div class="validate" id="validate"></div></div>
       <div id="view-quality" hidden><p class="legend-note" id="quality-note"></p><div class="table-wrap"><table class="quality" id="quality-table"></table></div></div>
@@ -136,18 +158,18 @@
 
     <aside class="side" aria-label="Chi tiết">
       <section class="panel" aria-live="polite">
-        <div class="panel-head"><h2>Vì sao mã này ở vị trí đó</h2></div>
+        <div class="panel-head"><h2>Chi tiết cổ phiếu</h2></div>
         <div class="detail" id="detail"></div>
-        <div class="price" id="price"></div>
+        <details class="price-fold"><summary>Diễn biến giá các phiên</summary><div class="price" id="price"></div></details>
       </section>
-      <section class="panel chart-panel">
+      <details class="panel chart-panel"><summary>So sánh bằng biểu đồ</summary><div class="chart-content">
         <div class="segmented compact" id="chart-mode" role="group" aria-label="Loại biểu đồ">
           <button type="button" data-id="score" aria-pressed="true">Điểm tổng</button>
           <button type="button" data-id="scatter" aria-pressed="false">Giá × khối ngoại</button>
         </div>
         <h3 class="chart-title" id="chart-title">Điểm tổng trong nhóm</h3>
         <div id="score-chart"></div>
-      </section>
+      </div></details>
     </aside>
   </div>
 

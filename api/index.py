@@ -24,6 +24,8 @@ def original_path(raw):
 
 
 class handler(Handler):
+    daily_only = True
+
     def do_GET(self):
         self.path = original_path(self.path)
         return super().do_GET()
