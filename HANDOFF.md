@@ -5,10 +5,12 @@
 ## Sửa vận hành web ngày 16/11/2026
 
 - Kiểm chứng có cache tính trước cho cả bốn cấu hình, gắn SHA-256 dữ liệu và mã. Không dùng cache cũ khi dữ liệu/công thức đổi. Workflow hằng ngày tự tạo và commit cùng kho; Vercel chỉ đọc tệp. Fallback tính lại và giữ tối đa 16 kết quả trong bộ nhớ.
-- Bốn payload trùng bộ bằng chứng daily-v2 hiện có; đọc cache cục bộ khoảng 0,07–0,12 giây. Toàn bộ **372 kiểm thử offline đạt**.
+- Bốn payload trùng bộ bằng chứng daily-v2 hiện có; đọc cache cục bộ khoảng 0,07–0,12 giây. Toàn bộ **373 kiểm thử offline đạt** sau khi bổ sung mã lỗi xác thực an toàn.
 - Entry point Vercel chọn mặc định FastConnect V3 khi profile bỏ trống/unselected; cấu hình chạy máy cá nhân vẫn phải chọn rõ.
 - Phát hiện tài liệu triển khai cũ chưa yêu cầu khóa SSI trên Vercel, trong khi tab nến mới cần gọi API trực tiếp. Đã sửa hướng dẫn: `SSI_API_KEY` và `SSI_API_SECRET` phải được cấu hình riêng trên Vercel; GitHub Secrets không tự chuyển sang. Không đóng gói `.env`.
-- Trạng thái công khai của đợt sửa này cần xác nhận sau deployment; không suy ra thành công biểu đồ chỉ từ kết quả kiểm thử offline.
+- Đã push bản sửa `a02af58` (merge `abfc35b`) và bổ sung chẩn đoán `97d72ba`. Vercel đã triển khai thành công. Bảng hạng trả HTTP 200, đủ 30 mã; cả bốn cấu hình Kiểm chứng HTTP 200, khoảng 0,3–2 giây (trước đó khoảng 12 giây), IC trùng bằng chứng. Hai lần đo gần nhất cho cấu hình cân bằng: giá trị 0,773 giây, khối lượng 0,735 giây.
+- **Biểu đồ chưa hoàn tất trên Vercel:** đã sửa profile, đã có hai biến Secret ở Production và redeploy; nhưng cả nến ngày và nến 5 phút còn bị SSI từ chối khi đăng nhập. Chẩn đoán hiện trả `HTTP 401, mã SSI 401105` (API Key/Secret không hợp lệ). Bộ khóa trong `.env` trên máy đã thử đăng nhập trực tiếp thành công; không có căn cứ kết luận lỗi do IP.
+- Lần nhập tự động qua ô mật khẩu bị công cụ trình duyệt thay bằng `<redacted>`, nên không được dùng cách đọc lại giá trị ô mật khẩu để chuyển khóa. Người dùng đã nhập lại và lưu cả hai biến; deployment sau đó vẫn trả 401105. Cần đối chiếu cặp khóa thực lưu trên Vercel với cặp hợp lệ trong `.env`, không in khóa/token ra log hoặc Git. Chỉ đánh dấu xong biểu đồ sau khi `/api/history?source=daily&symbol=VJC&timeframe=1d&range=5` và bản `timeframe=5m&range=100` trả HTTP 200 với nến thực.
 
 
 ## Cập nhật giao diện ngày 15/11/2026

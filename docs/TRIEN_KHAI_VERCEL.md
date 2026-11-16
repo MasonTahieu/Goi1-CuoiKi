@@ -88,6 +88,8 @@ Trong repo, vào **Settings → Secrets and variables → Actions → New reposi
    | `SSI_API_SECRET` | API Secret SSI, chỉ lưu phía máy chủ, cần cho tab nến |
 
    Bảng hạng và Kiểm chứng đọc dữ liệu đã lưu, không cần khóa. Tab **Biểu đồ** gọi SSI trực tiếp nên cần hai khóa trên Vercel (Production; thêm Preview nếu dùng bản xem trước), rồi redeploy. GitHub Secrets chỉ cấp cho workflow, không tự chuyển sang Vercel. Không đưa khóa vào `vercel.json`, JavaScript, Git hoặc log; không dùng Private Key.
+
+   Khi nhập thủ công, chỉ dán giá trị của từng biến, không gồm tên biến, dấu `=` hoặc dấu nháy của cú pháp `.env`. Không chuyển khóa bằng cách đọc lại ô mật khẩu qua công cụ trình duyệt: công cụ có thể trả ký hiệu `<redacted>` thay cho khóa. Mã SSI `401105` có nghĩa API Key/Secret không hợp lệ; cần đối chiếu đúng cặp khóa trước khi kết luận vấn đề IP/quyền dữ liệu. Sau redeploy, kiểm tra tab nến; bảng hạng chạy được chưa chứng minh kết nối nến thành công.
 4. Bấm **Deploy**. Xong sẽ có địa chỉ dạng `https://vn30-hnx30-screener.vercel.app`.
 6. Mở địa chỉ đó. Trang chỉ phục vụ dữ liệu **Cuối ngày · SSI thật**. Bảng điểm giả lập và nhật ký SSI mẫu dùng cho chạy cục bộ.
 
