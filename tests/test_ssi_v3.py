@@ -581,6 +581,19 @@ def test_collector_handles_rest_auth_failure_after_disconnect(tmp_path, monkeypa
         assert events[-1]["payload"]["state"] == "auth_failed" and len(streams) == 1
 
 
+def test_auth_diagnostics_keep_only_safe_status_codes():
+    from ssi_sdk.exceptions import AuthenticationError
+    client, _ = client_with({})
+    error = AuthenticationError("PRIVATE_MESSAGE", code="401105", status_code=401,
+                                response_body={"token": "PRIVATE_TOKEN"}, headers={"secret": "PRIVATE_HEADER"})
+    message = str(client._translate(error, "đăng nhập"))
+    assert "HTTP 401" in message and "mã SSI 401105" in message
+    assert "PRIVATE" not in message
+    error.code = "PRIVATE_KEY"
+    error.status_code = "PRIVATE_STATUS"
+    assert "PRIVATE" not in str(client._translate(error, "đăng nhập"))
+
+
 def test_index_members_validate_board_and_routes_are_allow_listed():
     rows = [{"symbol": "FPT", "board": "HOSE", "index": "VN30"}, {"symbol": "VNM", "board": "HOSE"}]
     rows += [{"symbol": f"AA{i:02d}", "board": "HOSE"} for i in range(28)]

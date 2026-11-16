@@ -202,10 +202,20 @@ class V3Client:
     # -- REST --------------------------------------------------------------------
     def _translate(self, error, action):
         _, exceptions = _sdk()
+        # Keep safe status identifiers for deployment diagnostics, never the raw
+        # SDK message/body/headers (they can contain credentials or tokens).
+        status = getattr(error, "status_code", None)
+        code = str(getattr(error, "code", ""))
+        details = []
+        if type(status) is int and 100 <= status <= 599:
+            details.append(f"HTTP {status}")
+        if re.fullmatch(r"[1-5][0-9]{5}", code):
+            details.append(f"mã SSI {code}")
+        context = " (" + ", ".join(details) + ")" if details else ""
         if isinstance(error, exceptions.ReauthenticationRequired):
-            return AuthError(f"SSI yêu cầu đăng nhập lại bằng OTP mới khi {action}.")
+            return AuthError(f"SSI yêu cầu đăng nhập lại bằng OTP mới khi {action}{context}.")
         if isinstance(error, exceptions.AuthenticationError):
-            return AuthError(f"SSI từ chối xác thực khi {action}. Kiểm tra API Key/Secret, quyền dữ liệu và OTP.")
+            return AuthError(f"SSI từ chối xác thực khi {action}{context}. Kiểm tra API Key/Secret, quyền dữ liệu và OTP.")
         if isinstance(error, exceptions.RateLimitError):
             return NeoError(f"SSI trả HTTP 429 khi {action}; đã dừng, không gửi dồn yêu cầu.")
         if isinstance(error, exceptions.ValidationError):
