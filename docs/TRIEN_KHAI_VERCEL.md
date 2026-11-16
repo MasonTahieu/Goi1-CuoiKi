@@ -21,6 +21,7 @@ Vercel (tự triển khai lại khi có commit) ◀─────────�
 | `.vercelignore` | Không đưa `.env`, `runtime/`, test, tài liệu và giao diện Streamlit lên Vercel |
 | `.github/workflows/ssi-daily.yml` | Lịch lấy dữ liệu ngày, đánh giá nhiều phiên, commit kết quả |
 | `webdata/ssi_daily.sqlite` | Dữ liệu ngày thật (đã có sẵn 10 phiên từ 26/10 đến 06/11) |
+| `webdata/validation.json` | Kiểm chứng tính trước cho bốn cấu hình; kiểm SHA-256 dữ liệu và mã trước khi dùng |
 
 ## Bước 0. Nên làm trước
 
@@ -81,8 +82,12 @@ Trong repo, vào **Settings → Secrets and variables → Actions → New reposi
    | `APP_MODE` | `demo` |
    | `DATA_PROVIDER` | `ssi` |
    | `SSI_DAILY_DATABASE` | `webdata/ssi_daily.sqlite` |
+   | `SSI_API_PROFILE` | `fastconnect_v3` (entry point cũng chọn mặc định này trên Vercel) |
+   | `SSI_OTP_MODE` | `none` |
+   | `SSI_API_KEY` | API Key SSI, chỉ lưu phía máy chủ, cần cho tab nến |
+   | `SSI_API_SECRET` | API Secret SSI, chỉ lưu phía máy chủ, cần cho tab nến |
 
-   **Không** đưa khóa SSI lên Vercel. Trang web chỉ đọc dữ liệu đã lưu.
+   Bảng hạng và Kiểm chứng đọc dữ liệu đã lưu, không cần khóa. Tab **Biểu đồ** gọi SSI trực tiếp nên cần hai khóa trên Vercel (Production; thêm Preview nếu dùng bản xem trước), rồi redeploy. GitHub Secrets chỉ cấp cho workflow, không tự chuyển sang Vercel. Không đưa khóa vào `vercel.json`, JavaScript, Git hoặc log; không dùng Private Key.
 4. Bấm **Deploy**. Xong sẽ có địa chỉ dạng `https://vn30-hnx30-screener.vercel.app`.
 6. Mở địa chỉ đó. Trang chỉ phục vụ dữ liệu **Cuối ngày · SSI thật**. Bảng điểm giả lập và nhật ký SSI mẫu dùng cho chạy cục bộ.
 
@@ -90,6 +95,7 @@ Trong repo, vào **Settings → Secrets and variables → Actions → New reposi
 
 - **15:20, thứ Hai–thứ Sáu:** GitHub Actions lấy lại 15 phiên gần nhất. Dữ liệu mới được thêm, dữ liệu cũ vẫn giữ. Workflow chạy lại đánh giá nhiều phiên rồi commit.
 - **Khoảng 1 phút sau:** Vercel tự triển khai bản mới. Bạn và giảng viên mở địa chỉ là thấy phiên mới nhất.
+- Workflow tạo lại `webdata/validation.json` sau mỗi đợt lấy dữ liệu. Cache không khớp dữ liệu/mã sẽ bị bỏ và tính lại; vì vậy cần chạy `python -m src.web.validation_cache --db webdata/ssi_daily.sqlite` nếu cập nhật thủ công.
 - **Máy bạn không cần bật.** Repo riêng tư có 2.000 phút Actions miễn phí mỗi tháng; job này dùng khoảng 2 phút mỗi ngày.
 
 ## Giới hạn hiện tại

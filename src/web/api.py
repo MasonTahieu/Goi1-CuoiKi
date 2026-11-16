@@ -454,21 +454,11 @@ def heatmap(source, weights="balanced", foreign="value"):
 
 def validation(source, weights="balanced", foreign="value"):
     """Forward check of the end-of-day score against the next session's return."""
-    from src.analytics.validation import forward_check, verdict
+    from src.web.validation_cache import cached_validation
     _require_daily(source, "Kiểm chứng")
     if weights not in daily_rank.WEIGHTS or foreign not in daily_rank.FOREIGN:
         raise ApiError("Cấu hình trọng số hoặc khối ngoại không hợp lệ.")
-    result = forward_check(_daily_frame(), weights=(weights,), foreign=foreign)
-    part = result["weights"][weights]
-    return {"method": result["method"], "sessions": result["sessions"], "pairs": result["pairs"],
-            "top_n": result["top_n"], "returns": result["returns"], "weights": weights,
-            "weights_label": daily_rank.WEIGHT_LABELS[weights], "foreign": foreign,
-            "ranking_method": result["ranking_method"], "calendar": result["calendar"],
-            "skipped_pairs": result["skipped_pairs"], "date_from": result["date_from"], "date_to": result["date_to"],
-            "screening": {k: v for k, v in part["screening"].items() if k != "details"},
-            "summary": {"ic": part["ic"], "spread": part["top_minus_bottom_pp"], "ic_close": part["ic_close"],
-                        "spread_close": part["top_minus_bottom_close_pp"]},
-            "factor_ic": part["factor_ic"], "series": part["pairs"], "verdict": verdict(part)}
+    return cached_validation(_daily_frame(), weights, foreign)
 
 
 def snapshot(source, run=None, point=None, weights="balanced", foreign="value", compare=None):

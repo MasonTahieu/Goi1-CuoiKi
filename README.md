@@ -184,7 +184,12 @@ Chạy offline, không đăng nhập SSI:
 ```powershell
 python -m src.cli validate-daily --daily-db webdata/ssi_daily.sqlite --foreign value --output evidence/daily_v2/value
 python -m src.cli validate-daily --daily-db webdata/ssi_daily.sqlite --foreign volume --output evidence/daily_v2/volume
+python -m src.web.validation_cache --db webdata/ssi_daily.sqlite
 ```
+
+Lệnh cuối tạo `webdata/validation.json` cho bốn cấu hình trọng số × đơn vị ngoại. Workflow hằng ngày tự tạo lại tệp này sau khi lấy dữ liệu. Web chỉ dùng kết quả khi SHA-256 dữ liệu và mã tính khớp; thiếu hoặc sai cache thì tính lại trong bộ nhớ. Không thay đổi công thức, lịch phiên mặc định hay bằng chứng kiểm chứng. Khi sửa công thức hoặc cập nhật kho thủ công, chạy lại lệnh cache trước khi triển khai.
+
+Trên Vercel, entry point chọn mặc định `fastconnect_v3` cho biểu đồ. **Bảng hạng và Kiểm chứng đọc kho có sẵn, còn tab nến cần `SSI_API_KEY` và `SSI_API_SECRET` trong Environment Variables của Vercel.** GitHub Secrets không tự chuyển sang Vercel. Không commit khóa; xem [hướng dẫn triển khai](docs/TRIEN_KHAI_VERCEL.md).
 
 Để giữ ảnh chụp lần cũ, đổi `--output` sang thư mục đợt mới khi bổ sung dữ liệu. Tái lập từ đúng dữ liệu đã lưu (tự kiểm SHA-256 nếu có manifest bên cạnh):
 

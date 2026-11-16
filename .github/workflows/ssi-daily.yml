@@ -54,6 +54,7 @@ jobs:
         run: |
           python -X utf8 -m src.cli evaluate-v3
           python -X utf8 -m src.cli validate-daily --foreign volume
+          python -X utf8 -m src.web.validation_cache
 
       # Commit as the repository owner (GitHub noreply address): Vercel Hobby only deploys
       # commits whose author is the account owner, so a generic bot author would be skipped.
@@ -61,7 +62,7 @@ jobs:
         run: |
           git config user.name "${{ github.repository_owner }}"
           git config user.email "${{ github.repository_owner_id }}+${{ github.repository_owner }}@users.noreply.github.com"
-          git add webdata/ssi_daily.sqlite evidence/v3_sessions/ evidence/daily_v2/
+          git add webdata/ssi_daily.sqlite webdata/validation.json evidence/v3_sessions/ evidence/daily_v2/
           if git diff --cached --quiet; then
             echo "No new data."
           else

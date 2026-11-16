@@ -40,6 +40,33 @@ def test_daily_path_follows_environment(monkeypatch, tmp_path):
     assert default_daily_path() == tmp_path / "x.sqlite"
 
 
+@pytest.mark.parametrize("profile", [None, "", "unselected"])
+def test_hosted_entry_selects_v3_without_bundling_credentials(monkeypatch, profile):
+    monkeypatch.setenv("VERCEL", "1")
+    monkeypatch.delenv("SSI_DAILY_DATABASE", raising=False)
+    monkeypatch.delenv("SSI_OTP_MODE", raising=False)
+    monkeypatch.delenv("SSI_API_KEY", raising=False)
+    monkeypatch.delenv("SSI_API_SECRET", raising=False)
+    if profile is None:
+        monkeypatch.delenv("SSI_API_PROFILE", raising=False)
+    else:
+        monkeypatch.setenv("SSI_API_PROFILE", profile)
+    load_entry()
+    import os
+    assert os.environ["SSI_API_PROFILE"] == "fastconnect_v3"
+    assert os.environ["SSI_DAILY_DATABASE"] == "webdata/ssi_daily.sqlite"
+    assert os.environ["SSI_OTP_MODE"] == "none"
+    assert "SSI_API_KEY" not in os.environ and "SSI_API_SECRET" not in os.environ
+
+
+def test_local_entry_keeps_profile_explicit(monkeypatch):
+    monkeypatch.delenv("VERCEL", raising=False)
+    monkeypatch.setenv("SSI_API_PROFILE", "unselected")
+    load_entry()
+    import os
+    assert os.environ["SSI_API_PROFILE"] == "unselected"
+
+
 @pytest.fixture
 def vercel_server(monkeypatch, tmp_path):
     rows = [{"symbol": f"AAA{i:02d}", "index_group": "VN30", "tradingDate": "2026-11-06", "openPrice": 10_000 + i,

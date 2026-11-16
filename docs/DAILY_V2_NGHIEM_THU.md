@@ -44,4 +44,4 @@ Phạm vi: bộ lọc/xếp hạng VN30 cuối ngày ba yếu tố, hỗ trợ �
 
 Lịch mặc định chưa là lịch ngày nghỉ đầy đủ của sở giao dịch: khoảng trống chưa xác nhận bị bỏ, không đoán. Thành viên lịch sử và các bản sửa dữ liệu trước thời điểm thu thập chưa được tái dựng. Đây là giới hạn công bố của phân tích hồi cứu, không phải bằng chứng đầu tư theo thông tin có sẵn trong quá khứ.
 
-Đã sửa và kiểm tra trên máy. Chưa commit, push hoặc triển khai bản daily-v2 này lên Vercel. Các chỉnh sửa có sẵn trước lượt làm việc, gồm phần biểu đồ OHLC, được giữ lại. Bộ báo cáo/video nộp chưa được dựng lại trong lượt này.
+Daily-v2 và giao diện đã commit/push, được xác nhận chạy công khai ở bản `44b11a2` (16/11/2026). Phần sửa hiệu năng Kiểm chứng và cấu hình biểu đồ sau đó được theo dõi trong HANDOFF. Bộ báo cáo/video nộp chưa được dựng lại trong lượt này.

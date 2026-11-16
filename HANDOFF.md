@@ -1,6 +1,14 @@
 # Bàn giao dự án bộ lọc cổ phiếu VN30
 
-**Ngày cập nhật 15/11/2026.** File này giúp người tiếp quản hiểu đề tài, mở lại sản phẩm, tìm bằng chứng và tiếp tục từ đúng chỗ đang dừng.
+**Ngày cập nhật 16/11/2026.** File này giúp người tiếp quản hiểu đề tài, mở lại sản phẩm, tìm bằng chứng và tiếp tục từ đúng chỗ đang dừng.
+
+## Sửa vận hành web ngày 16/11/2026
+
+- Kiểm chứng có cache tính trước cho cả bốn cấu hình, gắn SHA-256 dữ liệu và mã. Không dùng cache cũ khi dữ liệu/công thức đổi. Workflow hằng ngày tự tạo và commit cùng kho; Vercel chỉ đọc tệp. Fallback tính lại và giữ tối đa 16 kết quả trong bộ nhớ.
+- Bốn payload trùng bộ bằng chứng daily-v2 hiện có; đọc cache cục bộ khoảng 0,07–0,12 giây. Toàn bộ **372 kiểm thử offline đạt**.
+- Entry point Vercel chọn mặc định FastConnect V3 khi profile bỏ trống/unselected; cấu hình chạy máy cá nhân vẫn phải chọn rõ.
+- Phát hiện tài liệu triển khai cũ chưa yêu cầu khóa SSI trên Vercel, trong khi tab nến mới cần gọi API trực tiếp. Đã sửa hướng dẫn: `SSI_API_KEY` và `SSI_API_SECRET` phải được cấu hình riêng trên Vercel; GitHub Secrets không tự chuyển sang. Không đóng gói `.env`.
+- Trạng thái công khai của đợt sửa này cần xác nhận sau deployment; không suy ra thành công biểu đồ chỉ từ kết quả kiểm thử offline.
 
 
 ## Cập nhật giao diện ngày 15/11/2026

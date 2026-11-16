@@ -4,10 +4,19 @@ vercel.json rewrites every path to /api/index?__path=/<original path>, so the ha
 recover the path the visitor asked for whatever the platform puts in ``self.path``.
 """
 from pathlib import Path
+import os
 import sys
 from urllib.parse import parse_qsl, urlencode, urlsplit
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+# This deployment serves SSI V3 daily data and V3 OHLC only. Keep non-secret
+# defaults with the entry point; credentials still come from Vercel settings.
+if os.environ.get("VERCEL"):
+    if os.environ.get("SSI_API_PROFILE", "").strip() in ("", "unselected"):
+        os.environ["SSI_API_PROFILE"] = "fastconnect_v3"
+    os.environ.setdefault("SSI_DAILY_DATABASE", "webdata/ssi_daily.sqlite")
+    os.environ.setdefault("SSI_OTP_MODE", "none")
 
 from src.web.server import Handler  # noqa: E402
 
