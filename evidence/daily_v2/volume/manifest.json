@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-15T08:04:18.152447+00:00",
+  "generated_at": "2026-11-16T18:41:01.990066+00:00",
   "ranking_method": "daily-v2",
   "validation_method": "next-session-descriptive-v3",
   "foreign": "volume",
@@ -24,10 +24,10 @@
   },
   "scope": "Retrospective reconstruction of collected members, not point-in-time historical VN30 membership.",
   "date_from": "2026-10-19",
-  "date_to": "2026-11-13",
+  "date_to": "2026-11-16",
   "input_file": "input_daily.json",
-  "input_sha256": "0f5d222c8b3d45409488810a84d524ea19d9c486fcb4e3d0e9b0745b3097f2ad",
-  "rows": 600,
+  "input_sha256": "8c9995efc7f37891e8aba3a09a899c3229cd2f84189b4b12475b03368a4a1bf1",
+  "rows": 630,
   "sources": [
     "ssi"
   ],
@@ -671,6 +671,38 @@
       "VPB",
       "VPL",
       "VRE"
+    ],
+    "2026-11-16": [
+      "ACB",
+      "BID",
+      "BSR",
+      "CTG",
+      "FPT",
+      "GAS",
+      "GVR",
+      "HDB",
+      "HPG",
+      "LPB",
+      "MBB",
+      "MCH",
+      "MSN",
+      "MWG",
+      "SAB",
+      "SHB",
+      "SSB",
+      "SSI",
+      "STB",
+      "TCB",
+      "TCX",
+      "VCB",
+      "VHM",
+      "VIB",
+      "VIC",
+      "VJC",
+      "VNM",
+      "VPB",
+      "VPL",
+      "VRE"
     ]
   },
   "fetched_at_values": [
@@ -679,7 +711,8 @@
     "2026-11-11T00:10:16.587289+07:00",
     "2026-11-12T00:16:19.461209+07:00",
     "2026-11-13T00:39:35.476798+07:00",
-    "2026-11-14T00:16:36.982625+07:00"
+    "2026-11-14T00:16:36.982625+07:00",
+    "2026-11-17T01:40:52.300457+07:00"
   ],
   "libraries": {
     "numpy": "2.5.4",
