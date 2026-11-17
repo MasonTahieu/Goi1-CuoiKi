@@ -1,5 +1,5 @@
-# Web back end on Vercel (Python function in api/index.py) - only what the API imports at runtime.
-# Full local stack (including Streamlit fallback and tests): requirements-local.txt
+# Web back end on Vercel and SSI jobs on GitHub Actions.
+# Full local stack (including Streamlit fallback and tests): requirements/local.txt
 pandas==3.1.0
 numpy==2.5.4
 python-dotenv==1.2.4

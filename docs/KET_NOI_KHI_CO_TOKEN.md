@@ -4,7 +4,7 @@ Bản chuẩn bị ngày 26/10/2026. Chưa chạy NEO thật. Không cần gửi
 
 ## 0. Chưa có token nhưng đã được kích hoạt
 
-Mở `DANG_NHAP_NEO.cmd` trong thư mục dự án. Nhập số lưu ký và mật khẩu trực tiếp
+Mở `scripts/DANG_NHAP_NEO.cmd` trong thư mục dự án. Nhập số lưu ký và mật khẩu trực tiếp
 vào cửa sổ trên máy; công cụ gọi `https://external.vpbanks.com.vn/auth/token` đúng tài liệu,
 lưu access token vào `.env` và không lưu mật khẩu/refresh token.
 Không gửi thông tin đăng nhập vào chat. Nếu lỗi thì dừng; không tự thử lại nhiều lần.

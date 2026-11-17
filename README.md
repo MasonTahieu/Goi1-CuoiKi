@@ -48,8 +48,8 @@ Biểu đồ nến lấy dữ liệu từ SSI FastConnect theo mã và khoảng 
 Nếu chưa có `.env`, sao chép [`.env.example`](.env.example) thành `.env`. Đặt `DATA_PROVIDER=ssi`, `SSI_API_PROFILE=fastconnect_v3` và điền `SSI_API_KEY`, `SSI_API_SECRET` do SSI cấp. Giữ `.env` trên máy cá nhân.
 
 ```powershell
-.\SSI_V3.ps1 -Lenh kiemtra
-.\SSI_V3.ps1 -Lenh lichsu -SoPhien 15
+.\scripts\SSI_V3.ps1 -Lenh kiemtra
+.\scripts\SSI_V3.ps1 -Lenh lichsu -SoPhien 15
 ```
 
 Lệnh đầu kiểm tra cấu hình mà không gọi SSI. Lệnh sau lấy dữ liệu tổng hợp cuối ngày và mặc định lưu ở `runtime/ssi_daily.sqlite`. Biến môi trường `SSI_DAILY_DATABASE` cho phép chọn kho khác. [Hướng dẫn kết nối FastConnect V3](docs/V3_KET_NOI.md)
@@ -71,6 +71,7 @@ Lệnh đầu kiểm tra cấu hình mà không gọi SSI. Lệnh sau lấy dữ
 | [`src/data/`](src/data/) | Kho SQLite, chuẩn hóa dữ liệu, kiểm tra chất lượng và dữ liệu minh họa. |
 | [`src/ranking/`](src/ranking/) và [`src/analytics/`](src/analytics/) | Tính điểm, xếp hạng và kiểm chứng phương pháp qua nhiều phiên. |
 | [`src/web/`](src/web/) và [`api/`](api/) | Máy chủ Python, giao diện HTML/CSS/JavaScript và điểm vào Vercel. |
+| [`scripts/`](scripts/) và [`requirements/`](requirements/) | Lệnh kiểm thử, công cụ vận hành và danh sách thư viện cho máy cá nhân. |
 | [`webdata/`](webdata/) | Kho SSI cuối ngày và kết quả kiểm chứng tính sẵn cho bản web. |
 | [`tests/`](tests/) và [`evidence/`](evidence/) | Kiểm thử tự động, dữ liệu tái lập và bằng chứng thực nghiệm. |
 | [`docs/`](docs/) và [`report/`](report/) | Hướng dẫn kỹ thuật, cơ sở phương pháp và kịch bản trình diễn. |
@@ -80,7 +81,7 @@ Lệnh đầu kiểm tra cấu hình mà không gọi SSI. Lệnh sau lấy dữ
 Sau khi cài thư viện, chạy kiểm tra cấu hình dự án và bộ kiểm thử cục bộ. Lệnh này không cần khóa SSI.
 
 ```powershell
-.\CHECK_PROJECT.ps1
+.\scripts\CHECK_PROJECT.ps1
 ```
 
 Để tái lập kiểm chứng theo giá trị khối ngoại từ bộ dữ liệu cố định, kích hoạt môi trường Python rồi chạy hai lệnh sau.

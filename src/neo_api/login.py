@@ -63,7 +63,7 @@ def main():
     print("Đăng nhập NEO · gửi trực tiếp tới https://external.vpbanks.com.vn/auth/token")
     print("Lưu access token vào .env; không lưu mật khẩu, không in token. Không thực hiện giao dịch.")
     if not sys.stdin.isatty():
-        print("Hãy mở DANG_NHAP_NEO.cmd trong cửa sổ riêng để nhập thông tin trên máy.")
+        print("Hãy mở scripts/DANG_NHAP_NEO.cmd trong cửa sổ riêng để nhập thông tin trên máy.")
         return 2
     path = PROJECT_ROOT / ".env"
     try:

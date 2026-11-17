@@ -191,7 +191,7 @@ def _is_journal(source):
 def _daily_frame():
     from src.data.daily_store import read_daily
     if not Path(DAILY_DB).is_file():
-        raise ApiError("Chưa có dữ liệu ngày. Chạy .\\SSI_V3.ps1 -Lenh lichsu trước.")
+        raise ApiError("Chưa có dữ liệu ngày. Chạy .\\scripts\\SSI_V3.ps1 -Lenh lichsu trước.")
     frame = read_daily(DAILY_DB)
     return frame[frame["index_group"].isin(GROUPS)] if not frame.empty else frame
 

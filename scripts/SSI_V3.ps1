@@ -14,7 +14,7 @@ param(
 # Khong luu OTP, API Key hay token vao tep. Chay trong cua so PowerShell de nhap OTP khi duoc hoi.
 
 $ErrorActionPreference = 'Stop'
-Set-Location -LiteralPath $PSScriptRoot
+Set-Location -LiteralPath (Split-Path -Parent $PSScriptRoot)
 $python = Join-Path $VenvPath 'Scripts\python.exe'
 if (-not (Test-Path -LiteralPath $python -PathType Leaf)) {
     throw 'Chua co moi truong Python. Chay CAI_THU_VIEN.ps1 truoc.'

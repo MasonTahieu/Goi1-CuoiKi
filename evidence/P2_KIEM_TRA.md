@@ -31,6 +31,6 @@ cơ chế socket nội bộ của Windows. Không có lỗi còn lại trong b�
 nghiệp vụ trong kế hoạch. P1 vẫn chờ API. Chưa gọi NEO, chưa có dữ liệu thị trường
 thật, chưa có công thức bốn yếu tố, xếp hạng hoặc bộ thu thập.
 
-Chạy lại từ thư mục dự án: `./CHECK_PROJECT.ps1`. Máy chủ demo chỉ hoạt động
+Chạy lại từ thư mục dự án bằng `.\scripts\CHECK_PROJECT.ps1`. Máy chủ demo chỉ hoạt động
 khi tiến trình Streamlit còn chạy; mở lại bằng `./RUN_APP.ps1` nếu đã dừng.
 

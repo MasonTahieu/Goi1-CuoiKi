@@ -1,6 +1,6 @@
 # Vercel installs from this file when it exists, so [project].dependencies must list the web
 # runtime. Keep it identical to requirements.txt (tests/test_vercel_entry.py checks this).
-# The full local stack (including Streamlit and pytest) is in requirements-local.txt.
+# The full local stack (including Streamlit and pytest) is in requirements/local.txt.
 [project]
 name = "vn30-hnx30-screener"
 version = "0.1.0"

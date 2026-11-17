@@ -18,7 +18,7 @@
 | Đăng nhập và REST | `src/ssi_api/v3_client.py` | Đăng nhập không OTP, OTP SMS/email hoặc Smart OTP. Chỉ gọi các route dữ liệu thị trường. Đọc JSON gốc nên trường thiếu không bị đổi thành 0 |
 | Giải mã | `src/ssi_api/v3_decoder.py` | `trade`, `quote`, `room`, `market.flag`, `market.<mã>` sang bản ghi nội bộ dùng chung với v2 |
 | Stream | `src/ssi_api/v3_stream.py` | Bọc `WebSocketClient` của SDK và tắt tự nối lại. Mỗi lần nối lại collector tạo một lần kết nối mới và chờ dữ liệu nền mới |
-| Vận hành | `src/ssi_api/v3_ops.py`, `SSI_V3.ps1` | Smoke test, thu theo khung giờ, lấy lịch sử nhiều phiên, đối chiếu stream với REST |
+| Vận hành | `src/ssi_api/v3_ops.py`, `scripts/SSI_V3.ps1` | Smoke test, thu theo khung giờ, lấy lịch sử nhiều phiên, đối chiếu stream với REST |
 | Đánh giá | `src/analytics/sessions.py` | Độ phủ theo mốc, độ ổn định hạng, độ nhạy trọng số, khoảng cập nhật để chọn ngưỡng dữ liệu cũ |
 | Kiểm thử | `tests/test_ssi_v3.py` | 43 ca offline, gồm phát lại một nhật ký V3 trên giao diện Streamlit |
 
@@ -58,11 +58,11 @@
    ```
 2. Kiểm tra cấu hình. Lệnh này không gọi mạng:
    ```powershell
-   .\SSI_V3.ps1 -Lenh kiemtra
+   .\scripts\SSI_V3.ps1 -Lenh kiemtra
    ```
 3. **Smoke test trong giờ giao dịch** (9:20–11:20 hoặc 13:05–14:25), stream 60 giây:
    ```powershell
-   .\SSI_V3.ps1 -Lenh smoke -Giay 60
+   .\scripts\SSI_V3.ps1 -Lenh smoke -Giay 60
    ```
    Kết quả nằm trong `evidence/v3_smoke/<thời điểm>/SMOKE.md`. Kiểm tra:
    - đủ 30 mã mỗi nhóm;
@@ -75,7 +75,7 @@
    Nếu ack báo `Denied (scope)`, thử lại với `SSI_V3_SUBSCRIBE=symbols` hoặc hỏi SSI về quyền stream.
 4. **Lấy lịch sử 10 phiên** (REST, không cần OTP). Đây là bước đáp ứng yêu cầu "≥ 5 phiên" của đề ngay khi có khóa:
    ```powershell
-   .\SSI_V3.ps1 -Lenh lichsu -SoPhien 10
+   .\scripts\SSI_V3.ps1 -Lenh lichsu -SoPhien 10
    ```
 5. Sửa bộ giải mã nếu smoke test cho thấy sai khác, rồi chạy lại test:
    ```powershell
@@ -83,12 +83,12 @@
    ```
 6. **Thu mỗi ngày giao dịch**, ít nhất 5 ngày. Mở PowerShell lúc khoảng 8:50 và giữ cửa sổ mở đến 15:05:
    ```powershell
-   .\SSI_V3.ps1 -Lenh phien
+   .\scripts\SSI_V3.ps1 -Lenh phien
    ```
    Lệnh tạo hai lần thu (sáng và chiều), lưu vào `runtime/ssi.sqlite`, lấy dữ liệu ngày lúc 15:05 và ghi `evidence/v3_sessions/session-<ngày>.json`.
 7. **Đánh giá** sau các phiên đã thu:
    ```powershell
-   .\SSI_V3.ps1 -Lenh danhgia
+   .\scripts\SSI_V3.ps1 -Lenh danhgia
    ```
    Kết quả nằm trong `evidence/v3_sessions/evaluation.json`.
 8. Chỉ đặt `SSI_SEMANTICS_VERIFIED=true` khi đủ bằng chứng ở mục 4. Trước đó giao diện vẫn khóa điểm của dữ liệu thật.

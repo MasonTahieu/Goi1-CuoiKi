@@ -1,7 +1,7 @@
 @echo off
 title DANG NHAP NEO - NHAP SO LUU KY
 setlocal
-cd /d "%~dp0"
+cd /d "%~dp0.."
 if not exist "%USERPROFILE%\.venv\Scripts\python.exe" (
   echo Khong tim thay moi truong Python. Xem README.md.
   pause

@@ -31,7 +31,8 @@ if (-not (Test-Path -LiteralPath $taskPython -PathType Leaf)) {
 if ($LASTEXITCODE -ne 0) { throw 'Bo thu vien di kem can CPython 3.13 tren Windows x64. Hay chon -VenvPath phu hop.' }
 
 $localWheels = Join-Path $PSScriptRoot 'offline_wheels'
-$pipArgs = @('--disable-pip-version-check', '--progress-bar', 'off', '-r', 'requirements-win-py313.lock.txt')
+$lockFile = Join-Path $PSScriptRoot 'requirements/windows-py313.lock.txt'
+$pipArgs = @('--disable-pip-version-check', '--progress-bar', 'off', '-r', $lockFile)
 if (Test-Path -LiteralPath $localWheels -PathType Container) {
     $pipArgs += @('--no-index', '--find-links', $localWheels)
 }

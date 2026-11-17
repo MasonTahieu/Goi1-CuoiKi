@@ -123,7 +123,7 @@ Nguồn dữ liệu → Giải mã và thu thập → Nhật ký SQLite
 | `src/analytics/sessions.py` | Đánh giá nhiều phiên: độ phủ theo mốc, Spearman giữa các mốc và giữa các cấu hình, khoảng cập nhật để chọn ngưỡng dữ liệu cũ, độ bền yếu tố theo ngày. |
 | `src/analytics/validation.py` | Kiểm tra phiên kế tiếp: IC, chênh lệch top–bottom, ngưỡng phát hiện. `evaluate-v3` tự ghi lại kết quả vào `evidence/v3_sessions/`. |
 | `src/ranking/daily.py`, `src/data/daily_store.py` | Phương pháp `daily-v2` và kho dữ liệu ngày. |
-| `SSI_V3.ps1` | Năm lệnh `kiemtra`, `smoke`, `lichsu`, `phien`, `danhgia`. Chưa có `stream-window`; lệnh đó chạy bằng `python -X utf8 -m src.cli stream-window --otp-mode none`. |
+| `scripts/SSI_V3.ps1` | Năm lệnh `kiemtra`, `smoke`, `lichsu`, `phien`, `danhgia`. Chưa có `stream-window`; lệnh đó chạy bằng `python -X utf8 -m src.cli stream-window --otp-mode none`. |
 | `.github/workflows/ssi-stream.yml` | Thu stream theo khung giờ, ghi bản tóm tắt `stream-<ngày>-sang.json` và `stream-<ngày>-chieu.json`. Hai lần chạy dùng chung nhóm `ssi-stream` nên lần thứ hai xếp hàng chờ lần đầu. |
 | `src/data/` | Lưu và đọc SQLite, chuẩn hóa, chất lượng và tạo dữ liệu giả lập. |
 | `src/finance/factors.py`, `src/ranking/engine.py` | Bốn yếu tố, phân vị, trọng số, ngưỡng hợp lệ và xếp hạng. |
@@ -133,7 +133,7 @@ Nguồn dữ liệu → Giải mã và thu thập → Nhật ký SQLite
 | `app.py`, `src/app/` | Giao diện Streamlit cũ, giữ làm dự phòng (`RUN_APP.ps1 -Streamlit`). |
 | `src/cli.py` | Kiểm tra cấu hình, chạy bảng điểm demo và thu thập REST. |
 | `tests/`, `evidence/`, `report/` | Ca kiểm thử tự động, bằng chứng kết quả, kịch bản demo và tài liệu báo cáo. |
-| `.env.example`, `requirements-win-py313.lock.txt`, `requirements-local.txt` | Cấu hình mẫu trống, 46 phụ thuộc đã khóa cho Windows x64, CPython 3.13, và bộ thư viện đầy đủ cho máy cá nhân. |
+| `.env.example`, `requirements/windows-py313.lock.txt`, `requirements/local.txt` | Cấu hình mẫu trống, 46 phụ thuộc đã khóa cho Windows x64, CPython 3.13, và bộ thư viện đầy đủ cho máy cá nhân. |
 
 Kho SSI mặc định là `runtime/ssi.sqlite`, kho dữ liệu ngày trên máy là `runtime/ssi_daily.sqlite` (trang công khai đọc `webdata/ssi_daily.sqlite`). Lệnh demo bảng điểm tạo `runtime/synthetic.sqlite` và `runtime/synthetic_ranking.csv`. Lệnh tạo nhật ký mẫu ghi `runtime/task3-synthetic.sqlite`. Hai nhật ký dựng từ giao diện demo nằm ở kho tạm. Nguồn, lần thu thập và phiên kết nối được theo dõi riêng. Thời điểm lưu và hiển thị theo giờ Việt Nam UTC+7.
 
@@ -156,7 +156,7 @@ Giao diện web chạy cục bộ tại `http://127.0.0.1:8501` (thêm `-Streaml
 - **Kiểm chứng toàn tuyến:** bộ riêng 11 mã VN30 hư cấu. Khi chỉ còn 9 mã hợp lệ (dưới ngưỡng 10), nhóm dừng xếp hạng và nêu lý do. Ca HOSETEST11 lên từ 55 điểm/hạng 4 đến 64 điểm/hạng 1 khi đổi trọng số. Đây là kết quả trên dữ liệu dựng để kiểm thử. [Kết quả toàn tuyến](docs/TASK_6_KIEM_THU_TOAN_TUYEN.md)
 
 ```powershell
-.\CHECK_PROJECT.ps1
+.\scripts\CHECK_PROJECT.ps1
 & "$HOME\.venv\Scripts\Activate.ps1"
 python -X utf8 -m src.cli readiness
 python -X utf8 -m src.cli demo-pipeline
@@ -220,11 +220,11 @@ Bản ZIP cũ đã được nghiệm thu ngày 05/11/2026. Gói không kèm tệ
 **2b. Việc tiếp theo về stream**
 - Bấm tay mỗi sáng đến khi đủ 10 ngày, theo [Thu 10 phiên](#thu-stream-10-phiên-việc-hằng-ngày). Hoặc chọn một phương án bấm hộ.
 - Nhật ký thô không được lưu vì repo công khai và khoảng 4 GB mỗi phiên. Bản tóm tắt có độ trễ, nhịp, cờ phiên, kết nối, đánh giá theo mốc và đối chiếu REST. Muốn phát lại với ngưỡng khác thì phải thu trên máy.
-- `.\SSI_V3.ps1 -Lenh danhgia`: kiểm tra lại ngưỡng bằng phân vị khoảng cập nhật, ghi căn cứ cho ngưỡng tối thiểu 10 mã.
+- `.\scripts\SSI_V3.ps1 -Lenh danhgia`: kiểm tra lại ngưỡng bằng phân vị khoảng cập nhật, ghi căn cứ cho ngưỡng tối thiểu 10 mã.
 - ~~Khối ngoại có gồm giao dịch thỏa thuận không~~: đã xác minh là có, xem [kết quả](evidence/v3_history/KHOI_NGOAI_THOA_THUAN.md).
 - `SSI_SEMANTICS_VERIFIED`: đủ 5/5 điều kiện ở mục 4 của [hướng dẫn V3](docs/V3_KET_NOI.md). Đơn vị, giá trị khớp và khối ngoại đã có từ đối chiếu ngày 09/11. Cờ `ATC` có ngày 09/11 và 10/11, cờ `LO` có lúc 13:00 ngày 10/11. Chưa có chênh âm lớn hơn 5 giây. Còn chờ người học quyết định bật.
 - Ghi tên các mã báo `MISSING_FIELDS` vào bản tóm tắt. Hiện chỉ có số đếm (1–3 mã mỗi mốc), nên chưa biết là mã ít giao dịch hay lỗi trường.
-- Thêm `stream-window` vào `SSI_V3.ps1`, sửa đoạn mô tả giới hạn OTP đã cũ trong tài liệu.
+- Thêm `stream-window` vào `scripts/SSI_V3.ps1`, sửa đoạn mô tả giới hạn OTP đã cũ trong tài liệu.
 - Thêm thanh khoản tương đối (so với trung bình 20 phiên của chính mã) khi đủ dữ liệu, vì điểm thanh khoản hiện gần như đo quy mô.
 
 **2c. Lỗi mới ngày 10/11: SSI từ chối xác thực lúc 14:33**

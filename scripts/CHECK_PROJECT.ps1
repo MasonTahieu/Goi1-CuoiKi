@@ -1,7 +1,7 @@
 param([string]$VenvPath = (Join-Path $HOME '.venv'))
 
 $ErrorActionPreference = 'Stop'
-Set-Location -LiteralPath $PSScriptRoot
+Set-Location -LiteralPath (Split-Path -Parent $PSScriptRoot)
 $venvScripts = Join-Path $VenvPath 'Scripts'
 if (-not (Test-Path -LiteralPath (Join-Path $venvScripts 'python.exe'))) {
     throw 'Chua co moi truong ~/.venv. Xem README.md de chuan bi.'

@@ -42,10 +42,10 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
-          cache-dependency-path: requirements-ci.txt
+          cache-dependency-path: requirements.txt
 
       - name: Install
-        run: python -m pip install -r requirements-ci.txt
+        run: python -m pip install -r requirements.txt
 
       - name: Capture and summarize
         run: |

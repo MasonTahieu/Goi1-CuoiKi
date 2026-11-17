@@ -7,8 +7,8 @@
 Lệnh đã chạy:
 
 ```powershell
-.\SSI_V3.ps1 -Lenh lichsu -SoPhien 10
-.\SSI_V3.ps1 -Lenh danhgia
+.\scripts\SSI_V3.ps1 -Lenh lichsu -SoPhien 10
+.\scripts\SSI_V3.ps1 -Lenh danhgia
 ```
 
 - Kho dữ liệu: `runtime/ssi_daily.sqlite`, không đưa vào gói nộp.
@@ -73,6 +73,6 @@ Các yếu tố có tương quan thấp, nên mỗi yếu tố đóng góp thôn
 
 ## 5. Việc tiếp theo
 
-1. Thứ Hai 09/11, trong giờ khớp lệnh liên tục: `.\SSI_V3.ps1 -Lenh smoke -Giay 60` để kiểm tra stream, định dạng thời gian `t`, cờ phiên, số mức sổ lệnh và quyền đăng ký topic theo rổ.
+1. Thứ Hai 09/11, trong giờ khớp lệnh liên tục: `.\scripts\SSI_V3.ps1 -Lenh smoke -Giay 60` để kiểm tra stream, định dạng thời gian `t`, cờ phiên, số mức sổ lệnh và quyền đăng ký topic theo rổ.
 2. Đối chiếu null của khối ngoại với gói `room` trong phiên.
-3. Thu ít nhất 5 phiên bằng `.\SSI_V3.ps1 -Lenh phien`, rồi đánh giá xếp hạng trong phiên.
+3. Thu ít nhất 5 phiên bằng `.\scripts\SSI_V3.ps1 -Lenh phien`, rồi đánh giá xếp hạng trong phiên.

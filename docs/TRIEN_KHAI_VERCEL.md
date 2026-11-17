@@ -14,9 +14,9 @@ Vercel (tự triển khai lại khi có commit) ◀─────────�
 |---|---|
 | `api/index.py` | Hàm Python trên Vercel. Dùng lại đúng bộ xử lý của `src/web/server.py` |
 | `vercel.json` | Chuyển mọi đường dẫn về hàm trên; đóng gói `src/` và `webdata/` |
-| `requirements.txt` | Phụ thuộc gọn cho Vercel và CI: pandas, numpy, python-dotenv, requests, tzdata |
-| `requirements-ci.txt` | Thêm `ssi-sdk` cho workflow lấy dữ liệu |
-| `requirements-local.txt` | Bộ đầy đủ cho máy cá nhân (Streamlit, pytest, SDK) |
+| `requirements.txt` | Thư viện cho Vercel và các workflow SSI trên GitHub Actions, gồm `ssi-sdk` |
+| `requirements/local.txt` | Bộ đầy đủ cho máy cá nhân (Streamlit, pytest, SDK) |
+| `requirements/windows-py313.lock.txt` | Phiên bản thư viện dùng khi cài bằng `CAI_THU_VIEN.ps1` trên Windows |
 | `.python-version` | Python 3.12 trên Vercel |
 | `.vercelignore` | Không đưa `.env`, `runtime/`, test, tài liệu và giao diện Streamlit lên Vercel |
 | `.github/workflows/ssi-daily.yml` | Lịch lấy dữ liệu ngày, đánh giá nhiều phiên, commit kết quả |
