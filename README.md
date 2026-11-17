@@ -1,200 +1,102 @@
-# Bộ lọc VN30 đa yếu tố — SSI FastConnect
+# Bộ lọc cổ phiếu VN30 đa yếu tố
 
-Cập nhật **07/11/2026**. Phạm vi: **rổ VN30** (HNX30 đã bỏ vì thanh khoản thấp và thiếu dữ liệu khối ngoại, [số liệu](evidence/v3_history/PHAM_VI_VN30.md)).
-Nguồn dữ liệu: **SSI FastConnect API V3** qua SDK chính thức `ssi-sdk==3.3.2`. Dữ liệu ngày thật (REST) đã có 15 phiên; stream trong phiên chờ kiểm thử trong giờ giao dịch.
-Trang công khai: https://cuoiki.vercel.app (mặc định chế độ **Cuối ngày · SSI thật**).
+Dashboard đồ án cuối kỳ môn Gói phần mềm 1, sử dụng **SSI FastConnect API V3**. Dự án xếp hạng tương đối các cổ phiếu trong rổ VN30, cho phép xem yếu tố nào đóng góp vào điểm của từng mã và giải thích vì sao một mã chưa đủ dữ liệu để xếp hạng.
 
-- [Kết nối FastConnect V3](docs/V3_KET_NOI.md)
-- [Phạm vi chỉ VN30 và lý do bỏ HNX30](evidence/v3_history/PHAM_VI_VN30.md)
-- [Kiểm tra phiên kế tiếp: điểm và lợi suất phiên sau](evidence/v3_sessions/KIEM_TRA_PHIEN_KE_TIEP.md)
-- [Cơ sở tài chính của phương pháp, kèm nguồn](report/CO_SO_PHUONG_PHAP.md)
-- [Triển khai miễn phí lên Vercel + GitHub Actions](docs/TRIEN_KHAI_VERCEL.md) · Repo: [MasonTahieu/CuoiKi](https://github.com/MasonTahieu/CuoiKi)
-- [Đăng ký SSI và phạm vi chuyển đổi](docs/CHUYEN_SANG_SSI.md)
-- [Ghi chú bàn giao và tiến độ](HANDOFF.md)
+**[Mở bản demo web](https://cuoiki.vercel.app/)** · [Tài liệu SSI FastConnect](https://developers.ssi.com.vn/) · [Phương pháp chấm điểm](report/CO_SO_PHUONG_PHAP.md)
 
-## Chạy nhanh từ gói nộp
+## Tính năng
 
-Dùng **CPython 3.13 x64 trên Windows**. Giải nén toàn bộ gói rồi mở PowerShell tại thư mục chứa `app.py`.
+- **Xếp hạng** theo phiên, trọng số và cách tính khối ngoại. Có bộ lọc Top 5, mã tăng hạng và mã chưa xếp hạng, cùng chi tiết điểm từng yếu tố và xuất CSV.
+- **Biểu đồ** giá và khối lượng theo mã. Khung ngày hỗ trợ khoảng xem 1, 5 và 10 năm tùy lịch sử SSI cung cấp. Khung 5 phút có thể tải thêm nến cũ trong phạm vi một năm gần nhất. Cuộn chuột hoặc chụm hai ngón để thu phóng, kéo ngang để đổi đoạn đang xem.
+- **Lịch sử hạng và kiểm chứng** giúp theo dõi biến động thứ hạng qua các phiên và xem kết quả khi đổi trọng số, bỏ một yếu tố hoặc thiếu dữ liệu.
+- **Chất lượng dữ liệu** cho biết mốc phân tích và lý do từng mã chưa có hạng. Bản cục bộ có dữ liệu minh họa và chế độ phát lại nhật ký SSI.
+
+## Cài đặt và chạy trên Windows
+
+Cần **CPython 3.13 x64** và PowerShell. Nếu dùng Git, tải mã nguồn bằng hai lệnh bên dưới. Nếu đã có thư mục dự án hoặc gói nộp, mở PowerShell tại thư mục chứa `RUN_APP.ps1`.
+
+```powershell
+git clone https://github.com/MasonTahieu/Goi1-CuoiKi.git
+Set-Location Goi1-CuoiKi
+```
+
+Cài thư viện rồi mở dashboard. Các script dùng môi trường Python tại `~/.venv` theo mặc định. Script cài đặt dùng thư mục `offline_wheels/` khi gói có kèm thư mục này. Bản tải từ GitHub cần kết nối mạng ở bước cài thư viện.
 
 ```powershell
 .\CAI_THU_VIEN.ps1
 .\RUN_APP.ps1
 ```
 
-Gói có bộ thư viện cài offline và tệp khóa phiên bản. Cả hai lệnh dùng môi trường chung `~/.venv` mặc định. Nếu máy đã có môi trường Python 3.13 khác, truyền cùng tham số `-VenvPath` cho hai lệnh để chọn vị trí đó. Dùng `.\CHECK_PROJECT.ps1` để chạy kiểm tra và toàn bộ bộ test.
-
-Giao diện mở tại `http://127.0.0.1:8501`. Chế độ demo dùng cấu hình mặc định và dữ liệu giả lập dựng từ mã nguồn. [Cách thử hai màn hình demo](docs/TASK_5_GIAO_DIEN.md) · [Kịch bản trình diễn](report/KICH_BAN_DEMO.md)
-
-## Task 6 đã bàn giao
-
-Đã kiểm tra từ gói SSI giả lập qua SQLite đến bảng điểm và CSV, gồm tình huống thiếu dữ liệu, mất kết nối, lỗi adapter và hết hạn xác thực. Toàn dự án đạt 209 kiểm thử. [Ma trận T01–T24 và cách chạy lại](docs/TASK_6_KIEM_THU_TOAN_TUYEN.md)
-
-## Task 5 đã bàn giao
-
-Trong chế độ demo, mục **Dữ liệu minh họa** chuyển giữa bảng điểm và nhật ký SSI mẫu. Nhật ký có lựa chọn lần thu thập và mốc phát lại, trạng thái kết nối, độ mới từng cụm dữ liệu và lý do chưa xếp hạng. [Hướng dẫn thử giao diện](docs/TASK_5_GIAO_DIEN.md)
-
-## Task 4 đã bàn giao
-
-Đã đối chiếu bốn yếu tố bằng ca tính tay, so sánh hai cách tính khối ngoại và đo mức đổi hạng khi đổi trọng số trên 11 mã VN30 giả lập. Toàn dự án hiện đạt 270 kiểm thử. [Kết quả mẫu](evidence/task4/KET_QUA_MAU.md) · [Đặc tả kiểm chứng](docs/TASK_4_KIEM_CHUNG_BON_YEU_TO.md)
+Mở [dashboard cục bộ](http://127.0.0.1:8501/). Chọn một nguồn **Minh họa** để thử giao diện mà không cần khóa SSI. Để xem bảng xếp hạng bằng dữ liệu SSI đi kèm kho mã, chạy hai lệnh dưới đây trong một cửa sổ PowerShell tại thư mục dự án.
 
 ```powershell
-& "$HOME\.venv\Scripts\Activate.ps1"
-python -X utf8 -m src.ranking.verify_factors
-```
-
-## Task 3 đã bàn giao
-
-Đã có lưu SQLite theo lô, phát lại theo thời điểm/event ID và báo cáo dữ liệu thiếu/cũ/trễ,
-độ phủ từng nhóm, mất kết nối và trạng thái từng mã.
-Xem [bảng mẫu tám mốc task 3](evidence/task3/KET_QUA_MAU.md) và [hướng dẫn task 3](docs/TASK_3_LUU_TRU_REPLAY_CHAT_LUONG.md).
-
-```powershell
-& "$HOME\.venv\Scripts\Activate.ps1"
-python -X utf8 -m src.ssi_api.replay_sample
-python -X utf8 -m src.ssi_api.replay --db runtime/task3-synthetic.sqlite --list-runs
-```
-
-Lệnh tạo kho mẫu riêng. Giao diện ở task 5 đọc cùng định dạng journal. Kết quả pytest ở thời điểm bàn giao task 3 gồm 181 ca.
-
-## Task 2 đã bàn giao
-
-Collector giả lập đã có ghép patch, timestamp từng trường, chống trùng và xử lý ngắt/kết nối lại.
-Xem [bảng mẫu task 2](evidence/task2/KET_QUA_MAU.md) và [hợp đồng collector](docs/TASK_2_COLLECTOR_GIA_LAP.md).
-
-```powershell
-& "$HOME\.venv\Scripts\Activate.ps1"
-python -X utf8 -m src.ssi_api.collect_sample
-```
-
-Kho task 2 tách riêng và có thể phát lại bằng công cụ task 3 hoặc giao diện task 5.
-
-## Task 1 đã bàn giao
-
-Bộ giải mã FCData v2 đã hoàn thành offline và được collector task 2 sử dụng.
-Xem [bảng mẫu để kiểm tra](evidence/task1/KET_QUA_MAU.md) và [hợp đồng decoder](docs/TASK_1_GIAI_MA_SSI.md).
-
-```powershell
-& "$HOME\.venv\Scripts\Activate.ps1"
-python -X utf8 -m src.ssi_api.decode_sample
-```
-
-## Chạy ngay
-
-```powershell
+$env:SSI_DAILY_DATABASE = 'webdata/ssi_daily.sqlite'
 .\RUN_APP.ps1
 ```
 
-Từ 06/11/2026, `RUN_APP.ps1` mở **giao diện web mới** tại http://127.0.0.1:8501. Máy chủ dùng Python (`src/web/server.py`), giao diện dùng HTML/CSS/JS (`src/web/static/`). Bảng xếp hạng đọc được khi ngoại tuyến. Biểu đồ nến SSI cần kết nối FastConnect. Giao diện Streamlit cũ vẫn mở được bằng `.\RUN_APP.ps1 -Streamlit`.
+## Sử dụng dashboard
 
-Giao diện mới là dashboard nền tối theo chuẩn các ứng dụng chứng khoán Việt:
-- thanh trên cùng có nhãn rổ VN30 kèm số mã đã xếp hạng, trạng thái kết nối và mốc phân tích;
-- bốn chỉ số tổng quan;
-- dòng tóm tắt cập nhật theo mốc đang xem và các bộ lọc nhanh Tất cả, Top 5, Tăng hạng, Chưa xếp hạng;
-- giá của từng mã trong bảng và tab **Biểu đồ** để xem nến, giá và khối lượng từ SSI. Chọn khung **1 ngày** hoặc **5 phút**. Kéo ngang để đổi đoạn đang xem, cuộn ngay trên biểu đồ hoặc chụm hai ngón để thu phóng. Nhấp đúp hoặc dùng nút đặt lại để về khoảng xem ban đầu;
-- bảng xếp hạng: thanh điểm tổng chia theo phần đóng góp, mỗi yếu tố có thanh phân vị riêng, mỗi mã có một nhãn trạng thái;
-- khung bên phải giải thích vì sao mã đứng hạng đó, kèm đường giá đã ghi nhận và biểu đồ điểm tổng của cả nhóm;
-- hai tab Chất lượng dữ liệu và Phương pháp.
-- so sánh với một mốc trước (mặc định mốc dữ liệu liền trước; chọn được 30 giây, 1, 5, 15 phút hoặc tắt): mũi tên và số bậc thay đổi cạnh hạng, chênh hạng và chênh điểm trong khung giải thích, vạch trắng đánh dấu điểm cũ trên biểu đồ. CSV ghi thêm `compare_as_of`, `prev_rank`, `rank_change`, `total_change`.
+1. Chọn **Cuối ngày · SSI thật** và mốc phiên cần xem.
+2. Mở **Xếp hạng**, chọn trọng số và đơn vị dòng tiền ngoại theo giá trị hoặc khối lượng. Bấm một mã để xem điểm thành phần và lý do xếp hạng.
+3. Mở **Biểu đồ** để xem nến và khối lượng của mã đó. Với khung 5 phút, dùng **Tải nến cũ hơn** để mở rộng khoảng xem. Nhấp đúp biểu đồ để đặt lại mức thu phóng.
+4. Mở **Lịch sử hạng** để so sánh các phiên hoặc **Kiểm chứng** để xem kết quả của đúng cấu hình đang chọn.
 
-Trạng thái màn hình (nguồn, lần thu thập, mốc, nhóm, trọng số, mã và khung nến đang chọn) nằm trên URL, nên một kết quả có thể mở lại đúng như cũ.
+### Kết nối SSI trên máy cá nhân
 
-Nguồn **"Cuối ngày · SSI thật"** xuất hiện ở mọi chế độ khi đã có `runtime/ssi_daily.sqlite` (tạo bằng `.\SSI_V3.ps1 -Lenh lichsu`). Nguồn này xếp hạng theo dữ liệu tổng hợp từng phiên của SSI, dùng được cả ngoài giờ giao dịch. Đây là phương pháp riêng `daily-v2` với 3 yếu tố: động lượng đóng cửa so với mở cửa, thanh khoản theo giá trị khớp, cân bằng mua–bán khối ngoại `(mua − bán)/(mua + bán)`; trọng số 33/33/33 hoặc 50/25/25. Không có sổ lệnh nên không có cung–cầu. Mã thiếu dữ liệu khối ngoại không được xếp hạng.
+Biểu đồ nến lấy dữ liệu từ SSI FastConnect theo mã và khoảng xem, rồi giữ nến trong bộ nhớ trình duyệt để vẽ và thu phóng. Bảng xếp hạng cuối ngày đọc được từ kho SQLite đã có, kể cả khi ngoại tuyến.
 
-Trong nguồn **Cuối ngày · SSI thật**, tab **Biểu đồ** gọi [API nến SSI FastConnect](https://developers.ssi.com.vn/en/docs/api-reference/data-ohlc). Máy chủ dùng `SSI_API_PROFILE=fastconnect_v3`, `SSI_API_KEY` và `SSI_API_SECRET`. Khung ngày có các mốc 1, 5 và 10 năm tùy lịch sử từng mã. Khung 5 phút mở với 100 nến gần nhất. Kéo qua đầu biểu đồ hoặc chọn **Tải nến cũ hơn** để đọc thêm từng đoạn tối đa 31 ngày. Ngày đầu và ngày cuối dữ liệu đã tải nằm dưới biểu đồ. SSI chỉ cung cấp nến trong phiên trong một năm gần nhất, và dữ liệu từng mã có thể ngắn hơn. Để xem xa hơn cần nguồn lịch sử bổ sung hoặc kho lưu từ những lần thu trước.
+Nếu chưa có `.env`, sao chép [`.env.example`](.env.example) thành `.env`. Đặt `DATA_PROVIDER=ssi`, `SSI_API_PROFILE=fastconnect_v3` và điền `SSI_API_KEY`, `SSI_API_SECRET` do SSI cấp. Giữ `.env` trên máy cá nhân.
 
-Mặc định DATA_PROVIDER=ssi, APP_MODE=demo. Chế độ demo có hai nguồn:
-- **bảng điểm giả lập**: 24 mã hư cấu;
-- **nhật ký SSI mẫu**: V3 và FCData v2, có các tình huống mất kết nối, dựng lại dữ liệu nền và dữ liệu khối ngoại cũ.
-Các mã không phải thành phần thật của chỉ số. Chọn nhóm xác định nhóm so sánh; lọc mã/điểm không tính lại điểm.
+```powershell
+.\SSI_V3.ps1 -Lenh kiemtra
+.\SSI_V3.ps1 -Lenh lichsu -SoPhien 15
+```
+
+Lệnh đầu kiểm tra cấu hình mà không gọi SSI. Lệnh sau lấy dữ liệu tổng hợp cuối ngày và mặc định lưu ở `runtime/ssi_daily.sqlite`. Biến môi trường `SSI_DAILY_DATABASE` cho phép chọn kho khác. [Hướng dẫn kết nối FastConnect V3](docs/V3_KET_NOI.md)
+
+## Phương pháp và phạm vi
+
+| Phương pháp | Dữ liệu và yếu tố | Cách sử dụng |
+| --- | --- | --- |
+| **Cuối ngày** (`daily-v2`) | REST `securitiesSummary`. Động lượng từ giá mở cửa đến giá đóng cửa, thanh khoản theo giá trị khớp và cân bằng mua–bán khối ngoại `(mua − bán) / (mua + bán)`. | Bảng xếp hạng trên bản web, với trọng số cân bằng hoặc ưu tiên động lượng. |
+| **Trong phiên** (`intraday-v1`) | Nhật ký SSI WebSocket. Động lượng, thanh khoản, dòng tiền ngoại và mất cân bằng cung–cầu từ sổ lệnh. | Phạm vi thử nghiệm và phát lại. Để chấm trên dữ liệu trong phiên cần đủ dữ liệu và đáp ứng điều kiện chất lượng. |
+
+Điểm mỗi yếu tố là phân vị trong tập mã đủ điều kiện tại cùng mốc. Điểm tổng là tổng có trọng số của các điểm thành phần. Mỗi nhóm cần ít nhất 10 mã hợp lệ. Mã thiếu yếu tố bắt buộc đứng ở trạng thái **Chưa xếp hạng**. Điểm hỗ trợ sàng lọc danh sách theo dõi. Kết quả kiểm chứng phiên kế tiếp mang tính mô tả và chưa xác lập khả năng dự báo. [Đặc tả và giới hạn phương pháp](report/CO_SO_PHUONG_PHAP.md)
+
+## Cấu trúc thư mục
+
+| Vị trí | Nội dung |
+| --- | --- |
+| [`src/ssi_api/`](src/ssi_api/) | Kết nối FastConnect, thu thập REST và WebSocket, giải mã, phát lại và truy vấn nến. |
+| [`src/data/`](src/data/) | Kho SQLite, chuẩn hóa dữ liệu, kiểm tra chất lượng và dữ liệu minh họa. |
+| [`src/ranking/`](src/ranking/) và [`src/analytics/`](src/analytics/) | Tính điểm, xếp hạng và kiểm chứng phương pháp qua nhiều phiên. |
+| [`src/web/`](src/web/) và [`api/`](api/) | Máy chủ Python, giao diện HTML/CSS/JavaScript và điểm vào Vercel. |
+| [`webdata/`](webdata/) | Kho SSI cuối ngày và kết quả kiểm chứng tính sẵn cho bản web. |
+| [`tests/`](tests/) và [`evidence/`](evidence/) | Kiểm thử tự động, dữ liệu tái lập và bằng chứng thực nghiệm. |
+| [`docs/`](docs/) và [`report/`](report/) | Hướng dẫn kỹ thuật, cơ sở phương pháp và kịch bản trình diễn. |
+
+## Kiểm thử và tái lập
+
+Sau khi cài thư viện, chạy kiểm tra cấu hình dự án và bộ kiểm thử cục bộ. Lệnh này không cần khóa SSI.
+
+```powershell
+.\CHECK_PROJECT.ps1
+```
+
+Để tái lập kiểm chứng theo giá trị khối ngoại từ bộ dữ liệu cố định, kích hoạt môi trường Python rồi chạy hai lệnh sau.
 
 ```powershell
 & "$HOME\.venv\Scripts\Activate.ps1"
-python -X utf8 -m src.cli readiness
-python -X utf8 -m src.cli connection-plan
-python -X utf8 -m src.cli demo-pipeline
-python -X utf8 -m pytest -q
-```
-
-Demo lưu runtime/synthetic.sqlite, run synthetic-two-groups-v1; bảng xuất runtime/synthetic_ranking.csv.
-Nguồn SSI mặc định lưu runtime/ssi.sqlite, NEO cũ runtime/neo.sqlite. Không trộn nguồn hoặc dùng token chéo nguồn.
-
-## Cấu hình
-
-Xem .env.example. Không ghi đè .env hiện có hoặc gửi khóa vào chat.
-Biến môi trường ưu tiên hơn .env tại gốc dự án; không tìm .env ở thư mục cha.
-
-| Biến | Mặc định | Ý nghĩa |
-|---|---|---|
-| DATA_PROVIDER | ssi | ssi hoặc neo (nhánh cũ) |
-| APP_MODE | demo | demo/replay/live |
-| SSI_API_PROFILE | unselected | Chọn phiên bản sau khi đăng ký được cấp |
-| SSI_CONSUMER_ID / SSI_CONSUMER_SECRET | Trống | FCData v2 (dự phòng) |
-| SSI_API_KEY / SSI_API_SECRET | Trống | FastConnect V3 |
-| SSI_CLIENT_ID | Trống | Chỉ điền nếu SSI cấp kèm |
-| SSI_OTP_MODE | prompt | prompt/smart/none khi đăng nhập V3 |
-| SSI_V3_SUBSCRIBE | index | index (`trade.VN30@*`) hoặc symbols (từng mã) |
-| SSI_DATABASE | runtime/ssi.sqlite | Kho đúng nguồn |
-| SSI_SEMANTICS_VERIFIED | false | Khóa chấm điểm thật đến khi kiểm chứng |
-
-Với `SSI_API_PROFILE=fastconnect_v3`, script `SSI_V3.ps1` chạy năm lệnh:
-
-| Lệnh | CLI | Gọi mạng | Việc làm |
-|---|---|---|---|
-| `-Lenh kiemtra` | `readiness` | Không | Kiểm tra cấu hình và SDK |
-| `-Lenh smoke -Giay 60` | `smoke-v3` | Có | Đăng nhập, đọc thành phần nhóm và dữ liệu ngày, stream ngắn, ghi `evidence/v3_smoke` |
-| `-Lenh lichsu -SoPhien 10` | `history-v3` | Có, REST | Lưu 10 phiên `securitiesSummary` vào `runtime/ssi_daily.sqlite` |
-| `-Lenh phien` | `session-v3` | Có | Thu 08:58–11:31 và 12:59–14:46, đối chiếu REST lúc 15:05 |
-| `-Lenh danhgia` | `evaluate-v3` | Không | Đánh giá nhiều phiên, ghi `evidence/v3_sessions/evaluation.json` |
-
-FCData v2 vẫn có `collect --transport rest` làm dự phòng. Streaming chỉ có cho V3.
-
-`replay` đọc journal SSI cục bộ và cho chọn lần thu thập, mốc phát lại. `live` đọc kho đúng nhà cung cấp theo giờ hiện tại, với nút đọc lại và tùy chọn 10 hoặc 30 giây. Giao diện chỉ đọc kho, còn collector đảm nhiệm kết nối.
-Nhánh NEO cũ nằm riêng trong `src/neo_api`.
-
-## Môi trường và cấu trúc
-
-Môi trường kiểm thử của gói là Python 3.13.15 trên Windows x64. `requirements.txt` liệt kê phụ thuộc trực tiếp, còn `requirements-win-py313.lock.txt` ghi phiên bản của toàn bộ 46 thư viện dùng để cài lại (đã thêm `ssi-sdk`, `httpx`, `httpcore`). Từ 07/11/2026, `requirements.txt` là bộ gọn cho Vercel/CI; bộ đầy đủ cho máy cá nhân nằm ở `requirements-local.txt`.
-
-```text
-src/ssi_api/      Cấu hình, REST v2, client/decoder/stream V3, collector, replay SSI
-src/analytics/    Đánh giá nhiều phiên: độ phủ, độ ổn định hạng, khoảng cập nhật
-src/neo_api/      Nhánh NEO cũ, giữ để truy vết
-src/providers.py  Chọn cấu hình nguồn
-src/data/         Store, ghi lô/đọc journal SSI, chất lượng, replay và demo VN30
-src/finance/      Bốn yếu tố thô
-src/ranking/      Điểm và hạng riêng theo index_group
-src/web/          Giao diện web: server.py (thư viện chuẩn), api.py (JSON), static/ (HTML/CSS/JS)
-src/app/          Giao diện Streamlit cũ, giữ làm dự phòng
-runtime/          Dữ liệu/CSV cục bộ loại khỏi Git
-```
-
-Bốn yếu tố: động lượng từ mở cửa; thanh khoản từ giá trị khớp, spread, độ sâu; ngoại ròng tương đối;
-mất cân bằng khối lượng ba mức. Tối thiểu 10 mã hợp lệ trong nhóm, điểm hòa có cùng hạng.
-Trọng số cân bằng/ưu tiên động lượng là baseline. Cần đánh giá lại ngữ nghĩa khối ngoại SSI và dữ liệu nhiều phiên.
-Điểm chỉ hỗ trợ sàng lọc, chưa có kiểm định dự báo. Không triển khai giao dịch tiền thật.
-
-Bản đồ NEO và các bằng chứng cũ giữ làm lịch sử; tài liệu hiện hành là kế hoạch SSI và docs/CHUYEN_SANG_SSI.md.
-
-## Kiểm chứng phương pháp cuối ngày (daily-v2)
-
-Đặc tả hiện hành: [Cơ sở phương pháp](report/CO_SO_PHUONG_PHAP.md). Bản cuối ngày dùng cân bằng mua–bán khối ngoại, tách dữ liệu thiếu khỏi số 0, giữ đồng điểm ở ranh giới Top 5. Tab Kiểm chứng theo đúng trọng số và đơn vị ngoại đang chọn; hiển thị độ nhạy sàng lọc và lợi suất phiên sau chỉ như mô tả bổ sung.
-
-Chạy offline, không đăng nhập SSI:
-
-```powershell
-python -m src.cli validate-daily --daily-db webdata/ssi_daily.sqlite --foreign value --output evidence/daily_v2/value
-python -m src.cli validate-daily --daily-db webdata/ssi_daily.sqlite --foreign volume --output evidence/daily_v2/volume
-python -m src.web.validation_cache --db webdata/ssi_daily.sqlite
-```
-
-Lệnh cuối tạo `webdata/validation.json` cho bốn cấu hình trọng số × đơn vị ngoại. Workflow hằng ngày tự tạo lại tệp này sau khi lấy dữ liệu. Web chỉ dùng kết quả khi SHA-256 dữ liệu và mã tính khớp; thiếu hoặc sai cache thì tính lại trong bộ nhớ. Không thay đổi công thức, lịch phiên mặc định hay bằng chứng kiểm chứng. Khi sửa công thức hoặc cập nhật kho thủ công, chạy lại lệnh cache trước khi triển khai.
-
-Trên Vercel, entry point chọn mặc định `fastconnect_v3` cho biểu đồ. **Bảng hạng và Kiểm chứng đọc kho có sẵn, còn tab nến cần `SSI_API_KEY` và `SSI_API_SECRET` trong Environment Variables của Vercel.** GitHub Secrets không tự chuyển sang Vercel. Không commit khóa; xem [hướng dẫn triển khai](docs/TRIEN_KHAI_VERCEL.md).
-
-Để giữ ảnh chụp lần cũ, đổi `--output` sang thư mục đợt mới khi bổ sung dữ liệu. Tái lập từ đúng dữ liệu đã lưu (tự kiểm SHA-256 nếu có manifest bên cạnh):
-
-```powershell
 python -m src.cli validate-daily --input-json evidence/daily_v2/value/input_daily.json --foreign value --output runtime/reproduce_daily_v2
 ```
 
-Nếu báo cáo gốc dùng lịch phiên đã xác nhận, truyền lại cùng `--calendar path/to/calendar.json`; tệp gồm `source` (nguồn đối chiếu) và `sessions` (danh sách ngày ISO). Khi chưa có, bỏ các khoảng trống ngày làm việc thay vì đoán phiên kế tiếp. Bằng chứng hai đơn vị nằm trong [value](evidence/daily_v2/value/KIEM_TRA_PHIEN_KE_TIEP.md) và [volume](evidence/daily_v2/volume/KIEM_TRA_PHIEN_KE_TIEP.md).
+Xem [bằng chứng theo giá trị](evidence/daily_v2/value/KIEM_TRA_PHIEN_KE_TIEP.md), [bằng chứng theo khối lượng](evidence/daily_v2/volume/KIEM_TRA_PHIEN_KE_TIEP.md) và [hướng dẫn kiểm thử toàn tuyến](docs/TASK_6_KIEM_THU_TOAN_TUYEN.md).
+
+## Triển khai và cập nhật dữ liệu
+
+Vercel phục vụ bản web và đọc kho `webdata/ssi_daily.sqlite` cùng kết quả kiểm chứng từ kho mã. Biểu đồ nến cần `SSI_API_KEY` và `SSI_API_SECRET` riêng trong cấu hình Vercel. GitHub Actions dùng cùng tên biến trong **GitHub Secrets** để thu thập dữ liệu.
+
+- **SSI daily summaries** đặt lịch lúc **15:20, 15:50 và 16:20** giờ Việt Nam từ thứ Hai đến thứ Sáu. Workflow lấy lại 15 phiên gần nhất và cập nhật kho dữ liệu cùng kết quả kiểm chứng. Có thể chạy tay bằng **Run workflow**. [Workflow dữ liệu cuối ngày](.github/workflows/ssi-daily.yml)
+- **SSI stream capture** thường được khởi động bằng **Run workflow**. Để trống số giây để thu theo khung **08:55–11:35** hoặc **12:55–15:05** giờ Việt Nam. Bản tóm tắt thu thập được lưu trong kho mã. [Workflow thu trong phiên](.github/workflows/ssi-stream.yml) · [Bản tóm tắt](evidence/v3_sessions/stream/)
+
+Xem [hướng dẫn triển khai và vận hành](docs/TRIEN_KHAI_VERCEL.md) và [ghi chú bàn giao](HANDOFF.md). Trao đổi về lỗi hoặc đề xuất tại [GitHub Issues](https://github.com/MasonTahieu/Goi1-CuoiKi/issues).
