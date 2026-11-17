@@ -30,7 +30,7 @@ Vercel (tự triển khai lại khi có commit) ◀─────────�
 
 ## Bước 1. Repo trên GitHub (đã xong)
 
-Repo: [MasonTahieu/CuoiKi](https://github.com/MasonTahieu/CuoiKi), nhánh `main`, đang để **công khai**.
+Repo [MasonTahieu/Goi1-CuoiKi](https://github.com/MasonTahieu/Goi1-CuoiKi), nhánh `main`, đang để **công khai**.
 
 | | Công khai (hiện tại) | Riêng tư |
 |---|---|---|
@@ -65,11 +65,9 @@ Trong repo, vào **Settings → Secrets and variables → Actions → New reposi
 
 ## Bước 4. Chạy thử workflow một lần
 
-1. Mở tab **Actions** của repo; nếu GitHub hỏi thì bấm bật Actions.
-2. Chọn workflow **SSI daily summaries**, bấm **Run workflow**.
-3. Chờ khoảng 1–2 phút rồi mở log:
-   - **Thành công:** bước "Fetch the last 15 sessions" in ra số dòng và số phiên. Nếu có dữ liệu mới, repo sẽ có thêm một commit `data: SSI daily summaries …`.
-   - **Lỗi xác thực hoặc 403:** SSI có thể chặn dải IP của GitHub, giống DNSE chặn IP đám mây trong repo tham khảo. Gửi mình đoạn log lỗi; log không chứa khóa.
+1. Sau khi SSI công bố tổng hợp phiên, mở [SSI daily summaries](https://github.com/MasonTahieu/Goi1-CuoiKi/actions/workflows/ssi-daily.yml), chọn **Run workflow → main**.
+2. Mở lượt chạy và kiểm tra bước **Fetch the last 15 sessions** có ngày cần dùng. Nếu có dữ liệu mới, workflow commit kho và kết quả Kiểm chứng, sau đó Vercel triển khai lại.
+3. Khi Vercel báo **Ready**, mở [website](https://cuoiki.vercel.app), bấm **Kiểm tra lại** nếu đang có cảnh báo và đối chiếu ngày phiên trên bảng. Workflow xanh nhưng chưa có ngày cần dùng thì xem lại ngày SSI trả về.
 
 ## Bước 5. Triển khai trên Vercel
 
@@ -95,16 +93,24 @@ Trong repo, vào **Settings → Secrets and variables → Actions → New reposi
 
 ## Hằng ngày diễn ra thế nào
 
-- **15:20, thứ Hai–thứ Sáu:** GitHub Actions lấy lại 15 phiên gần nhất. Dữ liệu mới được thêm, dữ liệu cũ vẫn giữ. Workflow chạy lại đánh giá nhiều phiên rồi commit.
-- **Khoảng 1 phút sau:** Vercel tự triển khai bản mới. Bạn và giảng viên mở địa chỉ là thấy phiên mới nhất.
+- GitHub đặt lịch **15:20, 15:50 và 16:20, thứ Hai–thứ Sáu** theo giờ Việt Nam. Workflow lấy lại 15 phiên gần nhất, chạy lại đánh giá nhiều phiên rồi commit. Vercel cập nhật web khi bản mới sẵn sàng.
+- Sau **16:30**, web nhắc nếu kho chưa có ngày làm việc gần nhất. Cảnh báo dùng lịch thứ Hai–thứ Sáu và ghi rõ ngày nghỉ có thể không có phiên.
 - Workflow tạo lại `webdata/validation.json` sau mỗi đợt lấy dữ liệu. Cache không khớp dữ liệu/mã sẽ bị bỏ và tính lại; vì vậy cần chạy `python -m src.web.validation_cache --db webdata/ssi_daily.sqlite` nếu cập nhật thủ công.
 - **Máy bạn không cần bật.** Repo riêng tư có 2.000 phút Actions miễn phí mỗi tháng; job này dùng khoảng 2 phút mỗi ngày.
+
+## Lịch độc lập trên Cloudflare
+
+Mã và cấu hình ở `ops/ssi-daily-trigger/`. Worker chạy vào **15:25 và 16:05**, thứ Hai–thứ Sáu, giờ Việt Nam. Mỗi lần nó xem phiên đang phục vụ. Nếu đã có đủ điểm 30 mã cho ngày đó, nó bỏ qua. Nếu còn thiếu, nó gọi đúng workflow `ssi-daily.yml` của nhánh `main`. Worker không mở URL công khai. Các lịch GitHub vẫn chạy dự phòng.
+
+1. Tạo token GitHub loại **fine-grained**, chọn riêng repo `Goi1-CuoiKi` và quyền **Actions: Read and write**. Đặt ngày hết hạn phù hợp với thời gian dùng. [Quyền gọi Workflow Dispatch](https://docs.github.com/en/rest/actions/workflows?apiVersion=2026-03-10#create-a-workflow-dispatch-event)
+2. Trong `ops/ssi-daily-trigger/`, đăng nhập CLI Cloudflare và triển khai Worker bằng `npx wrangler deploy`. Ngay sau đó chạy `npx wrangler secret put GITHUB_ACTIONS_TOKEN` và nhập token khi được hỏi. Khóa SSI tiếp tục nằm ở cấu hình hiện có.
+3. Sau mốc đã đặt, kiểm tra log Worker có `dispatched` hoặc `already_published`. Với lượt `dispatched`, kiểm tra GitHub Actions và ngày phiên mới trên web. Lịch Cloudflare kích hoạt workflow, còn thời điểm hiển thị phụ thuộc vào lúc SSI có dữ liệu, hàng chờ GitHub và lần triển khai Vercel.
 
 ## Giới hạn hiện tại
 
 - **Chưa thu stream trong phiên trên GitHub Actions.**
   - Việc này chờ smoke test thứ Hai: định dạng thật, có cần OTP không, quyền đăng ký topic.
   - Thu stream cả ngày dùng khoảng 5 giờ/ngày, vượt hạn mức 2.000 phút/tháng của repo riêng tư. Khi đó cần chuyển repo công khai và mã hóa dữ liệu, hoặc chọn cách khác. Sẽ quyết định sau smoke test.
-- **Lịch có thể trễ:** lịch của GitHub có thể chạy muộn vài phút đến vài chục phút. Dữ liệu ngày không bị ảnh hưởng.
+- **Lịch có thể trễ hoặc bị bỏ qua:** nếu web còn thiếu phiên cần trình diễn, dùng quy trình **Run workflow** ở Bước 4. [Lịch GitHub Actions](https://docs.github.com/en/actions/reference/workflows-and-actions/events-that-trigger-workflows#schedule)
 - **Một phiên đăng nhập cho mỗi API Key:** tránh chạy lệnh SSI trên máy đúng lúc 15:20.
 - **Địa chỉ Vercel là công khai:** ai có địa chỉ đều xem được. Nếu cần, có thể thêm mật khẩu sau.

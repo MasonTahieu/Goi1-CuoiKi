@@ -103,6 +103,11 @@
         <span class="muted" id="cohort-note"></span>
         <button class="btn" id="export" type="button" aria-label="Tải CSV"><svg class="icon"><use href="#i-download"/></svg><span class="hide-sm">Tải CSV</span></button>
       </div>
+      <div class="notice daily-update" id="daily-update" hidden>
+        <span class="dot warn" aria-hidden="true"></span>
+        <span id="daily-update-text" role="status"></span>
+        <button class="btn" id="daily-reload" type="button">Kiểm tra lại</button>
+      </div>
       <div class="notice" id="notice" hidden></div>
       <div id="view-rank">
         <div class="rank-presets">
@@ -149,6 +154,10 @@
         </div>
         <div id="stock-chart"></div>
         <p id="stock-chart-note" class="legend-note"></p>
+        <div class="stock-history-actions" id="stock-history-actions" hidden>
+          <button class="btn" id="stock-load-older" type="button">Tải nến cũ hơn</button>
+          <span class="legend-note" id="stock-history-status" role="status"></span>
+        </div>
       </section>
       <div id="view-history" hidden><div class="view-note"><p class="legend-note" id="history-note"></p><span class="heat-key" id="heat-key" aria-hidden="true"></span></div><div class="heatmap" id="heatmap"></div></div>
       <div id="view-validate" hidden><div class="validate" id="validate"></div></div>

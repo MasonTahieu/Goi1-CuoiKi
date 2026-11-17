@@ -7,6 +7,7 @@
   const RANK_FILTERS = ["all", "top", "rising", "unranked"];
   const MAX_VISIBLE_CANDLES = 3000;
   const STOCK_LEFT = 57, STOCK_RIGHT = 13;
+  const stockPages = new Map();
   const MODE = { demo: "Demo", replay: "Phát lại", live: "Trực tiếp" };
   const BAD = new Set(["disconnected", "halt", "invalid"]);
   const $ = (id) => document.getElementById(id);
@@ -115,6 +116,13 @@
     $("prev").onclick = () => step(-1);
     $("next").onclick = () => step(1);
     $("reload").onclick = () => loadSnapshot();
+    $("daily-reload").onclick = async () => {
+      const button = $("daily-reload");
+      button.disabled = true;
+      state.point = null;
+      try { await loadTimeline(); }
+      finally { button.disabled = false; }
+    };
     $("refresh").onchange = (e) => setRefresh(Number(e.target.value));
     $("search").oninput = (e) => { state.search = e.target.value.trim().toUpperCase(); renderRank(); };
     $("min").oninput = (e) => { state.min = Math.max(0, Math.min(100, Number(e.target.value) || 0)); renderRank(); };
@@ -148,6 +156,7 @@
       state.stockWindow = null;
       renderStockView();
     };
+    $("stock-load-older").onclick = () => loadOlderStock();
     bindStockNavigation();
     document.querySelectorAll(".group-tabs button").forEach((b) => (b.onclick = () => { state.group = b.dataset.group; state.selected = null; render(); }));
     document.querySelectorAll(".view-tabs button").forEach((b) => (b.onclick = () => { state.view = b.dataset.view; render(); }));
@@ -259,7 +268,7 @@
     $("footer-source").textContent = `Nguồn ${d.source === "synthetic" ? "giả lập" : d.source.toUpperCase()}${d.profile ? " · " + d.profile : ""} · giờ UTC+7`;
     const wl = isDaily() ? (d.weights.id === "balanced" ? "33/33/33" : "50/25/25") : (d.weights.id === "balanced" ? "25/25/25/25" : "40/20/20/20");
     $("controls-summary").textContent = `${isDaily() ? day(d.as_of) : clock(d.as_of)} · ${wl} · ${d.foreign === "value" ? "ngoại theo giá trị" : "ngoại theo khối lượng"}${compareAt() ? " · so với " + compareAt() : ""}`;
-    renderPulse(); renderMetrics(); renderNotice(); renderRank(); renderQuality(); renderMethod();
+    renderPulse(); renderMetrics(); renderDailyUpdate(); renderNotice(); renderRank(); renderQuality(); renderMethod();
     renderStockView(); renderHistory(); renderValidate();
   }
 
@@ -302,6 +311,15 @@
     const action = $("summary-unranked");
     action.hidden = unranked <= 0;
     action.textContent = `Xem ${unranked} mã chưa xếp hạng`;
+  }
+
+  function renderDailyUpdate() {
+    const status = state.data?.daily_update;
+    const pending = isDaily() && status?.behind_schedule;
+    $("daily-update").hidden = !pending;
+    $("daily-update-text").textContent = pending
+      ? `Phiên mới nhất trong kho là ${day(status.latest_session)}. Chưa có dữ liệu ngày ${day(status.expected_weekday)} theo lịch ngày làm việc. Ngày nghỉ có thể không có phiên.`
+      : "";
   }
 
   function renderNotice(text) {
@@ -581,7 +599,7 @@
       ...[5, 10, 30, 60].map((count) => ({ id: String(count), label: `${count} phiên` })),
       ...[1, 5, 10].map((years) => ({ id: `${years}y`, label: `${years} năm` })),
     ] : [30, 100].map((count) => ({ id: String(count), label: `${count} ${unit}` }));
-    if (isDaily() && !dayBars) ranges.push({ id: "1m", label: "1 tháng" }, { id: "1y", label: "1 năm" });
+    if (isDaily() && !dayBars) ranges.push({ id: "1m", label: "1 tháng" });
     if (!isDaily()) ranges.push({ id: "all", label: "Tối đa 300 điểm gần nhất" });
     if (!ranges.some((range) => range.id === state.stockRange)) {
       state.stockRange = dayBars ? "1y" : isDaily() ? "100" : "all";
@@ -597,6 +615,25 @@
     drawStockChart();
   }
 
+  function stockPage(request, range, before = null) {
+    const key = JSON.stringify([request.snapshot.as_of, request.symbol, request.timeframe, range, before]);
+    const cached = stockPages.get(key);
+    if (cached && Date.now() - cached.at < 5 * 60_000) return cached.promise;
+    stockPages.delete(key);
+    const promise = get("/api/history", {
+      source: "daily", point: request.snapshot.as_of, symbol: request.symbol, timeframe: request.timeframe, range, before,
+    }).then((result) => {
+      if (result.basis !== "ohlc") throw new Error("Chưa đọc được dữ liệu từ API biểu đồ.");
+      return result;
+    }).catch((err) => {
+      if (stockPages.get(key)?.promise === promise) stockPages.delete(key);
+      throw err;
+    });
+    stockPages.set(key, { promise, at: Date.now() });
+    if (stockPages.size > 32) stockPages.delete(stockPages.keys().next().value);
+    return promise;
+  }
+
   async function loadStockHistory() {
     const request = { snapshot: state.data, symbol: state.selected, timeframe: state.stockTimeframe, range: state.stockRange };
     const previous = state.stockHistory;
@@ -604,20 +641,47 @@
         && previous.timeframe === request.timeframe && previous.range === request.range && !previous.error) return;
     state.stockHistory = request;
     try {
-      const result = await get("/api/history", {
-        source: "daily", point: request.snapshot.as_of, symbol: request.symbol, timeframe: request.timeframe, range: request.range,
-      });
+      const result = await stockPage(request, request.range);
       if (state.stockHistory !== request) return;
-      if (result.basis !== "ohlc") {
-        throw new Error("Chưa đọc được dữ liệu từ API biểu đồ.");
-      }
       request.points = result.points;
       request.basis = result.basis;
+      request.olderBefore = result.older_before;
     } catch (err) {
       if (state.stockHistory !== request) return;
       request.error = err.message;
     }
     drawStockChart();
+  }
+
+  async function loadOlderStock() {
+    const request = state.stockHistory;
+    if (!request?.olderBefore || request.loadingOlder) return;
+    request.loadingOlder = true;
+    request.olderStatus = "";
+    drawStockChart();
+    try {
+      const result = await stockPage(request, "1m", request.olderBefore);
+      if (state.stockHistory !== request) return;
+      const first = request.points[0];
+      const older = result.points.filter((point) => !first || point.at < first.at);
+      request.olderBefore = result.older_before;
+      if (older.length) {
+        request.points = [...older, ...request.points];
+        const viewport = state.stockWindow;
+        if (viewport?.data === request) {
+          viewport.start += older.length;
+          viewport.start = Math.max(0, viewport.start - Math.min(older.length, viewport.count));
+        }
+      } else if (request.olderBefore) {
+        request.olderStatus = "Đoạn vừa tải không có nến.";
+      }
+    } catch (err) {
+      if (state.stockHistory !== request) return;
+      request.olderStatus = `Chưa tải được đoạn trước. ${err.message}`;
+    } finally {
+      request.loadingOlder = false;
+      if (state.stockHistory === request) drawStockChart();
+    }
   }
 
   function stockPlotFraction(graph, clientX) {
@@ -675,7 +739,8 @@
       else if (action === "in" || action === "out") zoomStock(action === "in" ? 0.75 : 1.35);
       else {
         const shift = Math.max(1, Math.floor(viewport.count / 3));
-        setStockWindow(viewport.start + (action === "back" ? -shift : shift), viewport.count);
+        if (action === "back" && viewport.start === 0) loadOlderStock();
+        else setStockWindow(viewport.start + (action === "back" ? -shift : shift), viewport.count);
       }
     };
     const surface = $("stock-chart");
@@ -709,7 +774,12 @@
       const { center, distance } = measure();
       const requested = distance ? Math.round(gesture.count * gesture.distance / distance) : gesture.count;
       const count = stockWindowCount(viewport.data.points.length, requested);
-      setStockWindow(gesture.anchor - count * stockPlotFraction(graph, center), count, center);
+      const start = gesture.anchor - count * stockPlotFraction(graph, center);
+      setStockWindow(start, count, center);
+      if (!distance && start < -2 && viewport.start === 0 && !gesture.requestedOlder) {
+        gesture.requestedOlder = true;
+        loadOlderStock();
+      }
     };
     const endGesture = (e) => { if (pointers.delete(e.pointerId)) beginGesture(); };
     surface.onpointerup = surface.onpointercancel = surface.onlostpointercapture = endGesture;
@@ -741,7 +811,6 @@
   }
 
   function stockRangeCount(points, range) {
-    if (isDaily() && state.stockTimeframe === "5m" && range === "1y") return Math.min(points.length, 300);
     const count = Number(range);
     return Math.min(points.length, MAX_VISIBLE_CANDLES, Number.isFinite(count) ? count : points.length);
   }
@@ -752,6 +821,15 @@
     const data = isDaily() ? state.stockHistory : state.price;
     const current = data?.snapshot === state.data && data?.symbol === state.selected
       && (!isDaily() || (data.timeframe === state.stockTimeframe && data.range === state.stockRange));
+    const showHistory = Boolean(isDaily() && current && data.timeframe === "5m" && data.points);
+    $("stock-history-actions").hidden = !showHistory;
+    const older = $("stock-load-older");
+    older.hidden = !data?.olderBefore;
+    older.disabled = Boolean(data?.loadingOlder);
+    older.textContent = older.disabled ? "Đang tải nến…" : "Tải nến cũ hơn";
+    $("stock-history-status").textContent = showHistory
+      ? data.olderStatus || (data.olderBefore ? "" : "Đã đến giới hạn lịch sử SSI có thể truy vấn.")
+      : "";
     if (!state.selected || !current || data.error || !data.points?.length) {
       $("stock-quote").replaceChildren();
       nav.hidden = true;
@@ -774,7 +852,7 @@
     const { start, count } = state.stockWindow;
     const points = data.points.slice(start, start + count);
     nav.hidden = false;
-    nav.querySelector('[data-nav="back"]').disabled = start === 0;
+    nav.querySelector('[data-nav="back"]').disabled = start === 0 && (!data.olderBefore || data.loadingOlder);
     nav.querySelector('[data-nav="next"]').disabled = start + count === total;
     nav.querySelector('[data-nav="in"]').disabled = count <= 5;
     nav.querySelector('[data-nav="out"]').disabled = count === Math.min(total, MAX_VISIBLE_CANDLES);
@@ -823,7 +901,9 @@
     </svg>`;
     const basis = data.basis === "ohlc" ? "SSI FastConnect" : "Nhật ký";
     const chartType = candles ? (dayBars ? "Nến ngày" : "Nến 5 phút") : dayBars ? "Đường giá đóng cửa" : "Đường giá khớp";
-    note.textContent = `${points.length}/${total} ${isDaily() ? "nến" : "điểm"} · ${chartType} · ${basis} · VNĐ · UTC+7. Cuộn hoặc chụm hai ngón để thu phóng, kéo ngang để xem thêm. Nhấp đúp để đặt lại.`;
+    const from = day(data.points[0].at), to = day(data.points.at(-1).at);
+    const loaded = isDaily() ? ` · Đã tải ${from}${from === to ? "" : " – " + to}` : "";
+    note.textContent = `${points.length}/${total} ${isDaily() ? "nến" : "điểm"} · ${chartType} · ${basis}${loaded} · VNĐ · UTC+7. Cuộn hoặc chụm hai ngón để thu phóng, kéo ngang để xem thêm. Nhấp đúp để đặt lại.`;
     const graph = el.querySelector("svg");
     const crosshair = graph.querySelector(".stock-crosshair"), marker = graph.querySelector(".stock-point");
     let index = -1;

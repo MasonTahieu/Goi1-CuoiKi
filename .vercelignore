@@ -14,3 +14,4 @@ app.py
 *.ps1
 *.cmd
 config/
+ops/

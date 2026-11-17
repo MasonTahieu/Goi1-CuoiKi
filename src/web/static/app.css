@@ -146,6 +146,8 @@ input[type="number"] { width: 80px; }
   border-bottom: 1px solid var(--seam); background: var(--surface-2);
 }
 .notice .dot { margin-left: 2px; }
+.daily-update { flex-wrap: wrap; }
+.daily-update .btn { flex: none; }
 .rank-presets { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 10px 16px 0; }
 .rank-presets .segmented { flex-wrap: wrap; }
 .rank-presets .segmented button { white-space: nowrap; padding-inline: 9px; }
@@ -257,6 +259,7 @@ svg.chart .grid { stroke: var(--seam); stroke-width: 1; }
 .stock-quote small { display: block; margin-top: 1px; font-size: 11px; font-weight: 500; color: var(--text-2); }
 .stock-nav { display: flex; justify-content: flex-end; gap: 6px; padding-top: 4px; }
 .stock-nav .btn { width: 36px; height: 34px; font-size: 16px; }
+.stock-history-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 8px; }
 .stock-svg { cursor: crosshair; touch-action: none; user-select: none; }
 #stock-chart.is-dragging .stock-svg { cursor: grabbing; }
 .stock-line { stroke: #7FB0FF; stroke-width: 2; fill: none; stroke-linejoin: round; }

@@ -79,7 +79,8 @@ class Handler(BaseHTTPRequestHandler):
                 return self._json(HTTPStatus.OK, api.validation(query.get("source", ""), query.get("weights", "balanced"), query.get("foreign", "value")))
             if parts.path == "/api/history":
                 return self._json(HTTPStatus.OK, api.history(query.get("source", ""), query.get("run"), query.get("point"),
-                                                             query.get("symbol", ""), query.get("timeframe"), query.get("range")))
+                                                             query.get("symbol", ""), query.get("timeframe"), query.get("range"),
+                                                             query.get("before")))
             if parts.path == "/api/export.csv":
                 body = api.export_csv(query.get("source", ""), query.get("run"), query.get("point"), query.get("weights", "balanced"),
                                       query.get("foreign", "value"), query.get("group"), query.get("compare") or None)

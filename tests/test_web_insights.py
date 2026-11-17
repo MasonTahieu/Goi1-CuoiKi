@@ -71,6 +71,19 @@ def test_daily_foreign_data_is_ranked_only_for_its_own_session(daily):
     assert missing["raw"]["foreign_ratio"] is None
 
 
+@pytest.mark.parametrize("current,expected,behind", [
+    ("2026-11-09T09:00:00+07:00", "2026-11-06", False),
+    ("2026-11-09T16:30:00+07:00", "2026-11-09", True),
+    ("2026-11-08T16:30:00+07:00", "2026-11-06", False),
+])
+def test_daily_update_uses_latest_stored_session_when_viewing_older_day(daily, monkeypatch, current, expected, behind):
+    monkeypatch.setattr(api, "now", lambda: current)
+    snapshot = api.snapshot("daily", point="2026-11-03T15:00:00+07:00")
+    assert snapshot["as_of"].startswith("2026-11-03")
+    assert snapshot["daily_update"] == {"latest_session": "2026-11-06", "expected_weekday": expected,
+                                        "behind_schedule": behind}
+
+
 def test_real_daily_data_states_its_open_question_and_is_not_labelled_demo(daily, monkeypatch):
     note = api.snapshot("daily")["scope_note"]
     assert note and "gồm cả giao dịch thỏa thuận" in note["detail"] and "chưa" not in note["label"]
@@ -172,3 +185,25 @@ def test_server_routes_return_json_and_safe_errors(daily):
     finally:
         httpd.shutdown()
         httpd.server_close()
+
+
+def test_chart_older_cursor_loads_adjacent_pages_and_stops_at_provider_boundary(daily, monkeypatch):
+    calls = []
+
+    def candles(_, symbol, timeframe, start, cutoff):
+        calls.append((start.isoformat(), cutoff.date().isoformat()))
+        return []  # Empty months advance the cursor so a gap doesn't end the history.
+
+    monkeypatch.setattr(api, "now", lambda: "2026-11-17T17:00:00+07:00")
+    monkeypatch.setattr(api, "chart_client", object)
+    monkeypatch.setattr(api, "chart_candles", candles)
+    point = "2026-11-06T15:00:00+07:00"
+    first = api.history("daily", None, point, "S00", "5m", "100")
+    older = api.history("daily", None, point, "S00", "5m", "1m", first["older_before"])
+    assert calls == [("2026-10-28", "2026-11-06"), ("2026-09-27", "2026-10-27")]
+    assert older["older_before"] == "2026-09-27"
+    result = api.history("daily", None, point, "S00", "5m", "1m", "2025-11-17")
+    assert result["points"] == [] and result["older_before"] is None
+    assert len(calls) == 2
+    with pytest.raises(api.ApiError, match="Ngày phân trang"):
+        api.history("daily", None, point, "S00", "5m", "1m", "2026-11-07")

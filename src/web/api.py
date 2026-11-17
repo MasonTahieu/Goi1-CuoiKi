@@ -6,7 +6,7 @@ Sources:
   store         the configured SSI journal (replay/live) or a legacy event store
 """
 from copy import deepcopy
-from datetime import timedelta
+from datetime import date, timedelta
 from functools import lru_cache
 import csv
 import io
@@ -29,6 +29,8 @@ from src.data.daily_store import default_daily_path
 
 DAILY_DB = default_daily_path()
 DAILY_RUN = "ssi-daily"
+DAILY_UPDATE_HOUR = 16
+DAILY_UPDATE_MINUTE = 30
 
 GROUPS = ("VN30",)
 WEIGHTS = {"balanced": dict.fromkeys(FACTOR_NAMES, 0.25),
@@ -311,6 +313,18 @@ def _attach_changes(data, previous):
             row["new_in_rank"] = row["rank"] is not None and row["prev_rank"] is None
 
 
+def _daily_update_status(latest_point):
+    current = timestamp(now())
+    expected = current.date()
+    if (current.hour, current.minute) < (DAILY_UPDATE_HOUR, DAILY_UPDATE_MINUTE):
+        expected -= timedelta(days=1)
+    while expected.weekday() >= 5:
+        expected -= timedelta(days=1)
+    latest = date.fromisoformat(latest_point[:10])
+    return {"latest_session": latest.isoformat(), "expected_weekday": expected.isoformat(),
+            "behind_schedule": latest < expected}
+
+
 def _daily_snapshot(point, weights, foreign, compare):
     frame = _daily_frame()
     moments = [p["id"] for p in timeline("daily", DAILY_RUN)]
@@ -369,6 +383,7 @@ def _daily_snapshot(point, weights, foreign, compare):
         "verified": True, "method_kind": "daily",
         "scope_note": FOREIGN_SCOPE_NOTE,
         "connection": {"state": "daily", "label": "Dữ liệu ngày SSI", "severity": "muted", "epoch": None},
+        "daily_update": _daily_update_status(moments[-1]),
         "freshness_seconds": None, "gaps": [], "policy": {"max_age_seconds": 60},
         "weights": {"id": weights, "label": daily_rank.WEIGHT_LABELS[weights], "values": weight_map},
         "foreign": foreign, "groups": groups, "compare": None,
@@ -590,7 +605,7 @@ def _price_point(at, row, volume_field):
             "low": _num(row.get("lowPrice")), "volume": _num(row.get(volume_field))}
 
 
-def _live_chart(point, symbol, timeframe, window):
+def _live_chart(point, symbol, timeframe, window, before=None):
     window = window or DEFAULT_RANGE[timeframe]
     if window not in CHART_RANGES[timeframe]:
         raise ApiError("Khoảng xem không hợp lệ cho khung nến này.")
@@ -601,18 +616,30 @@ def _live_chart(point, symbol, timeframe, window):
     current = timestamp(now())
     if cutoff > current or cutoff.year < 2000:
         raise ApiError("Mốc thời gian biểu đồ không hợp lệ.")
+    if before is not None:
+        if timeframe != "5m" or window != "1m":
+            raise ApiError("Chỉ tải đoạn lịch sử liền trước cho khung 5 phút.")
+        older = date.fromisoformat(before)
+        if before != older.isoformat() or not date(2000, 1, 2) <= older <= cutoff.date():
+            raise ApiError("Ngày phân trang biểu đồ không hợp lệ.")
+        cutoff = cutoff.replace(hour=23, minute=59, second=59, microsecond=0)
+        cutoff -= timedelta(days=(cutoff.date() - older).days + 1)
     start = chart_start(timeframe, window, cutoff.date(), current.date())
     bars = chart_candles(chart_client(), symbol, timeframe, start, cutoff) if start <= cutoff.date() else []
     points = [{key: bar[key] for key in ("at", "open", "high", "low", "price", "volume")} for bar in bars]
-    return {"symbol": symbol, "points": points, "basis": "ohlc"}
+    payload = {"symbol": symbol, "points": points, "basis": "ohlc"}
+    if timeframe == "5m":
+        retention_start = chart_start("5m", "1y", current.date(), current.date())
+        payload["older_before"] = start.isoformat() if start <= cutoff.date() and start > retention_start else None
+    return payload
 
 
-def history(source, run, point, symbol, timeframe=None, window=None):
+def history(source, run, point, symbol, timeframe=None, window=None, before=None):
     """Get a selected candle chart or the recorded prices for the ranking sidebar."""
     if timeframe is not None:
         if source != "daily" or timeframe not in CHART_RANGES:
             raise ApiError("Chọn nguồn SSI cuối ngày và khung nến 1 ngày hoặc 5 phút.")
-        return _live_chart(point, symbol, timeframe, window)
+        return _live_chart(point, symbol, timeframe, window, before)
     series = []
     if source == "daily":
         frame = _daily_frame()
