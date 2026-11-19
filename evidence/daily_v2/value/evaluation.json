@@ -3,10 +3,10 @@
   "ranking_method": "daily-v2",
   "foreign": "value",
   "group": "VN30",
-  "sessions": 23,
+  "sessions": 24,
   "date_from": "2026-10-19",
-  "date_to": "2026-11-18",
-  "pairs": 22,
+  "date_to": "2026-11-19",
+  "pairs": 23,
   "skipped_pairs": [],
   "top_n": 5,
   "returns": {
@@ -20,7 +20,7 @@
   },
   "adjustment": {
     "tolerance_pp": 0.3,
-    "compared": 660,
+    "compared": 690,
     "flagged": [
       {
         "symbol": "GVR",
@@ -659,50 +659,78 @@
           "top_minus_bottom_pp": -1.8376833180954508,
           "ic_close": -0.19810160199290971,
           "top_minus_bottom_close_pp": -1.516
+        },
+        {
+          "date": "2026-11-18",
+          "next_date": "2026-11-19",
+          "ranked": 30,
+          "evaluated": 30,
+          "missing_future": [],
+          "top_symbols": [
+            "BSR",
+            "GAS",
+            "MSN",
+            "MWG",
+            "SAB"
+          ],
+          "bottom_symbols": [
+            "GVR",
+            "LPB",
+            "SHB",
+            "VIB",
+            "VNM"
+          ],
+          "config_id": "ad1cd2600b17",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": 0.08997658657776532,
+          "top_minus_bottom_pp": -0.2385672952049146,
+          "ic_close": -0.03438653927249638,
+          "top_minus_bottom_close_pp": -0.47199999999999975
         }
       ],
       "ic": {
-        "pairs": 22,
-        "mean": 0.018729733198854428,
-        "sd": 0.24356306606058975,
-        "positive_share": 0.5
+        "pairs": 23,
+        "mean": 0.02182742247619838,
+        "sd": 0.23842644412024924,
+        "positive_share": 0.5217391304347826
       },
       "top_minus_bottom_pp": {
-        "pairs": 22,
-        "mean": -0.08545976393582007,
-        "sd": 0.8771952721256232,
-        "positive_share": 0.4090909090909091
+        "pairs": 23,
+        "mean": -0.09211661312143286,
+        "sd": 0.8576215831275614,
+        "positive_share": 0.391304347826087
       },
       "ic_close": {
-        "pairs": 22,
-        "mean": -0.027362117905696114,
-        "sd": 0.2533761315890973,
-        "positive_share": 0.45454545454545453
+        "pairs": 23,
+        "mean": -0.027667527530339603,
+        "sd": 0.24755494728992739,
+        "positive_share": 0.43478260869565216
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 22,
-        "mean": -0.14898484848484847,
-        "sd": 0.8390953460480517,
-        "positive_share": 0.4090909090909091
+        "pairs": 23,
+        "mean": -0.16302898550724637,
+        "sd": 0.8225653694390732,
+        "positive_share": 0.391304347826087
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 22,
-          "mean": 0.02977240066198866,
-          "sd": 0.20494826287568008,
-          "positive_share": 0.5454545454545454
+          "pairs": 23,
+          "mean": 0.03581793558031786,
+          "sd": 0.20232434994222848,
+          "positive_share": 0.5652173913043478
         },
         "liquidity": {
-          "pairs": 22,
-          "mean": 0.01854636337346782,
-          "sd": 0.2236080317751164,
-          "positive_share": 0.5454545454545454
+          "pairs": 23,
+          "mean": 0.011881566756160113,
+          "sd": 0.2207927723845792,
+          "positive_share": 0.5217391304347826
         },
         "foreign": {
-          "pairs": 22,
-          "mean": -0.011728707618876788,
-          "sd": 0.1957809736414952,
-          "positive_share": 0.5
+          "pairs": 23,
+          "mean": -0.013029552188821562,
+          "sd": 0.19138137008190512,
+          "positive_share": 0.4782608695652174
         }
       },
       "screening": {
@@ -713,156 +741,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 23,
-            "mean_jaccard": 0.5667701863354037,
+            "scenarios": 24,
+            "mean_jaccard": 0.5477843915343915,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.8624588620627126,
-            "changed_scenarios": 22,
-            "mean_removed": 1.4782608695652173,
-            "mean_added": 1.7826086956521738
+            "mean_rank_correlation": 0.8599643881446823,
+            "changed_scenarios": 23,
+            "mean_removed": 1.5833333333333333,
+            "mean_added": 1.875
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 23,
-            "mean_jaccard": 0.540320910973085,
+            "scenarios": 24,
+            "mean_jaccard": 0.5455853174603175,
             "min_jaccard": 0.1,
-            "mean_rank_correlation": 0.8616577367511339,
-            "changed_scenarios": 22,
-            "mean_removed": 1.608695652173913,
-            "mean_added": 1.6956521739130435
+            "mean_rank_correlation": 0.8584035502091041,
+            "changed_scenarios": 23,
+            "mean_removed": 1.5833333333333333,
+            "mean_added": 1.6666666666666667
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 23,
-            "mean_jaccard": 0.5284679089026915,
+            "scenarios": 24,
+            "mean_jaccard": 0.5220734126984127,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.8582936209759603,
-            "changed_scenarios": 22,
-            "mean_removed": 1.6956521739130435,
-            "mean_added": 1.6956521739130435
+            "mean_rank_correlation": 0.8567451041135502,
+            "changed_scenarios": 23,
+            "mean_removed": 1.7083333333333333,
+            "mean_added": 1.75
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 681,
-            "mean_jaccard": 0.9252907722070718,
+            "scenarios": 710,
+            "mean_jaccard": 0.9259948580371115,
             "min_jaccard": 0.4444444444444444,
-            "mean_rank_correlation": 0.9990863107100391,
-            "changed_scenarios": 184,
-            "mean_removed": 0.22026431718061673,
-            "mean_added": 0.24963289280469897
+            "mean_rank_correlation": 0.9990759820758501,
+            "changed_scenarios": 189,
+            "mean_removed": 0.21830985915492956,
+            "mean_added": 0.24647887323943662
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 23,
-            "mean_jaccard": 0.39620427881297443,
+            "scenarios": 24,
+            "mean_jaccard": 0.39755291005291005,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7598982700469656,
-            "changed_scenarios": 22,
-            "mean_removed": 2.4347826086956523,
-            "mean_added": 2.260869565217391
+            "mean_rank_correlation": 0.7549493259454021,
+            "changed_scenarios": 23,
+            "mean_removed": 2.4166666666666665,
+            "mean_added": 2.25
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 23,
-            "mean_jaccard": 0.29268461007591445,
+            "scenarios": 24,
+            "mean_jaccard": 0.29090608465608464,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.5426347605117539,
-            "changed_scenarios": 23,
+            "mean_rank_correlation": 0.5445722270199943,
+            "changed_scenarios": 24,
             "mean_removed": 3.0,
-            "mean_added": 2.8260869565217392
+            "mean_added": 2.8333333333333335
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 23,
-            "mean_jaccard": 0.39941338854382324,
+            "scenarios": 24,
+            "mean_jaccard": 0.39527116402116397,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7162902738060298,
-            "changed_scenarios": 23,
-            "mean_removed": 2.347826086956522,
-            "mean_added": 2.1739130434782608
+            "mean_rank_correlation": 0.7059547415772246,
+            "changed_scenarios": 24,
+            "mean_removed": 2.3333333333333335,
+            "mean_added": 2.2916666666666665
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.9078674948240165,
+            "scenarios": 24,
+            "mean_jaccard": 0.9117063492063493,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9916100810272972,
+            "mean_rank_correlation": 0.9914925371917164,
             "changed_scenarios": 8,
-            "mean_removed": 0.34782608695652173,
-            "mean_added": 0.21739130434782608
+            "mean_removed": 0.3333333333333333,
+            "mean_added": 0.20833333333333334
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8788819875776398,
+            "scenarios": 24,
+            "mean_jaccard": 0.8700396825396824,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9890656865956483,
-            "changed_scenarios": 10,
-            "mean_removed": 0.43478260869565216,
-            "mean_added": 0.30434782608695654
+            "mean_rank_correlation": 0.9884020957842745,
+            "changed_scenarios": 11,
+            "mean_removed": 0.4583333333333333,
+            "mean_added": 0.3333333333333333
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8757763975155279,
+            "scenarios": 24,
+            "mean_jaccard": 0.8670634920634921,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9875018991699224,
-            "changed_scenarios": 9,
-            "mean_removed": 0.4782608695652174,
-            "mean_added": 0.30434782608695654
+            "mean_rank_correlation": 0.9876171286955792,
+            "changed_scenarios": 10,
+            "mean_removed": 0.5,
+            "mean_added": 0.3333333333333333
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8354037267080746,
+            "scenarios": 24,
+            "mean_jaccard": 0.8422619047619048,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9838101112247873,
+            "mean_rank_correlation": 0.983555572752128,
             "changed_scenarios": 13,
-            "mean_removed": 0.5652173913043478,
-            "mean_added": 0.43478260869565216
+            "mean_removed": 0.5416666666666666,
+            "mean_added": 0.4166666666666667
           },
           {
             "kind": "weights",
             "name": "momentum",
-            "scenarios": 23,
-            "mean_jaccard": 0.7336956521739129,
+            "scenarios": 24,
+            "mean_jaccard": 0.7309027777777777,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9541589165477854,
-            "changed_scenarios": 18,
-            "mean_removed": 0.8260869565217391,
-            "mean_added": 0.9130434782608695
+            "mean_rank_correlation": 0.9525509456290632,
+            "changed_scenarios": 19,
+            "mean_removed": 0.8333333333333334,
+            "mean_added": 0.9166666666666666
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.9078674948240166,
+            "scenarios": 24,
+            "mean_jaccard": 0.9117063492063492,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9904122171234901,
+            "mean_rank_correlation": 0.9899852561003515,
             "changed_scenarios": 8,
-            "mean_removed": 0.34782608695652173,
-            "mean_added": 0.21739130434782608
+            "mean_removed": 0.3333333333333333,
+            "mean_added": 0.20833333333333334
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8260869565217391,
+            "scenarios": 24,
+            "mean_jaccard": 0.8194444444444443,
             "min_jaccard": 0.3333333333333333,
-            "mean_rank_correlation": 0.9867447404387858,
-            "changed_scenarios": 12,
-            "mean_removed": 0.6521739130434783,
-            "mean_added": 0.4782608695652174
+            "mean_rank_correlation": 0.9867991195691364,
+            "changed_scenarios": 13,
+            "mean_removed": 0.6666666666666666,
+            "mean_added": 0.5
           }
         ],
         "details": [
@@ -48553,6 +48581,2021 @@
               "common_size": 29,
               "rank_correlation": 0.9975309858291174
             }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HDB",
+              "HPG",
+              "MBB",
+              "SHB",
+              "VIB",
+              "VPL"
+            ],
+            "base_size": 5,
+            "other_size": 8,
+            "overlap": 3,
+            "jaccard": 0.3,
+            "removed": [
+              "TCB",
+              "VPB"
+            ],
+            "added": [
+              "HDB",
+              "MBB",
+              "SHB",
+              "VIB",
+              "VPL"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.4682375003147034
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "MSN",
+              "TCB",
+              "VIC",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 3,
+            "jaccard": 0.375,
+            "removed": [
+              "BID",
+              "GAS"
+            ],
+            "added": [
+              "FPT",
+              "MSN",
+              "VIC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8211292162781109
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "SSI",
+              "VIC",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "BID",
+              "GAS",
+              "TCB"
+            ],
+            "added": [
+              "FPT",
+              "SSI",
+              "VIC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.5891339567095202
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "MCH",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VPB"
+            ],
+            "added": [
+              "MCH"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7835572597424173
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "GAS",
+              "HPG",
+              "MSN",
+              "TCB",
+              "VJC"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "BID",
+              "VPB"
+            ],
+            "added": [
+              "MSN",
+              "VJC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.64112361160944
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "HDB",
+              "HPG",
+              "SHB",
+              "SSI",
+              "VCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 1,
+            "jaccard": 0.1111111111111111,
+            "removed": [
+              "BID",
+              "GAS",
+              "TCB",
+              "VPB"
+            ],
+            "added": [
+              "HDB",
+              "SHB",
+              "SSI",
+              "VCB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8025914880299901
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "TCB"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9155676144984545
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "GAS",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "BID"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9880498395671999,
+            "weights": {
+              "momentum": 0.25925925925925924,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9801651525681603,
+            "weights": {
+              "momentum": 0.3939393939393939,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9777011878809598,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.25925925925925924,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "GAS",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "BID"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9902674077856799,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.3939393939393939,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9731395071226802,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.25925925925925924
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.98878902897336,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.3939393939393939
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9982192155458524,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9982192155458524
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "GAS",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "BID"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9982196658449741,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "GAS",
+                "HPG",
+                "SSI",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "GAS",
+                "HPG",
+                "SSI",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9982196658449741
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9979460589243314,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9979460589243314
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9983564738174163,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983564738174163
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999178307313065,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999178307313065
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9989048690446698,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "HPG",
+                "SSI",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "HPG",
+                "SSI",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989048690446698
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995890692244814,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995890692244814
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "HPG"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.998903893539165,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "SSI",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "SSI",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.998903893539165
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9986303339802723,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9986303339802723
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990408985941557,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990408985941557
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987679765040306,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987679765040306
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.998082013336122,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.998082013336122
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998631168291444,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998631168291444
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 1.0,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 1.0
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987669354397295,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987669354397295
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984931881588742,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984931881588742
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993150590629617,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993150590629617
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984931881588743,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984931881588743
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "TCB"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9987676391045655,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987676391045655
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630793448778,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630793448778
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9972599828515627,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9972599828515627
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991782041401851,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991782041401851
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993152560942208,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993152560942208
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990412366002067,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990412366002067
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9980829889543703,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9980829889543703
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9978082566263191,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9978082566263191
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VPB"
+            ],
+            "added": [
+              "SSI"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9997261024376884,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "TCB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997261024376884
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993151716801633,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993151716801633
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990414991646435,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990414991646435
+            }
           }
         ],
         "excluded_sessions": [],
@@ -49186,50 +51229,79 @@
           "top_minus_bottom_pp": 0.28829068873596597,
           "ic_close": -0.0020943698569682936,
           "top_minus_bottom_close_pp": 0.46599999999999997
+        },
+        {
+          "date": "2026-11-18",
+          "next_date": "2026-11-19",
+          "ranked": 30,
+          "evaluated": 30,
+          "missing_future": [],
+          "top_symbols": [
+            "GAS",
+            "HDB",
+            "MWG",
+            "SAB",
+            "TCX",
+            "VPL"
+          ],
+          "bottom_symbols": [
+            "GVR",
+            "LPB",
+            "SHB",
+            "VIB",
+            "VNM"
+          ],
+          "config_id": "40271fc536f0",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": 0.09095975978928278,
+          "top_minus_bottom_pp": 0.3983073426721925,
+          "ic_close": -0.04208063365316394,
+          "top_minus_bottom_close_pp": 0.09200000000000008
         }
       ],
       "ic": {
-        "pairs": 22,
-        "mean": 0.03664432838688808,
-        "sd": 0.23016680895314526,
-        "positive_share": 0.5454545454545454
+        "pairs": 23,
+        "mean": 0.039005868882644366,
+        "sd": 0.22515992869864884,
+        "positive_share": 0.5652173913043478
       },
       "top_minus_bottom_pp": {
-        "pairs": 22,
-        "mean": 0.08261171765861194,
-        "sd": 0.8099223639395078,
-        "positive_share": 0.5454545454545454
+        "pairs": 23,
+        "mean": 0.09633761439833283,
+        "sd": 0.7940342753621924,
+        "positive_share": 0.5652173913043478
       },
       "ic_close": {
-        "pairs": 22,
-        "mean": -0.011491089753763107,
-        "sd": 0.2316572517457767,
-        "positive_share": 0.45454545454545453
+        "pairs": 23,
+        "mean": -0.012821069923302274,
+        "sd": 0.22642094393204498,
+        "positive_share": 0.43478260869565216
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 22,
-        "mean": -0.02762987012987014,
-        "sd": 0.7385268443192258,
-        "positive_share": 0.5454545454545454
+        "pairs": 23,
+        "mean": -0.022428571428571437,
+        "sd": 0.7219779954630179,
+        "positive_share": 0.5652173913043478
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 22,
-          "mean": 0.02977240066198866,
-          "sd": 0.20494826287568008,
-          "positive_share": 0.5454545454545454
+          "pairs": 23,
+          "mean": 0.03581793558031786,
+          "sd": 0.20232434994222848,
+          "positive_share": 0.5652173913043478
         },
         "liquidity": {
-          "pairs": 22,
-          "mean": 0.01854636337346782,
-          "sd": 0.2236080317751164,
-          "positive_share": 0.5454545454545454
+          "pairs": 23,
+          "mean": 0.011881566756160113,
+          "sd": 0.2207927723845792,
+          "positive_share": 0.5217391304347826
         },
         "foreign": {
-          "pairs": 22,
-          "mean": -0.011728707618876788,
-          "sd": 0.1957809736414952,
-          "positive_share": 0.5
+          "pairs": 23,
+          "mean": -0.013029552188821562,
+          "sd": 0.19138137008190512,
+          "positive_share": 0.4782608695652174
         }
       },
       "screening": {
@@ -49240,156 +51312,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 23,
-            "mean_jaccard": 0.6342305037957212,
-            "min_jaccard": 0.3333333333333333,
-            "mean_rank_correlation": 0.9375776355503176,
-            "changed_scenarios": 21,
-            "mean_removed": 1.2608695652173914,
-            "mean_added": 1.2608695652173914
+            "scenarios": 24,
+            "mean_jaccard": 0.6182208994708994,
+            "min_jaccard": 0.25,
+            "mean_rank_correlation": 0.9359343146092552,
+            "changed_scenarios": 22,
+            "mean_removed": 1.3333333333333333,
+            "mean_added": 1.3333333333333333
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 23,
-            "mean_jaccard": 0.6796928916494133,
+            "scenarios": 24,
+            "mean_jaccard": 0.6692294973544973,
             "min_jaccard": 0.2222222222222222,
-            "mean_rank_correlation": 0.9319001483903836,
-            "changed_scenarios": 19,
-            "mean_removed": 1.173913043478261,
-            "mean_added": 1.0434782608695652
+            "mean_rank_correlation": 0.929064935335389,
+            "changed_scenarios": 20,
+            "mean_removed": 1.2083333333333333,
+            "mean_added": 1.0833333333333333
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 23,
-            "mean_jaccard": 0.39630779848171155,
+            "scenarios": 24,
+            "mean_jaccard": 0.3890542328042328,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.7052728678191207,
-            "changed_scenarios": 23,
-            "mean_removed": 2.391304347826087,
-            "mean_added": 2.3043478260869565
+            "mean_rank_correlation": 0.6988440047683468,
+            "changed_scenarios": 24,
+            "mean_removed": 2.4166666666666665,
+            "mean_added": 2.375
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 681,
-            "mean_jaccard": 0.925669533599049,
+            "scenarios": 710,
+            "mean_jaccard": 0.9249832327297117,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.999004879225262,
-            "changed_scenarios": 204,
-            "mean_removed": 0.2599118942731278,
-            "mean_added": 0.19823788546255505
+            "mean_rank_correlation": 0.9990094383042645,
+            "changed_scenarios": 213,
+            "mean_removed": 0.2563380281690141,
+            "mean_added": 0.20704225352112676
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 23,
-            "mean_jaccard": 0.3673567977915804,
+            "scenarios": 24,
+            "mean_jaccard": 0.36246693121693124,
             "min_jaccard": 0.1,
-            "mean_rank_correlation": 0.6886750700125853,
-            "changed_scenarios": 23,
-            "mean_removed": 2.608695652173913,
-            "mean_added": 2.347826086956522
+            "mean_rank_correlation": 0.6776100623571583,
+            "changed_scenarios": 24,
+            "mean_removed": 2.625,
+            "mean_added": 2.375
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 23,
-            "mean_jaccard": 0.2638026224982747,
+            "scenarios": 24,
+            "mean_jaccard": 0.2706679894179894,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.39643884857532896,
-            "changed_scenarios": 23,
-            "mean_removed": 3.217391304347826,
-            "mean_added": 2.9565217391304346
+            "mean_rank_correlation": 0.39659544613693526,
+            "changed_scenarios": 24,
+            "mean_removed": 3.1666666666666665,
+            "mean_added": 2.9166666666666665
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 23,
-            "mean_jaccard": 0.5152691511387164,
+            "scenarios": 24,
+            "mean_jaccard": 0.5062996031746031,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.8689067703081662,
-            "changed_scenarios": 23,
-            "mean_removed": 1.826086956521739,
-            "mean_added": 1.565217391304348
+            "mean_rank_correlation": 0.8646282699243923,
+            "changed_scenarios": 24,
+            "mean_removed": 1.8333333333333333,
+            "mean_added": 1.7083333333333333
           },
           {
             "kind": "weights",
             "name": "balanced",
-            "scenarios": 23,
-            "mean_jaccard": 0.7336956521739129,
+            "scenarios": 24,
+            "mean_jaccard": 0.7309027777777777,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9541589165477854,
-            "changed_scenarios": 18,
-            "mean_removed": 0.9130434782608695,
-            "mean_added": 0.8260869565217391
+            "mean_rank_correlation": 0.9525509456290632,
+            "changed_scenarios": 19,
+            "mean_removed": 0.9166666666666666,
+            "mean_added": 0.8333333333333334
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.9016563146997928,
+            "scenarios": 24,
+            "mean_jaccard": 0.8918650793650794,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9901098477045537,
-            "changed_scenarios": 9,
-            "mean_removed": 0.43478260869565216,
-            "mean_added": 0.17391304347826086
+            "mean_rank_correlation": 0.9900649675152154,
+            "changed_scenarios": 10,
+            "mean_removed": 0.4583333333333333,
+            "mean_added": 0.20833333333333334
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8509316770186336,
-            "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9885545607171866,
-            "changed_scenarios": 13,
-            "mean_removed": 0.5652173913043478,
-            "mean_added": 0.34782608695652173
+            "scenarios": 24,
+            "mean_jaccard": 0.8333333333333334,
+            "min_jaccard": 0.42857142857142855,
+            "mean_rank_correlation": 0.9878917349407589,
+            "changed_scenarios": 14,
+            "mean_removed": 0.625,
+            "mean_added": 0.4166666666666667
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8436853002070394,
+            "scenarios": 24,
+            "mean_jaccard": 0.8501984126984127,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9868952189794242,
+            "mean_rank_correlation": 0.98703054518052,
             "changed_scenarios": 13,
-            "mean_removed": 0.6086956521739131,
-            "mean_added": 0.34782608695652173
+            "mean_removed": 0.5833333333333334,
+            "mean_added": 0.3333333333333333
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8281573498964804,
+            "scenarios": 24,
+            "mean_jaccard": 0.8214285714285715,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9844108947282801,
-            "changed_scenarios": 13,
-            "mean_removed": 0.6521739130434783,
-            "mean_added": 0.43478260869565216
+            "mean_rank_correlation": 0.9841055418322648,
+            "changed_scenarios": 14,
+            "mean_removed": 0.6666666666666666,
+            "mean_added": 0.4583333333333333
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.9016563146997928,
+            "scenarios": 24,
+            "mean_jaccard": 0.8918650793650794,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9943295211262161,
-            "changed_scenarios": 9,
-            "mean_removed": 0.43478260869565216,
-            "mean_added": 0.17391304347826086
+            "mean_rank_correlation": 0.9940112652379915,
+            "changed_scenarios": 10,
+            "mean_removed": 0.4583333333333333,
+            "mean_added": 0.20833333333333334
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 23,
-            "mean_jaccard": 0.8913043478260869,
+            "scenarios": 24,
+            "mean_jaccard": 0.8888888888888888,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9927312733107223,
-            "changed_scenarios": 11,
-            "mean_removed": 0.43478260869565216,
-            "mean_added": 0.21739130434782608
+            "mean_rank_correlation": 0.9926798123212199,
+            "changed_scenarios": 12,
+            "mean_removed": 0.4166666666666667,
+            "mean_added": 0.25
           }
         ],
         "details": [
@@ -97164,6 +99236,2070 @@
               "added": [],
               "common_size": 29,
               "rank_correlation": 0.9982720315971366
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HDB",
+              "HPG",
+              "MBB",
+              "SHB",
+              "VIB",
+              "VPL"
+            ],
+            "base_size": 5,
+            "other_size": 8,
+            "overlap": 3,
+            "jaccard": 0.3,
+            "removed": [
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "HDB",
+              "MBB",
+              "SHB",
+              "VIB",
+              "VPL"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7662227610975995
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "MSN",
+              "TCB",
+              "VIC",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 2,
+            "jaccard": 0.2222222222222222,
+            "removed": [
+              "BID",
+              "GAS",
+              "SSI"
+            ],
+            "added": [
+              "FPT",
+              "MSN",
+              "TCB",
+              "VIC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.5509801546005421
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "SSI",
+              "VIC",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "BID",
+              "GAS"
+            ],
+            "added": [
+              "FPT",
+              "VIC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.40019719005388055
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "VIB",
+              "VPL"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "VIB",
+              "VPL"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8638550350705179
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "GAS",
+              "HPG",
+              "MSN",
+              "TCB",
+              "VJC"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "BID",
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "MSN",
+              "TCB",
+              "VJC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.42311488628233557
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "HDB",
+              "HPG",
+              "SHB",
+              "VIB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "GAS",
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "HDB",
+              "SHB",
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8981379329648229
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "balanced",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SSI"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9155676144984546
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9914962095626668,
+            "weights": {
+              "momentum": 0.4444444444444445,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SHB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SSI"
+            ],
+            "added": [
+              "SHB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9866913798088308,
+            "weights": {
+              "momentum": 0.5454545454545454,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SSI"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9770824252239142,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.16666666666666666,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9901430478057215,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.3181818181818181,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HDB",
+              "HPG",
+              "SHB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "HDB",
+              "SHB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9726467420829227,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.16666666666666666
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SSI"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9890327231604438,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.3181818181818181
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.998766785096383,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.998766785096383
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "GAS",
+              "HPG",
+              "SHB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "BID"
+            ],
+            "added": [
+              "SHB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9979449333280941,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9979449333280941
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984922489801693,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984922489801693
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990409361915921,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990409361915921
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994519045902315,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994519045902315
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "HPG",
+              "SHB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "SHB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995891067601195,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "HPG",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "HPG",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891067601195
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990408706200115,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990408706200115
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "SHB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "HPG"
+            ],
+            "added": [
+              "SHB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993150684931509,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993150684931509
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SHB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "SHB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993148713538859,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "SHB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9993148713538859
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9989038467727176,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989038467727176
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995891067601194,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891067601194
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994520923044518,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994520923044518
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9989038935391653,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989038935391653
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SHB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "SHB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9997259898564811,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "SHB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9997259898564811
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.998630136986302,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.998630136986302
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SHB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "SHB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993149183145992,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "SHB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9993149183145992
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SHB",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "SSI"
+            ],
+            "added": [
+              "SHB",
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995889941737747,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "TCB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9995889941737747
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9983555729310281,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983555729310281
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993148713538855,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993148713538855
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SHB",
+              "SSI",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 7,
+            "overlap": 5,
+            "jaccard": 0.7142857142857143,
+            "removed": [],
+            "added": [
+              "SHB",
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993148713538855,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI",
+                "TCB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 7,
+              "overlap": 5,
+              "jaccard": 0.7142857142857143,
+              "removed": [],
+              "added": [
+                "SHB",
+                "TCB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9993148713538855
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.998493028578402,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.998493028578402
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991780070279198,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991780070279198
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993150590629618,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993150590629618
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991777817420168,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991777817420168
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991779789623545,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991779789623545
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984922489801694,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984922489801694
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SHB",
+              "SSI",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "VPB"
+            ],
+            "added": [
+              "SHB",
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995889941737746,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SHB",
+                "SSI",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "TCB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9995889941737746
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995891536565326,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891536565326
+            }
+          },
+          {
+            "date": "2026-11-19",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "GAS",
+              "HPG",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993151716801632,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "BID",
+                "GAS",
+                "HPG",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993151716801632
             }
           }
         ],

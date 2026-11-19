@@ -1,6 +1,6 @@
 # Kiểm chứng phương pháp daily-v2
 
-Rổ VN30; 23 phiên từ 2026-10-19 đến 2026-11-18; 22 cặp liền phiên được xét, 0 khoảng trống bị bỏ.
+Rổ VN30; 24 phiên từ 2026-10-19 đến 2026-11-19; 23 cặp liền phiên được xét, 0 khoảng trống bị bỏ.
 
 Khối ngoại theo **value**, cân bằng (mua − bán)/(mua + bán).
 Dữ liệu được phân tích hồi cứu theo danh sách thành viên lúc thu thập; chưa phải kiểm thử đầu tư theo thông tin sẵn có trong quá khứ.
@@ -20,8 +20,8 @@ Chỉ là phép mô tả bổ sung; chưa mô phỏng khớp lệnh, chu kỳ th
 
 | Cấu hình | Cặp có IC | IC trung bình | Độ lệch chuẩn IC | Cặp có chênh lệch | Top–Bottom (điểm %) |
 |---|---:|---:|---:|---:|---:|
-| balanced | 22 | +0,019 | 0,244 | 22 | −0,085 |
-| momentum | 22 | +0,037 | 0,230 | 22 | +0,083 |
+| balanced | 23 | +0,022 | 0,238 | 23 | −0,092 |
+| momentum | 23 | +0,039 | 0,225 | 23 | +0,096 |
 
 ## Độ nhạy danh sách theo dõi
 
@@ -30,40 +30,40 @@ Che một đầu vào bắt buộc cho từng mã rồi chấm lại nhóm còn 
 
 | Cấu hình | Loại | Biến thể | Số tình huống | Jaccard TB | Jaccard nhỏ nhất | Số tình huống đổi Top | Mã ra TB | Mã vào TB |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| balanced | ablation | foreign | 23 | 0,567 | 0,000 | 22 | 1,478 | 1,783 |
-| balanced | ablation | liquidity | 23 | 0,540 | 0,100 | 22 | 1,609 | 1,696 |
-| balanced | ablation | momentum | 23 | 0,528 | 0,250 | 22 | 1,696 | 1,696 |
-| balanced | missing | one_missing_member | 681 | 0,925 | 0,444 | 184 | 0,220 | 0,250 |
-| balanced | single_factor | foreign | 23 | 0,396 | 0,111 | 22 | 2,435 | 2,261 |
-| balanced | single_factor | liquidity | 23 | 0,293 | 0,000 | 23 | 3,000 | 2,826 |
-| balanced | single_factor | momentum | 23 | 0,399 | 0,111 | 23 | 2,348 | 2,174 |
-| balanced | weights | foreign+0.1 | 23 | 0,908 | 0,667 | 8 | 0,348 | 0,217 |
-| balanced | weights | foreign-0.1 | 23 | 0,879 | 0,667 | 10 | 0,435 | 0,304 |
-| balanced | weights | liquidity+0.1 | 23 | 0,876 | 0,429 | 9 | 0,478 | 0,304 |
-| balanced | weights | liquidity-0.1 | 23 | 0,835 | 0,667 | 13 | 0,565 | 0,435 |
-| balanced | weights | momentum | 23 | 0,734 | 0,375 | 18 | 0,826 | 0,913 |
-| balanced | weights | momentum+0.1 | 23 | 0,908 | 0,667 | 8 | 0,348 | 0,217 |
-| balanced | weights | momentum-0.1 | 23 | 0,826 | 0,333 | 12 | 0,652 | 0,478 |
-| momentum | ablation | foreign | 23 | 0,634 | 0,333 | 21 | 1,261 | 1,261 |
-| momentum | ablation | liquidity | 23 | 0,680 | 0,222 | 19 | 1,174 | 1,043 |
-| momentum | ablation | momentum | 23 | 0,396 | 0,000 | 23 | 2,391 | 2,304 |
-| momentum | missing | one_missing_member | 681 | 0,926 | 0,571 | 204 | 0,260 | 0,198 |
-| momentum | single_factor | foreign | 23 | 0,367 | 0,100 | 23 | 2,609 | 2,348 |
-| momentum | single_factor | liquidity | 23 | 0,264 | 0,000 | 23 | 3,217 | 2,957 |
-| momentum | single_factor | momentum | 23 | 0,515 | 0,250 | 23 | 1,826 | 1,565 |
-| momentum | weights | balanced | 23 | 0,734 | 0,375 | 18 | 0,913 | 0,826 |
-| momentum | weights | foreign+0.1 | 23 | 0,902 | 0,571 | 9 | 0,435 | 0,174 |
-| momentum | weights | foreign-0.1 | 23 | 0,851 | 0,571 | 13 | 0,565 | 0,348 |
-| momentum | weights | liquidity+0.1 | 23 | 0,844 | 0,571 | 13 | 0,609 | 0,348 |
-| momentum | weights | liquidity-0.1 | 23 | 0,828 | 0,571 | 13 | 0,652 | 0,435 |
-| momentum | weights | momentum+0.1 | 23 | 0,902 | 0,571 | 9 | 0,435 | 0,174 |
-| momentum | weights | momentum-0.1 | 23 | 0,891 | 0,667 | 11 | 0,435 | 0,217 |
+| balanced | ablation | foreign | 24 | 0,548 | 0,000 | 23 | 1,583 | 1,875 |
+| balanced | ablation | liquidity | 24 | 0,546 | 0,100 | 23 | 1,583 | 1,667 |
+| balanced | ablation | momentum | 24 | 0,522 | 0,250 | 23 | 1,708 | 1,750 |
+| balanced | missing | one_missing_member | 710 | 0,926 | 0,444 | 189 | 0,218 | 0,246 |
+| balanced | single_factor | foreign | 24 | 0,398 | 0,111 | 23 | 2,417 | 2,250 |
+| balanced | single_factor | liquidity | 24 | 0,291 | 0,000 | 24 | 3,000 | 2,833 |
+| balanced | single_factor | momentum | 24 | 0,395 | 0,111 | 24 | 2,333 | 2,292 |
+| balanced | weights | foreign+0.1 | 24 | 0,912 | 0,667 | 8 | 0,333 | 0,208 |
+| balanced | weights | foreign-0.1 | 24 | 0,870 | 0,667 | 11 | 0,458 | 0,333 |
+| balanced | weights | liquidity+0.1 | 24 | 0,867 | 0,429 | 10 | 0,500 | 0,333 |
+| balanced | weights | liquidity-0.1 | 24 | 0,842 | 0,667 | 13 | 0,542 | 0,417 |
+| balanced | weights | momentum | 24 | 0,731 | 0,375 | 19 | 0,833 | 0,917 |
+| balanced | weights | momentum+0.1 | 24 | 0,912 | 0,667 | 8 | 0,333 | 0,208 |
+| balanced | weights | momentum-0.1 | 24 | 0,819 | 0,333 | 13 | 0,667 | 0,500 |
+| momentum | ablation | foreign | 24 | 0,618 | 0,250 | 22 | 1,333 | 1,333 |
+| momentum | ablation | liquidity | 24 | 0,669 | 0,222 | 20 | 1,208 | 1,083 |
+| momentum | ablation | momentum | 24 | 0,389 | 0,000 | 24 | 2,417 | 2,375 |
+| momentum | missing | one_missing_member | 710 | 0,925 | 0,571 | 213 | 0,256 | 0,207 |
+| momentum | single_factor | foreign | 24 | 0,362 | 0,100 | 24 | 2,625 | 2,375 |
+| momentum | single_factor | liquidity | 24 | 0,271 | 0,000 | 24 | 3,167 | 2,917 |
+| momentum | single_factor | momentum | 24 | 0,506 | 0,250 | 24 | 1,833 | 1,708 |
+| momentum | weights | balanced | 24 | 0,731 | 0,375 | 19 | 0,917 | 0,833 |
+| momentum | weights | foreign+0.1 | 24 | 0,892 | 0,571 | 10 | 0,458 | 0,208 |
+| momentum | weights | foreign-0.1 | 24 | 0,833 | 0,429 | 14 | 0,625 | 0,417 |
+| momentum | weights | liquidity+0.1 | 24 | 0,850 | 0,571 | 13 | 0,583 | 0,333 |
+| momentum | weights | liquidity-0.1 | 24 | 0,821 | 0,571 | 14 | 0,667 | 0,458 |
+| momentum | weights | momentum+0.1 | 24 | 0,892 | 0,571 | 10 | 0,458 | 0,208 |
+| momentum | weights | momentum-0.1 | 24 | 0,889 | 0,667 | 12 | 0,417 | 0,250 |
 
 ## Diễn giải
 
-- balanced: Mô tả 22 cặp phiên: IC trung bình +0,019. Kết quả chưa xác lập khả năng dự báo hay hiệu quả đầu tư. Điểm giúp ưu tiên danh sách theo dõi; độ ổn định của danh sách không chứng minh lợi nhuận.
-- momentum: Mô tả 22 cặp phiên: IC trung bình +0,037. Kết quả chưa xác lập khả năng dự báo hay hiệu quả đầu tư. Điểm giúp ưu tiên danh sách theo dõi; độ ổn định của danh sách không chứng minh lợi nhuận.
-- **Điều chỉnh quyền:** `refPrice` trống ở mọi dòng. Có 2/660 dòng `priceChangePercent` lệch quá 0,3 điểm % so với đóng cửa/đóng cửa (GVR 2026-10-21, VNM 2026-10-22). Cần đối chiếu với lịch giao dịch không hưởng quyền.
+- balanced: Mô tả 23 cặp phiên: IC trung bình +0,022. Kết quả chưa xác lập khả năng dự báo hay hiệu quả đầu tư. Điểm giúp ưu tiên danh sách theo dõi; độ ổn định của danh sách không chứng minh lợi nhuận.
+- momentum: Mô tả 23 cặp phiên: IC trung bình +0,039. Kết quả chưa xác lập khả năng dự báo hay hiệu quả đầu tư. Điểm giúp ưu tiên danh sách theo dõi; độ ổn định của danh sách không chứng minh lợi nhuận.
+- **Điều chỉnh quyền:** `refPrice` trống ở mọi dòng. Có 2/690 dòng `priceChangePercent` lệch quá 0,3 điểm % so với đóng cửa/đóng cửa (GVR 2026-10-21, VNM 2026-10-22). Cần đối chiếu với lịch giao dịch không hưởng quyền.
 
 Thay đổi công thức là phiên bản phương pháp mới; các kết quả daily-v1 không được dùng để chứng minh daily-v2.
 Dữ liệu, cấu hình, danh sách Top/Bottom, các ca thiếu và toàn bộ phép so sánh nằm trong evaluation.json.
