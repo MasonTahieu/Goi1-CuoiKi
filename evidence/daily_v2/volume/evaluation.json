@@ -3,10 +3,10 @@
   "ranking_method": "daily-v2",
   "foreign": "volume",
   "group": "VN30",
-  "sessions": 25,
+  "sessions": 26,
   "date_from": "2026-10-19",
-  "date_to": "2026-11-20",
-  "pairs": 24,
+  "date_to": "2026-11-23",
+  "pairs": 25,
   "skipped_pairs": [],
   "top_n": 5,
   "returns": {
@@ -20,7 +20,7 @@
   },
   "adjustment": {
     "tolerance_pp": 0.3,
-    "compared": 720,
+    "compared": 750,
     "flagged": [
       {
         "symbol": "GVR",
@@ -715,50 +715,78 @@
           "top_minus_bottom_pp": 0.7049682973264041,
           "ic_close": -0.034784766883231386,
           "top_minus_bottom_close_pp": 0.5713333333333334
+        },
+        {
+          "date": "2026-11-20",
+          "next_date": "2026-11-23",
+          "ranked": 29,
+          "evaluated": 29,
+          "missing_future": [],
+          "top_symbols": [
+            "MSN",
+            "SSI",
+            "TCB",
+            "TCX",
+            "VIC"
+          ],
+          "bottom_symbols": [
+            "ACB",
+            "BID",
+            "MBB",
+            "SAB",
+            "VIB"
+          ],
+          "config_id": "4a03fe6740bc",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": -0.13411476950519158,
+          "top_minus_bottom_pp": -0.3371998158646794,
+          "ic_close": -0.3634798305093029,
+          "top_minus_bottom_close_pp": -0.9459999999999998
         }
       ],
       "ic": {
-        "pairs": 24,
-        "mean": 0.021650161085651876,
-        "sd": 0.2330300965193009,
-        "positive_share": 0.5416666666666666
+        "pairs": 25,
+        "mean": 0.015419563862018138,
+        "sd": 0.23024097886645212,
+        "positive_share": 0.52
       },
       "top_minus_bottom_pp": {
-        "pairs": 24,
-        "mean": -0.05330617161918982,
-        "sd": 0.8479003022108265,
-        "positive_share": 0.4166666666666667
+        "pairs": 25,
+        "mean": -0.0646619173890094,
+        "sd": 0.8319874546942078,
+        "positive_share": 0.4
       },
       "ic_close": {
-        "pairs": 24,
-        "mean": -0.028300381876213334,
-        "sd": 0.24173532143631293,
-        "positive_share": 0.4166666666666667
+        "pairs": 25,
+        "mean": -0.04170755982153691,
+        "sd": 0.24595720001681237,
+        "positive_share": 0.4
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 24,
-        "mean": -0.1236944444444444,
-        "sd": 0.8046853852551046,
-        "positive_share": 0.4166666666666667
+        "pairs": 25,
+        "mean": -0.15658666666666662,
+        "sd": 0.8047273363853907,
+        "positive_share": 0.4
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 24,
-          "mean": 0.026186411886324274,
-          "sd": 0.20342503223489983,
-          "positive_share": 0.5416666666666666
+          "pairs": 25,
+          "mean": 0.012407414704610254,
+          "sd": 0.21072262218523596,
+          "positive_share": 0.52
         },
         "liquidity": {
-          "pairs": 24,
-          "mean": 0.006131338647913667,
-          "sd": 0.2177693046880994,
-          "positive_share": 0.5
+          "pairs": 25,
+          "mean": 0.007355876601578293,
+          "sd": 0.21327207851706695,
+          "positive_share": 0.52
         },
         "foreign": {
-          "pairs": 24,
-          "mean": -0.0013899768276260313,
-          "sd": 0.1965488707210705,
-          "positive_share": 0.5
+          "pairs": 25,
+          "mean": -0.0037018271498195266,
+          "sd": 0.19275744025059507,
+          "positive_share": 0.48
         }
       },
       "screening": {
@@ -769,156 +797,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 25,
-            "mean_jaccard": 0.5468253968253968,
+            "scenarios": 26,
+            "mean_jaccard": 0.5514346764346764,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.8586751257576348,
-            "changed_scenarios": 24,
-            "mean_removed": 1.56,
-            "mean_added": 1.88
+            "mean_rank_correlation": 0.8597286475453335,
+            "changed_scenarios": 25,
+            "mean_removed": 1.5384615384615385,
+            "mean_added": 1.8461538461538463
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 25,
-            "mean_jaccard": 0.5508730158730158,
+            "scenarios": 26,
+            "mean_jaccard": 0.5461691086691086,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.856398671440773,
-            "changed_scenarios": 24,
-            "mean_removed": 1.52,
-            "mean_added": 1.64
+            "mean_rank_correlation": 0.8577083298896215,
+            "changed_scenarios": 25,
+            "mean_removed": 1.5384615384615385,
+            "mean_added": 1.6538461538461537
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 25,
-            "mean_jaccard": 0.5133333333333333,
+            "scenarios": 26,
+            "mean_jaccard": 0.5256410256410257,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.859059407604635,
-            "changed_scenarios": 24,
-            "mean_removed": 1.72,
-            "mean_added": 1.8
+            "mean_rank_correlation": 0.8602003855619436,
+            "changed_scenarios": 25,
+            "mean_removed": 1.6538461538461537,
+            "mean_added": 1.7692307692307692
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 739,
-            "mean_jaccard": 0.9261604055244109,
+            "scenarios": 768,
+            "mean_jaccard": 0.926530464616402,
             "min_jaccard": 0.4444444444444444,
-            "mean_rank_correlation": 0.9990686411908057,
-            "changed_scenarios": 190,
-            "mean_removed": 0.19891745602165087,
-            "mean_added": 0.2652232746955345
+            "mean_rank_correlation": 0.9990643969836824,
+            "changed_scenarios": 195,
+            "mean_removed": 0.19791666666666666,
+            "mean_added": 0.2643229166666667
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 25,
-            "mean_jaccard": 0.3943492063492064,
+            "scenarios": 26,
+            "mean_jaccard": 0.3887973137973138,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7533928564940378,
-            "changed_scenarios": 24,
-            "mean_removed": 2.4,
-            "mean_added": 2.28
+            "mean_rank_correlation": 0.7520031358767256,
+            "changed_scenarios": 25,
+            "mean_removed": 2.423076923076923,
+            "mean_added": 2.3076923076923075
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 25,
-            "mean_jaccard": 0.2875238095238095,
+            "scenarios": 26,
+            "mean_jaccard": 0.29294871794871796,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.5427241293995972,
-            "changed_scenarios": 25,
-            "mean_removed": 3.0,
-            "mean_added": 2.88
+            "mean_rank_correlation": 0.5396191005323051,
+            "changed_scenarios": 26,
+            "mean_removed": 2.9615384615384617,
+            "mean_added": 2.8461538461538463
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 25,
-            "mean_jaccard": 0.39874603174603174,
+            "scenarios": 26,
+            "mean_jaccard": 0.40905067155067154,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7038869176481193,
-            "changed_scenarios": 25,
-            "mean_removed": 2.28,
-            "mean_added": 2.28
+            "mean_rank_correlation": 0.7114567835789138,
+            "changed_scenarios": 26,
+            "mean_removed": 2.230769230769231,
+            "mean_added": 2.230769230769231
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.9085714285714286,
+            "scenarios": 26,
+            "mean_jaccard": 0.9120879120879122,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9914797811381015,
+            "mean_rank_correlation": 0.9915421003035186,
             "changed_scenarios": 8,
-            "mean_removed": 0.32,
-            "mean_added": 0.24
+            "mean_removed": 0.3076923076923077,
+            "mean_added": 0.23076923076923078
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.859047619047619,
+            "scenarios": 26,
+            "mean_jaccard": 0.8644688644688644,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9881924417404921,
+            "mean_rank_correlation": 0.9881869570415194,
             "changed_scenarios": 11,
-            "mean_removed": 0.48,
-            "mean_added": 0.4
+            "mean_removed": 0.46153846153846156,
+            "mean_added": 0.38461538461538464
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.8790476190476191,
+            "scenarios": 26,
+            "mean_jaccard": 0.8836996336996338,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.987635244966775,
+            "mean_rank_correlation": 0.9875279926785853,
             "changed_scenarios": 9,
-            "mean_removed": 0.44,
-            "mean_added": 0.32
+            "mean_removed": 0.4230769230769231,
+            "mean_added": 0.3076923076923077
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.8285714285714286,
+            "scenarios": 26,
+            "mean_jaccard": 0.8351648351648352,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9829253846615056,
+            "mean_rank_correlation": 0.9833025380388661,
             "changed_scenarios": 14,
-            "mean_removed": 0.56,
-            "mean_added": 0.48
+            "mean_removed": 0.5384615384615384,
+            "mean_added": 0.46153846153846156
           },
           {
             "kind": "weights",
             "name": "momentum",
-            "scenarios": 25,
-            "mean_jaccard": 0.7349999999999999,
+            "scenarios": 26,
+            "mean_jaccard": 0.7451923076923076,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9508213371075168,
+            "mean_rank_correlation": 0.9523097653754389,
             "changed_scenarios": 19,
-            "mean_removed": 0.8,
-            "mean_added": 0.92
+            "mean_removed": 0.7692307692307693,
+            "mean_added": 0.8846153846153846
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.9085714285714286,
+            "scenarios": 26,
+            "mean_jaccard": 0.9120879120879122,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9897142605778505,
+            "mean_rank_correlation": 0.9899914087264379,
             "changed_scenarios": 8,
-            "mean_removed": 0.32,
-            "mean_added": 0.24
+            "mean_removed": 0.3076923076923077,
+            "mean_added": 0.23076923076923078
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.8066666666666668,
+            "scenarios": 26,
+            "mean_jaccard": 0.8141025641025641,
             "min_jaccard": 0.3333333333333333,
-            "mean_rank_correlation": 0.9871647179884575,
+            "mean_rank_correlation": 0.987312482573203,
             "changed_scenarios": 14,
-            "mean_removed": 0.68,
-            "mean_added": 0.56
+            "mean_removed": 0.6538461538461539,
+            "mean_added": 0.5384615384615384
           }
         ],
         "details": [
@@ -52568,6 +52596,1998 @@
               "common_size": 28,
               "rank_correlation": 0.9994520547945207
             }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9007034318487791
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VJC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VJC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8887248344946614
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "HDB",
+              "SHB",
+              "SSI",
+              "VIC"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "VHM",
+              "VNM"
+            ],
+            "added": [
+              "HDB",
+              "SSI"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.46199337885
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SAB",
+              "VHM",
+              "VIB",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "SHB",
+              "VIC"
+            ],
+            "added": [
+              "SAB",
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8904497911108362
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "SAB",
+              "VHM",
+              "VIB",
+              "VJC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "FPT",
+              "SHB",
+              "VIC"
+            ],
+            "added": [
+              "SAB",
+              "VIB",
+              "VJC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7172601204439201
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "HDB",
+              "SHB",
+              "VHM",
+              "VIC"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VNM"
+            ],
+            "added": [
+              "HDB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8860666922378025
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9895204720734898
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9910065971918399,
+            "weights": {
+              "momentum": 0.25925925925925924,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.99692011244112,
+            "weights": {
+              "momentum": 0.3939393939393939,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9927313724728798,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.25925925925925924,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.98484668547384,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.3939393939393939,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9880498395672002,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.25925925925925924
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9931000794389467,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.3939393939393939
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630793448776,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630793448776
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995891536565322,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891536565322
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999452139220141,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999452139220141
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999452139220141,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999452139220141
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "FPT"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9983568490144483,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983568490144483
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9965749574477627,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9965749574477627
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999589106760119,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999589106760119
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9983570646221251,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983570646221251
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9965758208806011,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9965758208806011
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994522892547604,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522892547604
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9986302869026626,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9986302869026626
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990416210295731,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990416210295731
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994522048753764,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522048753764
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630793448775,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630793448775
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VJC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB",
+              "VJC"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9991781196914296,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VJC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VJC"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9991781196914296
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9983563989003162,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983563989003162
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990408985941556,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990408985941556
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 1.0,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 1.0
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999041358531909,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999041358531909
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 1.0,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 1.0
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9958899320439633,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9958899320439633
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VHM"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.999041358531909,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999041358531909
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994522892547604,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522892547604
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VIC"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9983568490144483,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983568490144483
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630418400755,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630418400755
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VJC"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "VNM"
+            ],
+            "added": [
+              "VIB",
+              "VJC"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9994521392201412,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VJC"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VJC"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9994521392201412
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997261024376884,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997261024376884
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994520547533801,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994520547533801
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9986307090745263,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9986307090745263
+            }
           }
         ],
         "excluded_sessions": [],
@@ -53258,50 +55278,78 @@
           "top_minus_bottom_pp": 0.4305211041993595,
           "ic_close": -0.16469286524960478,
           "top_minus_bottom_close_pp": 0.38
+        },
+        {
+          "date": "2026-11-20",
+          "next_date": "2026-11-23",
+          "ranked": 29,
+          "evaluated": 29,
+          "missing_future": [],
+          "top_symbols": [
+            "SSI",
+            "STB",
+            "TCB",
+            "TCX",
+            "VIC"
+          ],
+          "bottom_symbols": [
+            "ACB",
+            "BID",
+            "MBB",
+            "SAB",
+            "VIB"
+          ],
+          "config_id": "bef35351d04f",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": -0.2460190118731618,
+          "top_minus_bottom_pp": -0.5902142214214567,
+          "ic_close": -0.39678659225631235,
+          "top_minus_bottom_close_pp": -1.028
         }
       ],
       "ic": {
-        "pairs": 24,
-        "mean": 0.03240814033411336,
-        "sd": 0.22330739705185504,
-        "positive_share": 0.5416666666666666
+        "pairs": 25,
+        "mean": 0.021271054245822353,
+        "sd": 0.22558657467981522,
+        "positive_share": 0.52
       },
       "top_minus_bottom_pp": {
-        "pairs": 24,
-        "mean": 0.11026192647337563,
-        "sd": 0.7795710860732395,
-        "positive_share": 0.5833333333333334
+        "pairs": 25,
+        "mean": 0.08224288055758233,
+        "sd": 0.7759095458441885,
+        "positive_share": 0.56
       },
       "ic_close": {
-        "pairs": 24,
-        "mean": -0.01952939057289255,
-        "sd": 0.22465568583015152,
-        "positive_share": 0.4166666666666667
+        "pairs": 25,
+        "mean": -0.03461967864022934,
+        "sd": 0.23250843635383128,
+        "positive_share": 0.4
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 24,
-        "mean": -0.005660714285714306,
-        "sd": 0.7108705581684812,
-        "positive_share": 0.5833333333333334
+        "pairs": 25,
+        "mean": -0.046554285714285736,
+        "sd": 0.7253194805089302,
+        "positive_share": 0.56
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 24,
-          "mean": 0.026186411886324274,
-          "sd": 0.20342503223489983,
-          "positive_share": 0.5416666666666666
+          "pairs": 25,
+          "mean": 0.012407414704610254,
+          "sd": 0.21072262218523596,
+          "positive_share": 0.52
         },
         "liquidity": {
-          "pairs": 24,
-          "mean": 0.006131338647913667,
-          "sd": 0.2177693046880994,
-          "positive_share": 0.5
+          "pairs": 25,
+          "mean": 0.007355876601578293,
+          "sd": 0.21327207851706695,
+          "positive_share": 0.52
         },
         "foreign": {
-          "pairs": 24,
-          "mean": -0.0013899768276260313,
-          "sd": 0.1965488707210705,
-          "positive_share": 0.5
+          "pairs": 25,
+          "mean": -0.0037018271498195266,
+          "sd": 0.19275744025059507,
+          "positive_share": 0.48
         }
       },
       "screening": {
@@ -53312,156 +55360,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 25,
-            "mean_jaccard": 0.6201587301587301,
+            "scenarios": 26,
+            "mean_jaccard": 0.6283577533577532,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.9355786273748068,
-            "changed_scenarios": 23,
-            "mean_removed": 1.32,
-            "mean_added": 1.32
+            "mean_rank_correlation": 0.936533285289457,
+            "changed_scenarios": 24,
+            "mean_removed": 1.2692307692307692,
+            "mean_added": 1.3076923076923077
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 25,
-            "mean_jaccard": 0.6691269841269842,
+            "scenarios": 26,
+            "mean_jaccard": 0.6690323565323566,
             "min_jaccard": 0.2222222222222222,
-            "mean_rank_correlation": 0.9289900682987354,
-            "changed_scenarios": 21,
-            "mean_removed": 1.2,
-            "mean_added": 1.08
+            "mean_rank_correlation": 0.9297248827578944,
+            "changed_scenarios": 22,
+            "mean_removed": 1.1923076923076923,
+            "mean_added": 1.0769230769230769
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 25,
-            "mean_jaccard": 0.3834920634920635,
+            "scenarios": 26,
+            "mean_jaccard": 0.4007936507936508,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.6977712733675093,
-            "changed_scenarios": 25,
-            "mean_removed": 2.44,
-            "mean_added": 2.4
+            "mean_rank_correlation": 0.703196427706868,
+            "changed_scenarios": 26,
+            "mean_removed": 2.3461538461538463,
+            "mean_added": 2.3461538461538463
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 739,
-            "mean_jaccard": 0.9256717572008506,
+            "scenarios": 768,
+            "mean_jaccard": 0.9232700892857143,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9990116427192797,
-            "changed_scenarios": 218,
-            "mean_removed": 0.2530446549391069,
-            "mean_added": 0.20568335588633288
+            "mean_rank_correlation": 0.9990336207834445,
+            "changed_scenarios": 237,
+            "mean_removed": 0.25,
+            "mean_added": 0.22265625
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 25,
-            "mean_jaccard": 0.357968253968254,
+            "scenarios": 26,
+            "mean_jaccard": 0.35381562881562884,
             "min_jaccard": 0.1,
-            "mean_rank_correlation": 0.6763240825142293,
-            "changed_scenarios": 25,
-            "mean_removed": 2.64,
-            "mean_added": 2.4
+            "mean_rank_correlation": 0.6780983567845584,
+            "changed_scenarios": 26,
+            "mean_removed": 2.6538461538461537,
+            "mean_added": 2.423076923076923
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 25,
-            "mean_jaccard": 0.2642857142857143,
+            "scenarios": 26,
+            "mean_jaccard": 0.2706043956043956,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.3904631809860518,
-            "changed_scenarios": 25,
-            "mean_removed": 3.2,
-            "mean_added": 2.96
+            "mean_rank_correlation": 0.39106888930886624,
+            "changed_scenarios": 26,
+            "mean_removed": 3.1538461538461537,
+            "mean_added": 2.923076923076923
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 25,
-            "mean_jaccard": 0.5127142857142857,
+            "scenarios": 26,
+            "mean_jaccard": 0.5186355311355311,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.8655213226008154,
-            "changed_scenarios": 25,
-            "mean_removed": 1.8,
-            "mean_added": 1.68
+            "mean_rank_correlation": 0.8683158406345596,
+            "changed_scenarios": 26,
+            "mean_removed": 1.7692307692307692,
+            "mean_added": 1.6538461538461537
           },
           {
             "kind": "weights",
             "name": "balanced",
-            "scenarios": 25,
-            "mean_jaccard": 0.7349999999999999,
+            "scenarios": 26,
+            "mean_jaccard": 0.7451923076923076,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9508213371075168,
+            "mean_rank_correlation": 0.9523097653754389,
             "changed_scenarios": 19,
-            "mean_removed": 0.92,
-            "mean_added": 0.8
+            "mean_removed": 0.8846153846153846,
+            "mean_added": 0.7692307692307693
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.8961904761904763,
+            "scenarios": 26,
+            "mean_jaccard": 0.8873626373626375,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9899705663322002,
-            "changed_scenarios": 10,
-            "mean_removed": 0.44,
-            "mean_added": 0.2
+            "mean_rank_correlation": 0.9902710016588349,
+            "changed_scenarios": 11,
+            "mean_removed": 0.46153846153846156,
+            "mean_added": 0.23076923076923078
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.84,
+            "scenarios": 26,
+            "mean_jaccard": 0.8461538461538461,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9877553491919926,
+            "mean_rank_correlation": 0.9879039778511651,
             "changed_scenarios": 14,
-            "mean_removed": 0.6,
-            "mean_added": 0.4
+            "mean_removed": 0.5769230769230769,
+            "mean_added": 0.38461538461538464
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.8561904761904762,
+            "scenarios": 26,
+            "mean_jaccard": 0.8617216117216118,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9859819682828114,
+            "mean_rank_correlation": 0.9861040009693489,
             "changed_scenarios": 13,
-            "mean_removed": 0.56,
-            "mean_added": 0.32
+            "mean_removed": 0.5384615384615384,
+            "mean_added": 0.3076923076923077
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.821904761904762,
+            "scenarios": 26,
+            "mean_jaccard": 0.8159340659340661,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9839450387240026,
-            "changed_scenarios": 15,
-            "mean_removed": 0.64,
-            "mean_added": 0.48
+            "mean_rank_correlation": 0.9842069433237715,
+            "changed_scenarios": 16,
+            "mean_removed": 0.6538461538461539,
+            "mean_added": 0.5
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.8961904761904762,
+            "scenarios": 26,
+            "mean_jaccard": 0.8873626373626374,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9937781483891005,
-            "changed_scenarios": 10,
-            "mean_removed": 0.44,
-            "mean_added": 0.2
+            "mean_rank_correlation": 0.9939131776658723,
+            "changed_scenarios": 11,
+            "mean_removed": 0.46153846153846156,
+            "mean_added": 0.23076923076923078
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 25,
-            "mean_jaccard": 0.8933333333333333,
+            "scenarios": 26,
+            "mean_jaccard": 0.8974358974358974,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9925974970477831,
+            "mean_rank_correlation": 0.9928158571638007,
             "changed_scenarios": 12,
-            "mean_removed": 0.4,
-            "mean_added": 0.24
+            "mean_removed": 0.38461538461538464,
+            "mean_added": 0.23076923076923078
           }
         ],
         "details": [
@@ -105293,6 +107341,2081 @@
               "added": [],
               "common_size": 28,
               "rank_correlation": 0.9995886560442465
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9381787914781642
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VJC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VJC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8388252861908343
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "HDB",
+              "SHB",
+              "SSI",
+              "VIC"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "VHM",
+              "VNM"
+            ],
+            "added": [
+              "HDB",
+              "SSI"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.40621159737922663
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.948095244236872
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "SAB",
+              "VHM",
+              "VIB",
+              "VJC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "FPT",
+              "SHB",
+              "VIC"
+            ],
+            "added": [
+              "SAB",
+              "VIB",
+              "VJC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7224552135427872
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "HDB",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "HDB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9603997331557136
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "balanced",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9895204720734897
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.99827486006424,
+            "weights": {
+              "momentum": 0.4444444444444445,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9972889095851643,
+            "weights": {
+              "momentum": 0.5454545454545454,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9907545583179934,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.16666666666666666,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9891548181327892,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.3181818181818181,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9916196943304784,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.16666666666666666
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9977818848247022,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.3181818181818181
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993145426391589,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9993145426391589
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9998629667687982,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9998629667687982
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9998629292022894,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9998629292022894
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9989040438206819,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989040438206819
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "FPT"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9994522048342699,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522048342699
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990410489014414,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990410489014414
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630418400755,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630418400755
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9994516416297804,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9994516416297804
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998629292022896,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998629292022896
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.999451754385965,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.999451754385965
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994522048342699,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522048342699
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.999451754385965,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.999451754385965
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9998629292022896,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9998629292022896
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997262149161557,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997262149161557
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SHB"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993150590629617,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993150590629617
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630793448778,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630793448778
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.999725839611023,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.999725839611023
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9998629292022896,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9998629292022896
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993150590629615,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9993150590629615
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9997258771929824,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9997258771929824
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995887688158892,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9995887688158892
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VHM"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9994522048342699,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522048342699
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994519421618933,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994519421618933
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VIC"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9998629667687984,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998629667687984
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994520923044514,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994520923044514
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VNM"
+            ],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995890692244811,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995890692244811
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 1.0,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 1.0
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9998629667687982,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9998629667687982
+            }
+          },
+          {
+            "date": "2026-11-23",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIC",
+              "VNM"
+            ],
+            "other_top": [
+              "FPT",
+              "SHB",
+              "VHM",
+              "VIB",
+              "VIC",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "VIB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995887312184687,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIC",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "SHB",
+                "VHM",
+                "VIB",
+                "VIC",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "VIB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9995887312184687
             }
           }
         ],
