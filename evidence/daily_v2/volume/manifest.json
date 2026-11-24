@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-23T21:32:54.218538+00:00",
+  "generated_at": "2026-11-24T19:34:35.869305+00:00",
   "ranking_method": "daily-v2",
   "validation_method": "next-session-descriptive-v3",
   "foreign": "volume",
@@ -26,7 +26,7 @@
   "date_from": "2026-10-19",
   "date_to": "2026-11-23",
   "input_file": "input_daily.json",
-  "input_sha256": "663016110aea401603cdc4c0b180fee1744551de422b9758c94f8bbb6edade5c",
+  "input_sha256": "5ce7f6c43bfd47a607918164210389dfb930c92ab7709ddde036235fafbe883d",
   "rows": 780,
   "sources": [
     "ssi"
@@ -877,7 +877,7 @@
     "2026-11-19T01:11:49.699837+07:00",
     "2026-11-20T01:23:58.853438+07:00",
     "2026-11-21T00:54:12.052929+07:00",
-    "2026-11-24T04:32:34.455056+07:00"
+    "2026-11-25T02:34:15.466203+07:00"
   ],
   "libraries": {
     "numpy": "2.5.4",
