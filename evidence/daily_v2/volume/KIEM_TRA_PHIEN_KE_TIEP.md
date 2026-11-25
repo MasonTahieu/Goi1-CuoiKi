@@ -1,6 +1,6 @@
 # Kiểm chứng phương pháp daily-v2
 
-Rổ VN30; 26 phiên từ 2026-10-19 đến 2026-11-23; 25 cặp liền phiên được xét, 0 khoảng trống bị bỏ.
+Rổ VN30; 27 phiên từ 2026-10-19 đến 2026-11-25; 25 cặp liền phiên được xét, 1 khoảng trống bị bỏ.
 
 Khối ngoại theo **volume**, cân bằng (mua − bán)/(mua + bán).
 Dữ liệu được phân tích hồi cứu theo danh sách thành viên lúc thu thập; chưa phải kiểm thử đầu tư theo thông tin sẵn có trong quá khứ.
@@ -30,40 +30,40 @@ Che một đầu vào bắt buộc cho từng mã rồi chấm lại nhóm còn 
 
 | Cấu hình | Loại | Biến thể | Số tình huống | Jaccard TB | Jaccard nhỏ nhất | Số tình huống đổi Top | Mã ra TB | Mã vào TB |
 |---|---|---|---:|---:|---:|---:|---:|---:|
-| balanced | ablation | foreign | 26 | 0,551 | 0,000 | 25 | 1,538 | 1,846 |
-| balanced | ablation | liquidity | 26 | 0,546 | 0,111 | 25 | 1,538 | 1,654 |
-| balanced | ablation | momentum | 26 | 0,526 | 0,250 | 25 | 1,654 | 1,769 |
-| balanced | missing | one_missing_member | 768 | 0,927 | 0,444 | 195 | 0,198 | 0,264 |
-| balanced | single_factor | foreign | 26 | 0,389 | 0,111 | 25 | 2,423 | 2,308 |
-| balanced | single_factor | liquidity | 26 | 0,293 | 0,000 | 26 | 2,962 | 2,846 |
-| balanced | single_factor | momentum | 26 | 0,409 | 0,111 | 26 | 2,231 | 2,231 |
-| balanced | weights | foreign+0.1 | 26 | 0,912 | 0,667 | 8 | 0,308 | 0,231 |
-| balanced | weights | foreign-0.1 | 26 | 0,864 | 0,429 | 11 | 0,462 | 0,385 |
-| balanced | weights | liquidity+0.1 | 26 | 0,884 | 0,429 | 9 | 0,423 | 0,308 |
-| balanced | weights | liquidity-0.1 | 26 | 0,835 | 0,667 | 14 | 0,538 | 0,462 |
-| balanced | weights | momentum | 26 | 0,745 | 0,375 | 19 | 0,769 | 0,885 |
-| balanced | weights | momentum+0.1 | 26 | 0,912 | 0,667 | 8 | 0,308 | 0,231 |
-| balanced | weights | momentum-0.1 | 26 | 0,814 | 0,333 | 14 | 0,654 | 0,538 |
-| momentum | ablation | foreign | 26 | 0,628 | 0,250 | 24 | 1,269 | 1,308 |
-| momentum | ablation | liquidity | 26 | 0,669 | 0,222 | 22 | 1,192 | 1,077 |
-| momentum | ablation | momentum | 26 | 0,401 | 0,000 | 26 | 2,346 | 2,346 |
-| momentum | missing | one_missing_member | 768 | 0,923 | 0,571 | 237 | 0,250 | 0,223 |
-| momentum | single_factor | foreign | 26 | 0,354 | 0,100 | 26 | 2,654 | 2,423 |
-| momentum | single_factor | liquidity | 26 | 0,271 | 0,000 | 26 | 3,154 | 2,923 |
-| momentum | single_factor | momentum | 26 | 0,519 | 0,250 | 26 | 1,769 | 1,654 |
-| momentum | weights | balanced | 26 | 0,745 | 0,375 | 19 | 0,885 | 0,769 |
-| momentum | weights | foreign+0.1 | 26 | 0,887 | 0,571 | 11 | 0,462 | 0,231 |
-| momentum | weights | foreign-0.1 | 26 | 0,846 | 0,429 | 14 | 0,577 | 0,385 |
-| momentum | weights | liquidity+0.1 | 26 | 0,862 | 0,571 | 13 | 0,538 | 0,308 |
-| momentum | weights | liquidity-0.1 | 26 | 0,816 | 0,571 | 16 | 0,654 | 0,500 |
-| momentum | weights | momentum+0.1 | 26 | 0,887 | 0,571 | 11 | 0,462 | 0,231 |
-| momentum | weights | momentum-0.1 | 26 | 0,897 | 0,667 | 12 | 0,385 | 0,231 |
+| balanced | ablation | foreign | 27 | 0,542 | 0,000 | 26 | 1,593 | 1,926 |
+| balanced | ablation | liquidity | 27 | 0,540 | 0,111 | 26 | 1,593 | 1,667 |
+| balanced | ablation | momentum | 27 | 0,525 | 0,250 | 26 | 1,667 | 1,778 |
+| balanced | missing | one_missing_member | 797 | 0,927 | 0,444 | 204 | 0,202 | 0,255 |
+| balanced | single_factor | foreign | 27 | 0,388 | 0,111 | 26 | 2,444 | 2,296 |
+| balanced | single_factor | liquidity | 27 | 0,282 | 0,000 | 27 | 3,074 | 2,926 |
+| balanced | single_factor | momentum | 27 | 0,408 | 0,111 | 27 | 2,259 | 2,222 |
+| balanced | weights | foreign+0.1 | 27 | 0,909 | 0,667 | 9 | 0,333 | 0,222 |
+| balanced | weights | foreign-0.1 | 27 | 0,863 | 0,429 | 12 | 0,481 | 0,370 |
+| balanced | weights | liquidity+0.1 | 27 | 0,882 | 0,429 | 10 | 0,444 | 0,296 |
+| balanced | weights | liquidity-0.1 | 27 | 0,831 | 0,667 | 15 | 0,556 | 0,481 |
+| balanced | weights | momentum | 27 | 0,739 | 0,375 | 20 | 0,815 | 0,889 |
+| balanced | weights | momentum+0.1 | 27 | 0,909 | 0,667 | 9 | 0,333 | 0,222 |
+| balanced | weights | momentum-0.1 | 27 | 0,815 | 0,333 | 15 | 0,667 | 0,519 |
+| momentum | ablation | foreign | 27 | 0,630 | 0,250 | 25 | 1,259 | 1,296 |
+| momentum | ablation | liquidity | 27 | 0,660 | 0,222 | 23 | 1,222 | 1,111 |
+| momentum | ablation | momentum | 27 | 0,394 | 0,000 | 27 | 2,370 | 2,407 |
+| momentum | missing | one_missing_member | 797 | 0,921 | 0,571 | 254 | 0,247 | 0,241 |
+| momentum | single_factor | foreign | 27 | 0,357 | 0,100 | 27 | 2,630 | 2,407 |
+| momentum | single_factor | liquidity | 27 | 0,261 | 0,000 | 27 | 3,222 | 3,000 |
+| momentum | single_factor | momentum | 27 | 0,524 | 0,250 | 27 | 1,741 | 1,630 |
+| momentum | weights | balanced | 27 | 0,739 | 0,375 | 20 | 0,889 | 0,815 |
+| momentum | weights | foreign+0.1 | 27 | 0,879 | 0,571 | 12 | 0,481 | 0,259 |
+| momentum | weights | foreign-0.1 | 27 | 0,840 | 0,429 | 15 | 0,593 | 0,407 |
+| momentum | weights | liquidity+0.1 | 27 | 0,867 | 0,571 | 13 | 0,519 | 0,296 |
+| momentum | weights | liquidity-0.1 | 27 | 0,802 | 0,429 | 17 | 0,704 | 0,556 |
+| momentum | weights | momentum+0.1 | 27 | 0,879 | 0,571 | 12 | 0,481 | 0,259 |
+| momentum | weights | momentum-0.1 | 27 | 0,889 | 0,667 | 13 | 0,407 | 0,259 |
 
 ## Diễn giải
 
 - balanced: Mô tả 25 cặp phiên: IC trung bình +0,015. Kết quả chưa xác lập khả năng dự báo hay hiệu quả đầu tư. Điểm giúp ưu tiên danh sách theo dõi; độ ổn định của danh sách không chứng minh lợi nhuận.
 - momentum: Mô tả 25 cặp phiên: IC trung bình +0,021. Kết quả chưa xác lập khả năng dự báo hay hiệu quả đầu tư. Điểm giúp ưu tiên danh sách theo dõi; độ ổn định của danh sách không chứng minh lợi nhuận.
-- **Điều chỉnh quyền:** `refPrice` trống ở mọi dòng. Có 2/750 dòng `priceChangePercent` lệch quá 0,3 điểm % so với đóng cửa/đóng cửa (GVR 2026-10-21, VNM 2026-10-22). Cần đối chiếu với lịch giao dịch không hưởng quyền.
+- **Điều chỉnh quyền:** `refPrice` trống ở mọi dòng. Có 2/780 dòng `priceChangePercent` lệch quá 0,3 điểm % so với đóng cửa/đóng cửa (GVR 2026-10-21, VNM 2026-10-22). Cần đối chiếu với lịch giao dịch không hưởng quyền.
 
 Thay đổi công thức là phiên bản phương pháp mới; các kết quả daily-v1 không được dùng để chứng minh daily-v2.
 Dữ liệu, cấu hình, danh sách Top/Bottom, các ca thiếu và toàn bộ phép so sánh nằm trong evaluation.json.
