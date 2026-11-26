@@ -1,0 +1,284 @@
+{
+  "schema_version": "ssi-v3-stream-window-1",
+  "window": "sang",
+  "trading_date": "2026-11-26",
+  "run": "ssi-stream-337fc331060a411da36b7c2dcfdd0e8a",
+  "stop_reason": "duration_limit",
+  "counters": {
+    "received": 85533,
+    "decoded": 85533,
+    "merged": 81197,
+    "duplicate": 4418,
+    "rejected": 0,
+    "decode_errors": 0,
+    "reconnects": 4
+  },
+  "acks": {
+    "ok": 1,
+    "error": 0
+  },
+  "reconciliation": null,
+  "finished_at": "2026-11-26T11:35:01.977795+07:00",
+  "lag_seconds": {
+    "QUOTE": {
+      "count": 55080,
+      "p50": 0.73,
+      "p99": 1.23,
+      "min": 0.17,
+      "max": 1.77
+    },
+    "TRADE": {
+      "count": 28559,
+      "p50": 0.22,
+      "p99": 0.5,
+      "min": 0.15,
+      "max": 0.87
+    },
+    "ROOM": {
+      "count": 1886,
+      "p50": 17.69,
+      "p99": 24.07,
+      "min": 0.37,
+      "max": 24.46
+    }
+  },
+  "gap_seconds": {
+    "QUOTE": {
+      "count": 55050,
+      "p50": 0.88,
+      "p99": 16.67,
+      "min": 0.0,
+      "max": 138.76
+    },
+    "TRADE": {
+      "count": 28529,
+      "p50": 0.06,
+      "p99": 43.94,
+      "min": 0.0,
+      "max": 332.59
+    },
+    "ROOM": {
+      "count": 1857,
+      "p50": 60.0,
+      "p99": 60.26,
+      "min": 59.42,
+      "max": 60.58
+    }
+  },
+  "session_flags": [
+    {
+      "at": "2026-11-26T11:30:00.580467+07:00",
+      "flag": "BREAK"
+    },
+    {
+      "at": "2026-11-26T11:30:01.060677+07:00",
+      "flag": "BREAK"
+    },
+    {
+      "at": "2026-11-26T11:30:01.060716+07:00",
+      "flag": "BREAK"
+    }
+  ],
+  "connections": [
+    {
+      "at": "2026-11-26T10:29:38.653645+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-26T10:29:40.446909+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-26T10:43:38.069361+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-26T10:43:39.851605+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-26T10:43:41.388603+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-26T10:57:39.239197+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-26T10:57:41.105306+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-26T10:57:42.803282+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-26T11:11:40.169936+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-26T11:11:43.653005+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-26T11:11:45.627870+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-26T11:25:43.069935+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-26T11:25:44.098166+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-26T11:25:45.943095+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-26T11:35:01.653809+07:00",
+      "state": "stopped"
+    }
+  ],
+  "evaluation": {
+    "first_received_at": "2026-11-26T10:29:38.653645+07:00",
+    "last_received_at": "2026-11-26T11:35:01.653809+07:00",
+    "checkpoints": [
+      {
+        "as_of": "2026-11-26T10:44:38.653645+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 27,
+            "ranked": 27,
+            "reasons": {
+              "MISSING_FIELDS": 3
+            },
+            "spearman_vs_previous": null,
+            "top5_overlap_vs_previous": null,
+            "spearman_momentum_weights": 0.9119535736471465,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-26T10:59:38.653645+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 29,
+            "ranked": 29,
+            "reasons": {
+              "MISSING_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.860003147099801,
+            "top5_overlap_vs_previous": 0.4,
+            "spearman_momentum_weights": 0.9057301362669039,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-26T11:14:38.653645+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 29,
+            "ranked": 29,
+            "reasons": {
+              "MISSING_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.8534992866344395,
+            "top5_overlap_vs_previous": 0.6,
+            "spearman_momentum_weights": 0.9286770140428678,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-26T11:29:38.653645+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 27,
+            "ranked": 27,
+            "reasons": {
+              "MISSING_FIELDS": 2,
+              "STALE_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.9345969698523039,
+            "top5_overlap_vs_previous": 0.8,
+            "spearman_momentum_weights": 0.9167179892321732,
+            "spearman_foreign_volume": 0.9999999999999999
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-26T11:35:01.653809+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 0,
+            "ranked": 0,
+            "reasons": {
+              "CONNECTION_NOT_ACTIVE": 30,
+              "STALE_FIELDS": 30,
+              "SESSION_NOT_LO": 30,
+              "MISSING_FIELDS": 2
+            },
+            "spearman_vs_previous": null,
+            "top5_overlap_vs_previous": null,
+            "spearman_momentum_weights": null,
+            "spearman_foreign_volume": null
+          }
+        }
+      }
+    ],
+    "update_intervals": {
+      "quote": {
+        "gaps": 36020,
+        "p50": 2.0,
+        "p90": 6.0,
+        "p95": 9.0,
+        "p99": 20.0,
+        "share_within": {
+          "30": 0.996529705719045,
+          "60": 0.9995835646862854,
+          "120": 0.9999444752915048,
+          "300": 1.0,
+          "600": 1.0
+        }
+      },
+      "trade": {
+        "gaps": 14517,
+        "p50": 3.311,
+        "p90": 15.4622,
+        "p95": 22.364199999999993,
+        "p99": 62.57088000000002,
+        "share_within": {
+          "30": 0.9683130123303713,
+          "60": 0.9891850933388441,
+          "120": 0.9978645725700902,
+          "300": 0.9999311152441964,
+          "600": 1.0
+        }
+      },
+      "foreign": {
+        "gaps": 1595,
+        "p50": 60.0,
+        "p90": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "share_within": {
+          "30": 0.0,
+          "60": 1.0,
+          "120": 1.0,
+          "300": 1.0,
+          "600": 1.0
+        }
+      }
+    },
+    "exploratory_ranking": true
+  }
+}
