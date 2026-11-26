@@ -3,10 +3,10 @@
   "ranking_method": "daily-v2",
   "foreign": "volume",
   "group": "VN30",
-  "sessions": 27,
+  "sessions": 28,
   "date_from": "2026-10-19",
-  "date_to": "2026-11-25",
-  "pairs": 25,
+  "date_to": "2026-11-26",
+  "pairs": 26,
   "skipped_pairs": [
     {
       "date": "2026-11-23",
@@ -27,7 +27,7 @@
   },
   "adjustment": {
     "tolerance_pp": 0.3,
-    "compared": 780,
+    "compared": 810,
     "flagged": [
       {
         "symbol": "GVR",
@@ -750,50 +750,79 @@
           "top_minus_bottom_pp": -0.3371998158646794,
           "ic_close": -0.3634798305093029,
           "top_minus_bottom_close_pp": -0.9459999999999998
+        },
+        {
+          "date": "2026-11-25",
+          "next_date": "2026-11-26",
+          "ranked": 29,
+          "evaluated": 29,
+          "missing_future": [],
+          "top_symbols": [
+            "MBB",
+            "SAB",
+            "TCB",
+            "VHM",
+            "VJC",
+            "VNM"
+          ],
+          "bottom_symbols": [
+            "BID",
+            "LPB",
+            "MCH",
+            "STB",
+            "VIB"
+          ],
+          "config_id": "4a03fe6740bc",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": -0.06532727687393902,
+          "top_minus_bottom_pp": -0.033515938570711334,
+          "ic_close": -0.15261345397428094,
+          "top_minus_bottom_close_pp": -0.32866666666666666
         }
       ],
       "ic": {
-        "pairs": 25,
-        "mean": 0.015419563862018143,
-        "sd": 0.23024097886645212,
-        "positive_share": 0.52
+        "pairs": 26,
+        "mean": 0.012313916141404407,
+        "sd": 0.2261442974237581,
+        "positive_share": 0.5
       },
       "top_minus_bottom_pp": {
-        "pairs": 25,
-        "mean": -0.0646619173890094,
-        "sd": 0.8319874546942078,
-        "positive_share": 0.4
+        "pairs": 26,
+        "mean": -0.06346399512676716,
+        "sd": 0.8152007790962973,
+        "positive_share": 0.38461538461538464
       },
       "ic_close": {
-        "pairs": 25,
-        "mean": -0.041707559821536934,
-        "sd": 0.2459572000168124,
-        "positive_share": 0.4
+        "pairs": 26,
+        "mean": -0.04597317113510401,
+        "sd": 0.24196741083737922,
+        "positive_share": 0.38461538461538464
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 25,
-        "mean": -0.15658666666666662,
-        "sd": 0.8047273363853907,
-        "positive_share": 0.4
+        "pairs": 26,
+        "mean": -0.16320512820512817,
+        "sd": 0.7891904379491856,
+        "positive_share": 0.38461538461538464
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 25,
-          "mean": 0.012407414704610266,
-          "sd": 0.21072262218523596,
-          "positive_share": 0.52
+          "pairs": 26,
+          "mean": 0.015852146575577323,
+          "sd": 0.20721096298176672,
+          "positive_share": 0.5384615384615384
         },
         "liquidity": {
-          "pairs": 25,
-          "mean": 0.007355876601578287,
-          "sd": 0.21327207851706695,
-          "positive_share": 0.52
+          "pairs": 26,
+          "mean": 0.0022226361790469505,
+          "sd": 0.21059602176706382,
+          "positive_share": 0.5
         },
         "foreign": {
-          "pairs": 25,
-          "mean": -0.0037018271498195465,
-          "sd": 0.1927574402505951,
-          "positive_share": 0.48
+          "pairs": 26,
+          "mean": -0.0043741517213592655,
+          "sd": 0.18889406044037005,
+          "positive_share": 0.46153846153846156
         }
       },
       "screening": {
@@ -804,156 +833,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 27,
-            "mean_jaccard": 0.5421222810111699,
+            "scenarios": 28,
+            "mean_jaccard": 0.5431689342403627,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.8567894600237967,
-            "changed_scenarios": 26,
-            "mean_removed": 1.5925925925925926,
-            "mean_added": 1.9259259259259258
+            "mean_rank_correlation": 0.8526945058270902,
+            "changed_scenarios": 27,
+            "mean_removed": 1.6071428571428572,
+            "mean_added": 1.8928571428571428
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 27,
-            "mean_jaccard": 0.5398295120517342,
+            "scenarios": 28,
+            "mean_jaccard": 0.5409580498866212,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.8562614361863715,
-            "changed_scenarios": 26,
-            "mean_removed": 1.5925925925925926,
-            "mean_added": 1.6666666666666667
+            "mean_rank_correlation": 0.8547156006424766,
+            "changed_scenarios": 27,
+            "mean_removed": 1.6071428571428572,
+            "mean_added": 1.6428571428571428
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 27,
-            "mean_jaccard": 0.5246913580246914,
+            "scenarios": 28,
+            "mean_jaccard": 0.5314625850340137,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.855906325618208,
-            "changed_scenarios": 26,
-            "mean_removed": 1.6666666666666667,
-            "mean_added": 1.7777777777777777
+            "mean_rank_correlation": 0.853991874351167,
+            "changed_scenarios": 27,
+            "mean_removed": 1.6428571428571428,
+            "mean_added": 1.75
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 797,
-            "mean_jaccard": 0.9273217024158052,
+            "scenarios": 826,
+            "mean_jaccard": 0.9266449517660171,
             "min_jaccard": 0.4444444444444444,
-            "mean_rank_correlation": 0.9990660979037238,
-            "changed_scenarios": 204,
-            "mean_removed": 0.20200752823086573,
-            "mean_added": 0.2547051442910916
+            "mean_rank_correlation": 0.9990628626164502,
+            "changed_scenarios": 220,
+            "mean_removed": 0.21428571428571427,
+            "mean_added": 0.2457627118644068
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 27,
-            "mean_jaccard": 0.38828630217519106,
+            "scenarios": 28,
+            "mean_jaccard": 0.38781179138322,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7482095011535246,
-            "changed_scenarios": 26,
-            "mean_removed": 2.4444444444444446,
-            "mean_added": 2.2962962962962963
+            "mean_rank_correlation": 0.7492386196037903,
+            "changed_scenarios": 27,
+            "mean_removed": 2.4642857142857144,
+            "mean_added": 2.2857142857142856
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 27,
-            "mean_jaccard": 0.2820987654320988,
+            "scenarios": 28,
+            "mean_jaccard": 0.27996031746031746,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.5311739036528638,
-            "changed_scenarios": 27,
-            "mean_removed": 3.074074074074074,
-            "mean_added": 2.925925925925926
+            "mean_rank_correlation": 0.5216591342316511,
+            "changed_scenarios": 28,
+            "mean_removed": 3.107142857142857,
+            "mean_added": 2.9285714285714284
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 27,
-            "mean_jaccard": 0.4077895355673133,
+            "scenarios": 28,
+            "mean_jaccard": 0.4011621315192743,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7102422406838114,
-            "changed_scenarios": 27,
-            "mean_removed": 2.259259259259259,
-            "mean_added": 2.2222222222222223
+            "mean_rank_correlation": 0.7060417797436145,
+            "changed_scenarios": 28,
+            "mean_removed": 2.3214285714285716,
+            "mean_added": 2.25
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.9091710758377425,
+            "scenarios": 28,
+            "mean_jaccard": 0.9064625850340136,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9911477715964566,
-            "changed_scenarios": 9,
-            "mean_removed": 0.3333333333333333,
-            "mean_added": 0.2222222222222222
+            "mean_rank_correlation": 0.9912218199862194,
+            "changed_scenarios": 10,
+            "mean_removed": 0.35714285714285715,
+            "mean_added": 0.21428571428571427
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8633156966490299,
+            "scenarios": 28,
+            "mean_jaccard": 0.8622448979591836,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.988172541222913,
-            "changed_scenarios": 12,
-            "mean_removed": 0.48148148148148145,
-            "mean_added": 0.37037037037037035
+            "mean_rank_correlation": 0.9878950286492719,
+            "changed_scenarios": 13,
+            "mean_removed": 0.5,
+            "mean_added": 0.35714285714285715
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8818342151675486,
+            "scenarios": 28,
+            "mean_jaccard": 0.8801020408163265,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9870997286791583,
-            "changed_scenarios": 10,
-            "mean_removed": 0.4444444444444444,
-            "mean_added": 0.2962962962962963
+            "mean_rank_correlation": 0.9868429224087985,
+            "changed_scenarios": 11,
+            "mean_removed": 0.4642857142857143,
+            "mean_added": 0.2857142857142857
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8306878306878308,
+            "scenarios": 28,
+            "mean_jaccard": 0.8307823129251701,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9833182988425114,
-            "changed_scenarios": 15,
-            "mean_removed": 0.5555555555555556,
-            "mean_added": 0.48148148148148145
+            "mean_rank_correlation": 0.9833241285747922,
+            "changed_scenarios": 16,
+            "mean_removed": 0.5714285714285714,
+            "mean_added": 0.4642857142857143
           },
           {
             "kind": "weights",
             "name": "momentum",
-            "scenarios": 27,
-            "mean_jaccard": 0.7387566137566137,
+            "scenarios": 28,
+            "mean_jaccard": 0.7421343537414965,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9520161758870579,
-            "changed_scenarios": 20,
-            "mean_removed": 0.8148148148148148,
-            "mean_added": 0.8888888888888888
+            "mean_rank_correlation": 0.9503425778057201,
+            "changed_scenarios": 21,
+            "mean_removed": 0.8214285714285714,
+            "mean_added": 0.8571428571428571
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.9091710758377425,
+            "scenarios": 28,
+            "mean_jaccard": 0.9064625850340136,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9901840702816559,
-            "changed_scenarios": 9,
-            "mean_removed": 0.3333333333333333,
-            "mean_added": 0.2222222222222222
+            "mean_rank_correlation": 0.9901252564864883,
+            "changed_scenarios": 10,
+            "mean_removed": 0.35714285714285715,
+            "mean_added": 0.21428571428571427
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8148148148148148,
+            "scenarios": 28,
+            "mean_jaccard": 0.8154761904761905,
             "min_jaccard": 0.3333333333333333,
-            "mean_rank_correlation": 0.9868828417906147,
-            "changed_scenarios": 15,
-            "mean_removed": 0.6666666666666666,
-            "mean_added": 0.5185185185185185
+            "mean_rank_correlation": 0.9869947543042571,
+            "changed_scenarios": 16,
+            "mean_removed": 0.6785714285714286,
+            "mean_added": 0.5
           }
         ],
         "details": [
@@ -56727,6 +56756,2134 @@
               "common_size": 28,
               "rank_correlation": 0.99890264367502
             }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MCH",
+              "SAB",
+              "SSB",
+              "VNM",
+              "VRE"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.2222222222222222,
+            "removed": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "MCH",
+              "SSB",
+              "VRE"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.5926293343582995
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "MWG",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.7142857142857143,
+            "removed": [
+              "SAB"
+            ],
+            "added": [
+              "MWG"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8023016901410575
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VIC"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.2222222222222222,
+            "removed": [
+              "MSN",
+              "SAB",
+              "VNM",
+              "VPB"
+            ],
+            "added": [
+              "HPG",
+              "TCB",
+              "VIC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.2647603598589075
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSB",
+              "SSI",
+              "VNM"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "FPT",
+              "VPB"
+            ],
+            "added": [
+              "SSB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8129780409573156
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "MSN",
+              "SAB",
+              "SSB",
+              "VNM"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.375,
+            "removed": [
+              "FPT",
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "BID",
+              "SSB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7770248177609649
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "HDB",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "FPT",
+              "SAB"
+            ],
+            "added": [
+              "HDB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7421307425160136
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9051554296096018
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SAB"
+            ],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9900163921726002,
+            "weights": {
+              "momentum": 0.25925925925925924,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9885372840169635,
+            "weights": {
+              "momentum": 0.3939393939393939,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9834815313463756,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.25925925925925924,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SAB"
+            ],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9799091531090851,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.3939393939393939,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SAB"
+            ],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9804021891609638,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.25925925925925924
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9932211265098122,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.3939393939393939
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9986283046454585,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9986283046454585
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SAB"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9982172619012925,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "SAB"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9982172619012925
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991775282362884,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991775282362884
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9989033678498879,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989033678498879
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990403446579161,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990403446579161
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987661091307924,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987661091307924
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987664848937333,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987664848937333
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991773307995395,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991773307995395
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9976670577085821,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "FPT"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9976670577085821
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9989026059794419,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989026059794419
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993145050726624,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "FPT"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993145050726624
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "MSN"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9979429037053751,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9979429037053751
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987659493314532,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "FPT"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987659493314532
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SAB"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9999999999999998,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9999999999999998
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995887312184683,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995887312184683
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SAB"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998629292022896,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "SAB"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998629292022896
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SSI"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999040448043088,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999040448043088
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "SAB"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9986292074634876,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "SAB"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9986292074634876
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999314871353886,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "FPT"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999314871353886
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9983540592142867,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983540592142867
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990401941908655,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990401941908655
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990406077110501,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "FPT"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990406077110501
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987658082740917,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987658082740917
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997259898564809,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "FPT"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997259898564809
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998629292022896,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998629292022896
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "VNM"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991774060871951,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991774060871951
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "VPB"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9979423393310982,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9979423393310982
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [
+              "FPT"
+            ],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991775282362884,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [
+                "FPT"
+              ],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991775282362884
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 6,
+            "other_size": 6,
+            "overlap": 6,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994516886226886,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "FPT",
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 6,
+              "other_size": 6,
+              "overlap": 6,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994516886226886
+            }
           }
         ],
         "excluded_sessions": [],
@@ -57445,50 +59602,78 @@
           "top_minus_bottom_pp": -0.5902142214214567,
           "ic_close": -0.39678659225631235,
           "top_minus_bottom_close_pp": -1.028
+        },
+        {
+          "date": "2026-11-25",
+          "next_date": "2026-11-26",
+          "ranked": 29,
+          "evaluated": 29,
+          "missing_future": [],
+          "top_symbols": [
+            "ACB",
+            "SAB",
+            "TCB",
+            "VJC",
+            "VNM"
+          ],
+          "bottom_symbols": [
+            "BID",
+            "BSR",
+            "LPB",
+            "MCH",
+            "VIB"
+          ],
+          "config_id": "bef35351d04f",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": 0.025628391481282993,
+          "top_minus_bottom_pp": 0.4474687659559984,
+          "ic_close": -0.03573629326146632,
+          "top_minus_bottom_close_pp": 0.2180000000000002
         }
       ],
       "ic": {
-        "pairs": 25,
-        "mean": 0.02127105424582234,
-        "sd": 0.22558657467981522,
-        "positive_share": 0.52
+        "pairs": 26,
+        "mean": 0.021438644139493906,
+        "sd": 0.22103045223322726,
+        "positive_share": 0.5384615384615384
       },
       "top_minus_bottom_pp": {
-        "pairs": 25,
-        "mean": 0.08224288055758233,
-        "sd": 0.7759095458441885,
-        "positive_share": 0.56
+        "pairs": 26,
+        "mean": 0.09629002999598295,
+        "sd": 0.7635997518267101,
+        "positive_share": 0.5769230769230769
       },
       "ic_close": {
-        "pairs": 25,
-        "mean": -0.03461967864022934,
-        "sd": 0.23250843635383128,
-        "positive_share": 0.4
+        "pairs": 26,
+        "mean": -0.03466262535643076,
+        "sd": 0.2278109172353395,
+        "positive_share": 0.38461538461538464
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 25,
-        "mean": -0.046554285714285736,
-        "sd": 0.7253194805089302,
-        "positive_share": 0.56
+        "pairs": 26,
+        "mean": -0.03637912087912089,
+        "sd": 0.7125564527239276,
+        "positive_share": 0.5769230769230769
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 25,
-          "mean": 0.012407414704610266,
-          "sd": 0.21072262218523596,
-          "positive_share": 0.52
+          "pairs": 26,
+          "mean": 0.015852146575577323,
+          "sd": 0.20721096298176672,
+          "positive_share": 0.5384615384615384
         },
         "liquidity": {
-          "pairs": 25,
-          "mean": 0.007355876601578287,
-          "sd": 0.21327207851706695,
-          "positive_share": 0.52
+          "pairs": 26,
+          "mean": 0.0022226361790469505,
+          "sd": 0.21059602176706382,
+          "positive_share": 0.5
         },
         "foreign": {
-          "pairs": 25,
-          "mean": -0.0037018271498195465,
-          "sd": 0.1927574402505951,
-          "positive_share": 0.48
+          "pairs": 26,
+          "mean": -0.0043741517213592655,
+          "sd": 0.18889406044037005,
+          "positive_share": 0.46153846153846156
         }
       },
       "screening": {
@@ -57499,156 +59684,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 27,
-            "mean_jaccard": 0.6297766019988242,
+            "scenarios": 28,
+            "mean_jaccard": 0.6310941043083901,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.9361986060413031,
-            "changed_scenarios": 25,
-            "mean_removed": 1.2592592592592593,
-            "mean_added": 1.2962962962962963
+            "mean_rank_correlation": 0.9359073312206749,
+            "changed_scenarios": 26,
+            "mean_removed": 1.25,
+            "mean_added": 1.2857142857142858
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 27,
-            "mean_jaccard": 0.6601263962375074,
+            "scenarios": 28,
+            "mean_jaccard": 0.6518565759637188,
             "min_jaccard": 0.2222222222222222,
-            "mean_rank_correlation": 0.9284143695137957,
-            "changed_scenarios": 23,
-            "mean_removed": 1.2222222222222223,
-            "mean_added": 1.1111111111111112
+            "mean_rank_correlation": 0.9282674398849488,
+            "changed_scenarios": 24,
+            "mean_removed": 1.25,
+            "mean_added": 1.1428571428571428
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 27,
-            "mean_jaccard": 0.3941798941798942,
+            "scenarios": 28,
+            "mean_jaccard": 0.4005102040816326,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.6965365905488494,
-            "changed_scenarios": 27,
-            "mean_removed": 2.3703703703703702,
-            "mean_added": 2.4074074074074074
+            "mean_rank_correlation": 0.6900825544134411,
+            "changed_scenarios": 28,
+            "mean_removed": 2.3214285714285716,
+            "mean_added": 2.392857142857143
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 797,
-            "mean_jaccard": 0.9209535759096612,
+            "scenarios": 826,
+            "mean_jaccard": 0.9217110573042776,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9990347543716013,
-            "changed_scenarios": 254,
-            "mean_removed": 0.24717691342534504,
-            "mean_added": 0.24090338770388958
+            "mean_rank_correlation": 0.9990429348177541,
+            "changed_scenarios": 259,
+            "mean_removed": 0.24455205811138014,
+            "mean_added": 0.23849878934624696
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 27,
-            "mean_jaccard": 0.35658436213991773,
+            "scenarios": 28,
+            "mean_jaccard": 0.35915532879818596,
             "min_jaccard": 0.1,
-            "mean_rank_correlation": 0.672725130882999,
-            "changed_scenarios": 27,
-            "mean_removed": 2.6296296296296298,
-            "mean_added": 2.4074074074074074
+            "mean_rank_correlation": 0.6718134002246006,
+            "changed_scenarios": 28,
+            "mean_removed": 2.607142857142857,
+            "mean_added": 2.392857142857143
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 27,
-            "mean_jaccard": 0.2605820105820106,
+            "scenarios": 28,
+            "mean_jaccard": 0.2552437641723356,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.38227092755840947,
-            "changed_scenarios": 27,
-            "mean_removed": 3.2222222222222223,
-            "mean_added": 3.0
+            "mean_rank_correlation": 0.3689000598311484,
+            "changed_scenarios": 28,
+            "mean_removed": 3.25,
+            "mean_added": 3.0357142857142856
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 27,
-            "mean_jaccard": 0.5241181657848324,
+            "scenarios": 28,
+            "mean_jaccard": 0.5143282312925169,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.8681823571166919,
-            "changed_scenarios": 27,
-            "mean_removed": 1.7407407407407407,
-            "mean_added": 1.6296296296296295
+            "mean_rank_correlation": 0.8680622158620822,
+            "changed_scenarios": 28,
+            "mean_removed": 1.7857142857142858,
+            "mean_added": 1.6785714285714286
           },
           {
             "kind": "weights",
             "name": "balanced",
-            "scenarios": 27,
-            "mean_jaccard": 0.7387566137566137,
+            "scenarios": 28,
+            "mean_jaccard": 0.7421343537414965,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9520161758870579,
-            "changed_scenarios": 20,
-            "mean_removed": 0.8888888888888888,
-            "mean_added": 0.8148148148148148
+            "mean_rank_correlation": 0.9503425778057201,
+            "changed_scenarios": 21,
+            "mean_removed": 0.8571428571428571,
+            "mean_added": 0.8214285714285714
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8791887125220461,
+            "scenarios": 28,
+            "mean_jaccard": 0.8835034013605444,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9897825358649489,
+            "mean_rank_correlation": 0.9897293549996254,
             "changed_scenarios": 12,
-            "mean_removed": 0.48148148148148145,
-            "mean_added": 0.25925925925925924
+            "mean_removed": 0.4642857142857143,
+            "mean_added": 0.25
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8395061728395062,
+            "scenarios": 28,
+            "mean_jaccard": 0.8452380952380952,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9878317487272662,
+            "mean_rank_correlation": 0.9878305786365396,
             "changed_scenarios": 15,
-            "mean_removed": 0.5925925925925926,
-            "mean_added": 0.4074074074074074
+            "mean_removed": 0.5714285714285714,
+            "mean_added": 0.39285714285714285
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8668430335097002,
+            "scenarios": 28,
+            "mean_jaccard": 0.8715986394557823,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9858838625684029,
+            "mean_rank_correlation": 0.9858068617820087,
             "changed_scenarios": 13,
-            "mean_removed": 0.5185185185185185,
-            "mean_added": 0.2962962962962963
+            "mean_removed": 0.5,
+            "mean_added": 0.2857142857142857
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8015873015873017,
+            "scenarios": 28,
+            "mean_jaccard": 0.7967687074829933,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9840205541400827,
-            "changed_scenarios": 17,
-            "mean_removed": 0.7037037037037037,
-            "mean_added": 0.5555555555555556
+            "mean_rank_correlation": 0.984067466862352,
+            "changed_scenarios": 18,
+            "mean_removed": 0.7142857142857143,
+            "mean_added": 0.5714285714285714
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.879188712522046,
+            "scenarios": 28,
+            "mean_jaccard": 0.8835034013605443,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9939469547074281,
+            "mean_rank_correlation": 0.9939650956913437,
             "changed_scenarios": 12,
-            "mean_removed": 0.48148148148148145,
-            "mean_added": 0.25925925925925924
+            "mean_removed": 0.4642857142857143,
+            "mean_added": 0.25
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 27,
-            "mean_jaccard": 0.8888888888888888,
+            "scenarios": 28,
+            "mean_jaccard": 0.8928571428571429,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9926164681041375,
+            "mean_rank_correlation": 0.9924003995388208,
             "changed_scenarios": 13,
-            "mean_removed": 0.4074074074074074,
-            "mean_added": 0.25925925925925924
+            "mean_removed": 0.39285714285714285,
+            "mean_added": 0.25
           }
         ],
         "details": [
@@ -113671,6 +115856,2004 @@
               "added": [],
               "common_size": 28,
               "rank_correlation": 0.9995891067601194
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MCH",
+              "SAB",
+              "SSB",
+              "VNM",
+              "VRE"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "MSN",
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "MCH",
+              "SSB",
+              "VRE"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8648184019876181
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "MWG",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "SAB"
+            ],
+            "added": [
+              "FPT",
+              "MWG"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.5158235787574181
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "SSI",
+              "TCB",
+              "VIC"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 1,
+            "jaccard": 0.1111111111111111,
+            "removed": [
+              "MSN",
+              "SAB",
+              "VNM",
+              "VPB"
+            ],
+            "added": [
+              "FPT",
+              "HPG",
+              "TCB",
+              "VIC"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.007886631195099386
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MCH",
+              "MSN",
+              "SAB",
+              "SSB",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "MCH",
+              "SSB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9243003399060779
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "BID",
+              "MSN",
+              "SAB",
+              "SSB",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "SSI",
+              "VPB"
+            ],
+            "added": [
+              "BID",
+              "SSB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.6471966724478441
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "HDB",
+              "MSN",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SAB"
+            ],
+            "added": [
+              "HDB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9280429110637143
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "balanced",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "FPT",
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 5,
+            "jaccard": 0.8333333333333334,
+            "removed": [],
+            "added": [
+              "FPT"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9051554296096018
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9865665482752715,
+            "weights": {
+              "momentum": 0.4444444444444445,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9944549022570645,
+            "weights": {
+              "momentum": 0.5454545454545454,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSB",
+              "SSI",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VPB"
+            ],
+            "added": [
+              "SSB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9853341103636224,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.16666666666666666,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9837278405493652,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.3181818181818181,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9877989861869211,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.16666666666666666
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.988293471635893,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.3181818181818181
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993148807892571,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993148807892571
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991778944673055,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991778944673055
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999451904631406,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999451904631406
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994522423647684,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522423647684
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.998492737736366,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.998492737736366
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991777536610894,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991777536610894
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991779789623545,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991779789623545
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993148713538857,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993148713538857
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984927377363662,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984927377363662
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993150684931509,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993150684931509
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630043147213,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630043147213
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "SAB",
+              "SSB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "MSN"
+            ],
+            "added": [
+              "SSB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9989043440184411,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "SAB",
+                "SSB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "SAB",
+                "SSB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989043440184411
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9976716360661353,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9976716360661353
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SSB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SAB"
+            ],
+            "added": [
+              "SSB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9998630043147213,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SSB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SSB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630043147213
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630043147213,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630043147213
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995888815257146,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995888815257146
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSB",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "SSI"
+            ],
+            "added": [
+              "SSB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9991779789623543,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSB",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSB",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991779789623543
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995889941737743,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995889941737743
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999451942161893,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999451942161893
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990405231348904,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990405231348904
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999451942161893,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999451942161893
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993149840328276,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993149840328276
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997259523157029,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997259523157029
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995888439489053,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995888439489053
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995889941737746,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995889941737746
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSB",
+              "SSI",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VNM"
+            ],
+            "added": [
+              "SSB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9993148807892573,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSB",
+                "SSI",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSB",
+                "SSI",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993148807892573
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSB",
+              "SSI",
+              "VNM"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "VPB"
+            ],
+            "added": [
+              "SSB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9983569238905539,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSB",
+                "SSI",
+                "VNM"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSB",
+                "SSI",
+                "VNM"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983569238905539
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991779789623545,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991779789623545
+            }
+          },
+          {
+            "date": "2026-11-26",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "other_top": [
+              "MSN",
+              "SAB",
+              "SSI",
+              "VNM",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630418400754,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "other_top": [
+                "MSN",
+                "SAB",
+                "SSI",
+                "VNM",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630418400754
             }
           }
         ],
