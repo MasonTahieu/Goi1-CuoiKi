@@ -1,0 +1,507 @@
+{
+  "schema_version": "ssi-v3-stream-window-1",
+  "window": "sang",
+  "trading_date": "2026-11-27",
+  "run": "ssi-stream-6f232d0bfdc7470381652c50d3e350c6",
+  "stop_reason": "duration_limit",
+  "counters": {
+    "received": 199070,
+    "decoded": 199070,
+    "merged": 177730,
+    "duplicate": 21473,
+    "rejected": 0,
+    "decode_errors": 0,
+    "reconnects": 13
+  },
+  "acks": {
+    "ok": 1,
+    "error": 0
+  },
+  "reconciliation": null,
+  "finished_at": "2026-11-27T11:35:01.205445+07:00",
+  "lag_seconds": {
+    "QUOTE": {
+      "count": 143108,
+      "p50": 0.77,
+      "p99": 55.5,
+      "min": 0.16,
+      "max": 60.83
+    },
+    "TRADE": {
+      "count": 51949,
+      "p50": 0.21,
+      "p99": 8.73,
+      "min": 0.15,
+      "max": 11.6
+    },
+    "ROOM": {
+      "count": 3996,
+      "p50": 13.54,
+      "p99": 23.28,
+      "min": 0.3,
+      "max": 24.02
+    }
+  },
+  "gap_seconds": {
+    "QUOTE": {
+      "count": 143078,
+      "p50": 0.64,
+      "p99": 18.16,
+      "min": 0.0,
+      "max": 171.2
+    },
+    "TRADE": {
+      "count": 51919,
+      "p50": 0.02,
+      "p99": 56.49,
+      "min": 0.0,
+      "max": 746.3
+    },
+    "ROOM": {
+      "count": 3967,
+      "p50": 60.02,
+      "p99": 61.06,
+      "min": 59.62,
+      "max": 120.22
+    }
+  },
+  "session_flags": [
+    {
+      "at": "2026-11-27T09:00:00.449005+07:00",
+      "flag": "ATO"
+    },
+    {
+      "at": "2026-11-27T09:15:00.293317+07:00",
+      "flag": "LO"
+    },
+    {
+      "at": "2026-11-27T11:30:00.312761+07:00",
+      "flag": "BREAK"
+    },
+    {
+      "at": "2026-11-27T11:30:00.491578+07:00",
+      "flag": "BREAK"
+    },
+    {
+      "at": "2026-11-27T11:30:01.151248+07:00",
+      "flag": "BREAK"
+    }
+  ],
+  "connections": [
+    {
+      "at": "2026-11-27T08:55:01.907546+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T08:55:03.707430+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T08:57:04.442237+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T08:57:05.715109+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T08:57:06.958091+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T08:59:07.695041+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T08:59:09.965541+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T08:59:11.217847+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T09:09:01.264598+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T09:09:02.587091+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T09:09:04.763529+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T09:23:02.089572+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T09:23:04.009868+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T09:23:05.178923+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T09:37:02.067437+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T09:37:03.978978+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T09:37:05.164969+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T09:51:02.056210+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T09:51:03.461194+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T09:51:05.005200+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T10:05:03.115458+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T10:05:04.435967+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T10:05:06.327616+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T10:19:04.052640+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T10:19:06.718348+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T10:19:07.890535+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T10:33:04.106841+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T10:33:06.175387+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T10:33:07.296607+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T10:47:04.108067+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T10:47:06.005323+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T10:47:07.197943+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T11:01:04.159892+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T11:01:06.483606+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T11:01:07.652167+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T11:15:04.097053+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T11:15:06.078082+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T11:15:08.112097+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T11:29:05.245573+07:00",
+      "state": "disconnected"
+    },
+    {
+      "at": "2026-11-27T11:29:07.375225+07:00",
+      "state": "connecting"
+    },
+    {
+      "at": "2026-11-27T11:29:08.475352+07:00",
+      "state": "connected"
+    },
+    {
+      "at": "2026-11-27T11:35:00.907786+07:00",
+      "state": "stopped"
+    }
+  ],
+  "evaluation": {
+    "first_received_at": "2026-11-27T08:55:01.907546+07:00",
+    "last_received_at": "2026-11-27T11:35:00.907786+07:00",
+    "checkpoints": [
+      {
+        "as_of": "2026-11-27T09:10:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 0,
+            "ranked": 0,
+            "reasons": {
+              "MISSING_FIELDS": 30,
+              "SESSION_NOT_LO": 30
+            },
+            "spearman_vs_previous": null,
+            "top5_overlap_vs_previous": null,
+            "spearman_momentum_weights": null,
+            "spearman_foreign_volume": null
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T09:25:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 29,
+            "ranked": 29,
+            "reasons": {
+              "MISSING_FIELDS": 1
+            },
+            "spearman_vs_previous": null,
+            "top5_overlap_vs_previous": null,
+            "spearman_momentum_weights": 0.9584822051301779,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T09:40:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 29,
+            "ranked": 29,
+            "reasons": {
+              "MISSING_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.7256931663232377,
+            "top5_overlap_vs_previous": 0.8,
+            "spearman_momentum_weights": 0.9223564210007396,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T09:55:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 28,
+            "ranked": 28,
+            "reasons": {
+              "MISSING_FIELDS": 1,
+              "STALE_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.7350041084634347,
+            "top5_overlap_vs_previous": 0.6,
+            "spearman_momentum_weights": 0.9426342083946496,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T10:10:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 29,
+            "ranked": 29,
+            "reasons": {
+              "MISSING_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.7493154716839385,
+            "top5_overlap_vs_previous": 0.6,
+            "spearman_momentum_weights": 0.9551558530044048,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T10:25:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 28,
+            "ranked": 28,
+            "reasons": {
+              "MISSING_FIELDS": 1,
+              "STALE_FIELDS": 2
+            },
+            "spearman_vs_previous": 0.8266940529204826,
+            "top5_overlap_vs_previous": 0.4,
+            "spearman_momentum_weights": 0.9553730411213858,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T10:40:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 26,
+            "ranked": 26,
+            "reasons": {
+              "MISSING_FIELDS": 2,
+              "STALE_FIELDS": 3
+            },
+            "spearman_vs_previous": 0.8573384011816125,
+            "top5_overlap_vs_previous": 0.6,
+            "spearman_momentum_weights": 0.9503764544832307,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T10:55:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 29,
+            "ranked": 29,
+            "reasons": {
+              "MISSING_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.8597091657044095,
+            "top5_overlap_vs_previous": 0.8,
+            "spearman_momentum_weights": 0.9217691335197934,
+            "spearman_foreign_volume": 1.0
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T11:10:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 27,
+            "ranked": 27,
+            "reasons": {
+              "MISSING_FIELDS": 2,
+              "STALE_FIELDS": 1
+            },
+            "spearman_vs_previous": 0.8072988336593794,
+            "top5_overlap_vs_previous": 1.0,
+            "spearman_momentum_weights": 0.9459541984732824,
+            "spearman_foreign_volume": 0.9999999999999999
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T11:25:01.907546+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 26,
+            "ranked": 26,
+            "reasons": {
+              "MISSING_FIELDS": 1,
+              "STALE_FIELDS": 3
+            },
+            "spearman_vs_previous": 0.8434188034188034,
+            "top5_overlap_vs_previous": 0.8,
+            "spearman_momentum_weights": 0.9391245419251083,
+            "spearman_foreign_volume": 0.9999999999999999
+          }
+        }
+      },
+      {
+        "as_of": "2026-11-27T11:35:00.907786+07:00",
+        "groups": {
+          "VN30": {
+            "members": 30,
+            "data_usable": 0,
+            "ranked": 0,
+            "reasons": {
+              "CONNECTION_NOT_ACTIVE": 30,
+              "STALE_FIELDS": 29,
+              "SESSION_NOT_LO": 30,
+              "MISSING_FIELDS": 4
+            },
+            "spearman_vs_previous": null,
+            "top5_overlap_vs_previous": null,
+            "spearman_momentum_weights": null,
+            "spearman_foreign_volume": null
+          }
+        }
+      }
+    ],
+    "update_intervals": {
+      "trade": {
+        "gaps": 24868,
+        "p50": 4.296,
+        "p90": 20.574099999999994,
+        "p95": 33.10649999999993,
+        "p99": 70.34884999999991,
+        "share_within": {
+          "30": 0.9417323467910568,
+          "60": 0.9858452629885797,
+          "120": 0.9971449252050828,
+          "300": 0.9997989383947241,
+          "600": 1.0
+        }
+      },
+      "quote": {
+        "gaps": 76127,
+        "p50": 2.0,
+        "p90": 7.0,
+        "p95": 10.0,
+        "p99": 23.0,
+        "share_within": {
+          "30": 0.9945354473445689,
+          "60": 0.9992381152547717,
+          "120": 0.9999080483928172,
+          "300": 1.0,
+          "600": 1.0
+        }
+      },
+      "foreign": {
+        "gaps": 3539,
+        "p50": 60.0,
+        "p90": 60.0,
+        "p95": 60.0,
+        "p99": 60.0,
+        "share_within": {
+          "30": 0.0,
+          "60": 1.0,
+          "120": 1.0,
+          "300": 1.0,
+          "600": 1.0
+        }
+      }
+    },
+    "exploratory_ranking": true
+  }
+}
