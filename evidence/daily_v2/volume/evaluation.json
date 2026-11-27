@@ -3,10 +3,10 @@
   "ranking_method": "daily-v2",
   "foreign": "volume",
   "group": "VN30",
-  "sessions": 28,
+  "sessions": 29,
   "date_from": "2026-10-19",
-  "date_to": "2026-11-26",
-  "pairs": 26,
+  "date_to": "2026-11-27",
+  "pairs": 27,
   "skipped_pairs": [
     {
       "date": "2026-11-23",
@@ -27,8 +27,12 @@
   },
   "adjustment": {
     "tolerance_pp": 0.3,
-    "compared": 810,
+    "compared": 840,
     "flagged": [
+      {
+        "symbol": "FPT",
+        "tradingDate": "2026-11-06"
+      },
       {
         "symbol": "GVR",
         "tradingDate": "2026-10-21"
@@ -779,50 +783,80 @@
           "top_minus_bottom_pp": -0.033515938570711334,
           "ic_close": -0.15261345397428094,
           "top_minus_bottom_close_pp": -0.32866666666666666
+        },
+        {
+          "date": "2026-11-26",
+          "next_date": "2026-11-27",
+          "ranked": 29,
+          "evaluated": 29,
+          "missing_future": [],
+          "top_symbols": [
+            "FPT",
+            "MSN",
+            "SAB",
+            "SSI",
+            "VNM",
+            "VPB"
+          ],
+          "bottom_symbols": [
+            "LPB",
+            "TCX",
+            "VHM",
+            "VIB",
+            "VIC",
+            "VPL"
+          ],
+          "config_id": "4a03fe6740bc",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": -0.2219755978767925,
+          "top_minus_bottom_pp": -0.5051034701878545,
+          "ic_close": -0.27516034384235205,
+          "top_minus_bottom_close_pp": -0.8283333333333333
         }
       ],
       "ic": {
-        "pairs": 26,
-        "mean": 0.012313916141404407,
-        "sd": 0.2261442974237581,
-        "positive_share": 0.5
+        "pairs": 27,
+        "mean": 0.00363652673332304,
+        "sd": 0.22629028638043708,
+        "positive_share": 0.48148148148148145
       },
       "top_minus_bottom_pp": {
-        "pairs": 26,
-        "mean": -0.06346399512676716,
-        "sd": 0.8152007790962973,
-        "positive_share": 0.38461538461538464
+        "pairs": 27,
+        "mean": -0.07982101272162226,
+        "sd": 0.8038759298942826,
+        "positive_share": 0.37037037037037035
       },
       "ic_close": {
-        "pairs": 26,
-        "mean": -0.04597317113510401,
-        "sd": 0.24196741083737922,
-        "positive_share": 0.38461538461538464
+        "pairs": 27,
+        "mean": -0.05446158493907616,
+        "sd": 0.24133339708447596,
+        "positive_share": 0.37037037037037035
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 26,
-        "mean": -0.16320512820512817,
-        "sd": 0.7891904379491856,
-        "positive_share": 0.38461538461538464
+        "pairs": 27,
+        "mean": -0.18783950617283945,
+        "sd": 0.7843799411346822,
+        "positive_share": 0.37037037037037035
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 26,
-          "mean": 0.015852146575577323,
-          "sd": 0.20721096298176672,
-          "positive_share": 0.5384615384615384
+          "pairs": 27,
+          "mean": 0.0011000501287072265,
+          "sd": 0.21716546978136309,
+          "positive_share": 0.5185185185185185
         },
         "liquidity": {
-          "pairs": 26,
-          "mean": 0.0022226361790469505,
-          "sd": 0.21059602176706382,
-          "positive_share": 0.5
+          "pairs": 27,
+          "mean": 0.004239507930497878,
+          "sd": 0.20677214189959708,
+          "positive_share": 0.5185185185185185
         },
         "foreign": {
-          "pairs": 26,
-          "mean": -0.0043741517213592655,
-          "sd": 0.18889406044037005,
-          "positive_share": 0.46153846153846156
+          "pairs": 27,
+          "mean": -0.006420860752502113,
+          "sd": 0.18553092654053077,
+          "positive_share": 0.4444444444444444
         }
       },
       "screening": {
@@ -833,156 +867,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 28,
-            "mean_jaccard": 0.5431689342403627,
+            "scenarios": 29,
+            "mean_jaccard": 0.5441434044882321,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.8526945058270902,
-            "changed_scenarios": 27,
-            "mean_removed": 1.6071428571428572,
-            "mean_added": 1.8928571428571428
+            "mean_rank_correlation": 0.8540764084762,
+            "changed_scenarios": 28,
+            "mean_removed": 1.5862068965517242,
+            "mean_added": 1.896551724137931
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 28,
-            "mean_jaccard": 0.5409580498866212,
+            "scenarios": 29,
+            "mean_jaccard": 0.5370826491516146,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.8547156006424766,
-            "changed_scenarios": 27,
-            "mean_removed": 1.6071428571428572,
-            "mean_added": 1.6428571428571428
+            "mean_rank_correlation": 0.8549080294337389,
+            "changed_scenarios": 28,
+            "mean_removed": 1.6206896551724137,
+            "mean_added": 1.6551724137931034
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 28,
-            "mean_jaccard": 0.5314625850340137,
+            "scenarios": 29,
+            "mean_jaccard": 0.5328407224958949,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.853991874351167,
-            "changed_scenarios": 27,
-            "mean_removed": 1.6428571428571428,
-            "mean_added": 1.75
+            "mean_rank_correlation": 0.8551129909619235,
+            "changed_scenarios": 28,
+            "mean_removed": 1.6206896551724137,
+            "mean_added": 1.7586206896551724
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 826,
-            "mean_jaccard": 0.9266449517660171,
+            "scenarios": 855,
+            "mean_jaccard": 0.9270723104056436,
             "min_jaccard": 0.4444444444444444,
-            "mean_rank_correlation": 0.9990628626164502,
-            "changed_scenarios": 220,
-            "mean_removed": 0.21428571428571427,
-            "mean_added": 0.2457627118644068
+            "mean_rank_correlation": 0.9990666133019505,
+            "changed_scenarios": 225,
+            "mean_removed": 0.2128654970760234,
+            "mean_added": 0.24444444444444444
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 28,
-            "mean_jaccard": 0.38781179138322,
+            "scenarios": 29,
+            "mean_jaccard": 0.3782703886152162,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7492386196037903,
-            "changed_scenarios": 27,
-            "mean_removed": 2.4642857142857144,
-            "mean_added": 2.2857142857142856
+            "mean_rank_correlation": 0.7470568661318141,
+            "changed_scenarios": 28,
+            "mean_removed": 2.5172413793103448,
+            "mean_added": 2.3448275862068964
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 28,
-            "mean_jaccard": 0.27996031746031746,
+            "scenarios": 29,
+            "mean_jaccard": 0.2789272030651341,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.5216591342316511,
-            "changed_scenarios": 28,
-            "mean_removed": 3.107142857142857,
-            "mean_added": 2.9285714285714284
+            "mean_rank_correlation": 0.5237224629194975,
+            "changed_scenarios": 29,
+            "mean_removed": 3.103448275862069,
+            "mean_added": 2.9310344827586206
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 28,
-            "mean_jaccard": 0.4011621315192743,
+            "scenarios": 29,
+            "mean_jaccard": 0.40210727969348653,
             "min_jaccard": 0.1111111111111111,
-            "mean_rank_correlation": 0.7060417797436145,
-            "changed_scenarios": 28,
-            "mean_removed": 2.3214285714285716,
-            "mean_added": 2.25
+            "mean_rank_correlation": 0.7075883953805754,
+            "changed_scenarios": 29,
+            "mean_removed": 2.310344827586207,
+            "mean_added": 2.2413793103448274
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.9064625850340136,
+            "scenarios": 29,
+            "mean_jaccard": 0.909688013136289,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9912218199862194,
+            "mean_rank_correlation": 0.9911719163607718,
             "changed_scenarios": 10,
-            "mean_removed": 0.35714285714285715,
-            "mean_added": 0.21428571428571427
+            "mean_removed": 0.3448275862068966,
+            "mean_added": 0.20689655172413793
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8622448979591836,
+            "scenarios": 29,
+            "mean_jaccard": 0.8669950738916254,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9878950286492719,
+            "mean_rank_correlation": 0.9878748776669191,
             "changed_scenarios": 13,
-            "mean_removed": 0.5,
-            "mean_added": 0.35714285714285715
+            "mean_removed": 0.4827586206896552,
+            "mean_added": 0.3448275862068966
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8801020408163265,
+            "scenarios": 29,
+            "mean_jaccard": 0.8727422003284072,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9868429224087985,
-            "changed_scenarios": 11,
-            "mean_removed": 0.4642857142857143,
-            "mean_added": 0.2857142857142857
+            "mean_rank_correlation": 0.9869780009713612,
+            "changed_scenarios": 12,
+            "mean_removed": 0.4827586206896552,
+            "mean_added": 0.3103448275862069
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8307823129251701,
+            "scenarios": 29,
+            "mean_jaccard": 0.8251231527093597,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9833241285747922,
-            "changed_scenarios": 16,
-            "mean_removed": 0.5714285714285714,
-            "mean_added": 0.4642857142857143
+            "mean_rank_correlation": 0.983461594836387,
+            "changed_scenarios": 17,
+            "mean_removed": 0.5862068965517241,
+            "mean_added": 0.4827586206896552
           },
           {
             "kind": "weights",
             "name": "momentum",
-            "scenarios": 28,
-            "mean_jaccard": 0.7421343537414965,
+            "scenarios": 29,
+            "mean_jaccard": 0.7395320197044334,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9503425778057201,
-            "changed_scenarios": 21,
-            "mean_removed": 0.8214285714285714,
-            "mean_added": 0.8571428571428571
+            "mean_rank_correlation": 0.9507880005217271,
+            "changed_scenarios": 22,
+            "mean_removed": 0.8275862068965517,
+            "mean_added": 0.8620689655172413
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.9064625850340136,
+            "scenarios": 29,
+            "mean_jaccard": 0.8981937602627258,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9901252564864883,
-            "changed_scenarios": 10,
-            "mean_removed": 0.35714285714285715,
-            "mean_added": 0.21428571428571427
+            "mean_rank_correlation": 0.9902661011347198,
+            "changed_scenarios": 11,
+            "mean_removed": 0.3793103448275862,
+            "mean_added": 0.2413793103448276
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8154761904761905,
+            "scenarios": 29,
+            "mean_jaccard": 0.82183908045977,
             "min_jaccard": 0.3333333333333333,
-            "mean_rank_correlation": 0.9869947543042571,
+            "mean_rank_correlation": 0.986929050645713,
             "changed_scenarios": 16,
-            "mean_removed": 0.6785714285714286,
-            "mean_added": 0.5
+            "mean_removed": 0.6551724137931034,
+            "mean_added": 0.4827586206896552
           }
         ],
         "details": [
@@ -58884,6 +58918,2028 @@
               "common_size": 28,
               "rank_correlation": 0.9994516886226886
             }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "GAS",
+              "LPB",
+              "MBB",
+              "VRE"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "FPT",
+              "HPG"
+            ],
+            "added": [
+              "LPB",
+              "VRE"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7508936332154796
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "HPG",
+              "MBB",
+              "SHB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "SHB",
+              "VPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8865042560631088
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "SSI",
+              "VIC",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "BSR",
+              "GAS",
+              "MBB"
+            ],
+            "added": [
+              "SSI",
+              "VIC",
+              "VPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.5814956661792
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "GAS",
+              "LPB",
+              "MBB",
+              "SSB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 3,
+            "jaccard": 0.42857142857142855,
+            "removed": [
+              "FPT",
+              "HPG"
+            ],
+            "added": [
+              "LPB",
+              "SSB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8602960355890829
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "LPB",
+              "SAB",
+              "SSB",
+              "TCX"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 1,
+            "jaccard": 0.1111111111111111,
+            "removed": [
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "added": [
+              "LPB",
+              "SAB",
+              "SSB",
+              "TCX"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.68596776891648
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "HPG",
+              "MBB",
+              "TCB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "TCB",
+              "VPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8927696826512789
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "HPG"
+            ],
+            "added": [
+              "LPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9632598365699201
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9850893482064801,
+            "weights": {
+              "momentum": 0.25925925925925924,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "HPG"
+            ],
+            "added": [
+              "LPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9942097512851997,
+            "weights": {
+              "momentum": 0.3939393939393939,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "HPG"
+            ],
+            "added": [
+              "LPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9873106501610397,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.25925925925925924,
+              "foreign": 0.3703703703703704
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "HPG",
+              "MBB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "VPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9907602007231199,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.3939393939393939,
+              "foreign": 0.303030303030303
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9873106501610401,
+            "weights": {
+              "momentum": 0.3703703703703704,
+              "liquidity": 0.3703703703703704,
+              "foreign": 0.25925925925925924
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9897746148482403,
+            "weights": {
+              "momentum": 0.303030303030303,
+              "liquidity": 0.303030303030303,
+              "foreign": 0.3939393939393939
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997261024376884,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997261024376884
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991782041401853,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991782041401853
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "FPT",
+              "GAS",
+              "HPG",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "BSR"
+            ],
+            "added": [
+              "LPB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9989044097507531,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "GAS",
+                "HPG",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "FPT",
+                "GAS",
+                "HPG",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989044097507531
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994522892547604,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522892547604
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "GAS",
+              "HPG",
+              "MBB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "FPT"
+            ],
+            "added": [
+              "VPB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9979454962803818,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "GAS",
+                "HPG",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "GAS",
+                "HPG",
+                "MBB",
+                "VPB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 4,
+              "jaccard": 0.6666666666666666,
+              "removed": [
+                "LPB"
+              ],
+              "added": [
+                "VPB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9979454962803818
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "HPG",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "LPB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995891817697224,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "HPG",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "HPG",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891817697224
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993154810562885,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993154810562885
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 4,
+            "jaccard": 0.5714285714285714,
+            "removed": [
+              "HPG"
+            ],
+            "added": [
+              "LPB",
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9976707345106695,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 6,
+              "overlap": 5,
+              "jaccard": 0.8333333333333334,
+              "removed": [],
+              "added": [
+                "TCB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9976707345106695
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995891067601194,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891067601194
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "MBB"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9973966968124284,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "LPB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 4,
+              "jaccard": 0.6666666666666666,
+              "removed": [
+                "LPB"
+              ],
+              "added": [
+                "TCB"
+              ],
+              "common_size": 28,
+              "rank_correlation": 0.9973966968124284
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 1.0,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 1.0
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9989044097507531,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989044097507531
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984936008607186,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984936008607186
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630418400758,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630418400758
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987669354397296,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987669354397296
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9980827170638182,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9980827170638182
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 1.0,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 1.0
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997260649174733,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997260649174733
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994522423647683,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994522423647683
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630793448776,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630793448776
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997261024376882,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997261024376882
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991782041401851,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991782041401851
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9998630793448776,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9998630793448776
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990409361915921,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990409361915921
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990411333849184,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990411333849184
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9995891067601193,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891067601193
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990411989206134,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990411989206134
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991782041401849,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991782041401849
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994520923044518,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "HPG",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994520923044518
+            }
           }
         ],
         "excluded_sessions": [],
@@ -59630,50 +61686,78 @@
           "top_minus_bottom_pp": 0.4474687659559984,
           "ic_close": -0.03573629326146632,
           "top_minus_bottom_close_pp": 0.2180000000000002
+        },
+        {
+          "date": "2026-11-26",
+          "next_date": "2026-11-27",
+          "ranked": 29,
+          "evaluated": 29,
+          "missing_future": [],
+          "top_symbols": [
+            "MSN",
+            "SAB",
+            "SSI",
+            "VNM",
+            "VPB"
+          ],
+          "bottom_symbols": [
+            "LPB",
+            "TCB",
+            "VHM",
+            "VIC",
+            "VPL"
+          ],
+          "config_id": "bef35351d04f",
+          "spread_reason": null,
+          "spread_close_reason": null,
+          "ic": -0.35285415136870674,
+          "top_minus_bottom_pp": -1.4282737597565642,
+          "ic_close": -0.43896424167694204,
+          "top_minus_bottom_close_pp": -1.706
         }
       ],
       "ic": {
-        "pairs": 26,
-        "mean": 0.021438644139493906,
-        "sd": 0.22103045223322726,
-        "positive_share": 0.5384615384615384
+        "pairs": 27,
+        "mean": 0.007575948009560549,
+        "sd": 0.2283947249359028,
+        "positive_share": 0.5185185185185185
       },
       "top_minus_bottom_pp": {
-        "pairs": 26,
-        "mean": 0.09629002999598295,
-        "sd": 0.7635997518267101,
-        "positive_share": 0.5769230769230769
+        "pairs": 27,
+        "mean": 0.03982470444959231,
+        "sd": 0.8042034827432422,
+        "positive_share": 0.5555555555555556
       },
       "ic_close": {
-        "pairs": 26,
-        "mean": -0.03466262535643076,
-        "sd": 0.2278109172353395,
-        "positive_share": 0.38461538461538464
+        "pairs": 27,
+        "mean": -0.04963675929422747,
+        "sd": 0.23654980616348129,
+        "positive_share": 0.37037037037037035
       },
       "top_minus_bottom_close_pp": {
-        "pairs": 26,
-        "mean": -0.03637912087912089,
-        "sd": 0.7125564527239276,
-        "positive_share": 0.5769230769230769
+        "pairs": 27,
+        "mean": -0.09821693121693123,
+        "sd": 0.7690605067398274,
+        "positive_share": 0.5555555555555556
       },
       "factor_ic": {
         "momentum": {
-          "pairs": 26,
-          "mean": 0.015852146575577323,
-          "sd": 0.20721096298176672,
-          "positive_share": 0.5384615384615384
+          "pairs": 27,
+          "mean": 0.0011000501287072265,
+          "sd": 0.21716546978136309,
+          "positive_share": 0.5185185185185185
         },
         "liquidity": {
-          "pairs": 26,
-          "mean": 0.0022226361790469505,
-          "sd": 0.21059602176706382,
-          "positive_share": 0.5
+          "pairs": 27,
+          "mean": 0.004239507930497878,
+          "sd": 0.20677214189959708,
+          "positive_share": 0.5185185185185185
         },
         "foreign": {
-          "pairs": 26,
-          "mean": -0.0043741517213592655,
-          "sd": 0.18889406044037005,
-          "positive_share": 0.46153846153846156
+          "pairs": 27,
+          "mean": -0.006420860752502113,
+          "sd": 0.18553092654053077,
+          "positive_share": 0.4444444444444444
         }
       },
       "screening": {
@@ -59684,156 +61768,156 @@
           {
             "kind": "ablation",
             "name": "foreign",
-            "scenarios": 28,
-            "mean_jaccard": 0.6310941043083901,
+            "scenarios": 29,
+            "mean_jaccard": 0.63232074438971,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.9359073312206749,
-            "changed_scenarios": 26,
-            "mean_removed": 1.25,
-            "mean_added": 1.2857142857142858
+            "mean_rank_correlation": 0.9362369345110713,
+            "changed_scenarios": 27,
+            "mean_removed": 1.2413793103448276,
+            "mean_added": 1.2758620689655173
           },
           {
             "kind": "ablation",
             "name": "liquidity",
-            "scenarios": 28,
-            "mean_jaccard": 0.6518565759637188,
+            "scenarios": 29,
+            "mean_jaccard": 0.6523672687465791,
             "min_jaccard": 0.2222222222222222,
-            "mean_rank_correlation": 0.9282674398849488,
-            "changed_scenarios": 24,
-            "mean_removed": 1.25,
-            "mean_added": 1.1428571428571428
+            "mean_rank_correlation": 0.9282418006991551,
+            "changed_scenarios": 25,
+            "mean_removed": 1.2413793103448276,
+            "mean_added": 1.1379310344827587
           },
           {
             "kind": "ablation",
             "name": "momentum",
-            "scenarios": 28,
-            "mean_jaccard": 0.4005102040816326,
+            "scenarios": 29,
+            "mean_jaccard": 0.39963054187192115,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.6900825544134411,
-            "changed_scenarios": 28,
-            "mean_removed": 2.3214285714285716,
-            "mean_added": 2.392857142857143
+            "mean_rank_correlation": 0.6924029475838814,
+            "changed_scenarios": 29,
+            "mean_removed": 2.310344827586207,
+            "mean_added": 2.413793103448276
           },
           {
             "kind": "missing",
             "name": "one_missing_member",
-            "scenarios": 826,
-            "mean_jaccard": 0.9217110573042776,
+            "scenarios": 855,
+            "mean_jaccard": 0.9224171539961015,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9990429348177541,
-            "changed_scenarios": 259,
-            "mean_removed": 0.24455205811138014,
-            "mean_added": 0.23849878934624696
+            "mean_rank_correlation": 0.9990380499794225,
+            "changed_scenarios": 264,
+            "mean_removed": 0.24210526315789474,
+            "mean_added": 0.23625730994152047
           },
           {
             "kind": "single_factor",
             "name": "foreign",
-            "scenarios": 28,
-            "mean_jaccard": 0.35915532879818596,
+            "scenarios": 29,
+            "mean_jaccard": 0.3553913519430761,
             "min_jaccard": 0.1,
-            "mean_rank_correlation": 0.6718134002246006,
-            "changed_scenarios": 28,
-            "mean_removed": 2.607142857142857,
-            "mean_added": 2.392857142857143
+            "mean_rank_correlation": 0.6692928839554342,
+            "changed_scenarios": 29,
+            "mean_removed": 2.6206896551724137,
+            "mean_added": 2.413793103448276
           },
           {
             "kind": "single_factor",
             "name": "liquidity",
-            "scenarios": 28,
-            "mean_jaccard": 0.2552437641723356,
+            "scenarios": 29,
+            "mean_jaccard": 0.25027367268746575,
             "min_jaccard": 0.0,
-            "mean_rank_correlation": 0.3689000598311484,
-            "changed_scenarios": 28,
-            "mean_removed": 3.25,
-            "mean_added": 3.0357142857142856
+            "mean_rank_correlation": 0.3725750446140157,
+            "changed_scenarios": 29,
+            "mean_removed": 3.2758620689655173,
+            "mean_added": 3.0689655172413794
           },
           {
             "kind": "single_factor",
             "name": "momentum",
-            "scenarios": 28,
-            "mean_jaccard": 0.5143282312925169,
+            "scenarios": 29,
+            "mean_jaccard": 0.5195812807881772,
             "min_jaccard": 0.25,
-            "mean_rank_correlation": 0.8680622158620822,
-            "changed_scenarios": 28,
-            "mean_removed": 1.7857142857142858,
-            "mean_added": 1.6785714285714286
+            "mean_rank_correlation": 0.8684959742979539,
+            "changed_scenarios": 29,
+            "mean_removed": 1.7586206896551724,
+            "mean_added": 1.6551724137931034
           },
           {
             "kind": "weights",
             "name": "balanced",
-            "scenarios": 28,
-            "mean_jaccard": 0.7421343537414965,
+            "scenarios": 29,
+            "mean_jaccard": 0.7395320197044334,
             "min_jaccard": 0.375,
-            "mean_rank_correlation": 0.9503425778057201,
-            "changed_scenarios": 21,
-            "mean_removed": 0.8571428571428571,
-            "mean_added": 0.8214285714285714
+            "mean_rank_correlation": 0.9507880005217271,
+            "changed_scenarios": 22,
+            "mean_removed": 0.8620689655172413,
+            "mean_added": 0.8275862068965517
           },
           {
             "kind": "weights",
             "name": "foreign+0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8835034013605444,
+            "scenarios": 29,
+            "mean_jaccard": 0.8875205254515601,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9897293549996254,
+            "mean_rank_correlation": 0.9895480514947134,
             "changed_scenarios": 12,
-            "mean_removed": 0.4642857142857143,
-            "mean_added": 0.25
+            "mean_removed": 0.4482758620689655,
+            "mean_added": 0.2413793103448276
           },
           {
             "kind": "weights",
             "name": "foreign-0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8452380952380952,
+            "scenarios": 29,
+            "mean_jaccard": 0.8505747126436782,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.9878305786365396,
+            "mean_rank_correlation": 0.9876722523131533,
             "changed_scenarios": 15,
-            "mean_removed": 0.5714285714285714,
-            "mean_added": 0.39285714285714285
+            "mean_removed": 0.5517241379310345,
+            "mean_added": 0.3793103448275862
           },
           {
             "kind": "weights",
             "name": "liquidity+0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8715986394557823,
+            "scenarios": 29,
+            "mean_jaccard": 0.8645320197044335,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9858068617820087,
-            "changed_scenarios": 13,
-            "mean_removed": 0.5,
-            "mean_added": 0.2857142857142857
+            "mean_rank_correlation": 0.9859138089796298,
+            "changed_scenarios": 14,
+            "mean_removed": 0.5172413793103449,
+            "mean_added": 0.3103448275862069
           },
           {
             "kind": "weights",
             "name": "liquidity-0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.7967687074829933,
+            "scenarios": 29,
+            "mean_jaccard": 0.8037766830870281,
             "min_jaccard": 0.42857142857142855,
-            "mean_rank_correlation": 0.984067466862352,
+            "mean_rank_correlation": 0.9838688165423427,
             "changed_scenarios": 18,
-            "mean_removed": 0.7142857142857143,
-            "mean_added": 0.5714285714285714
+            "mean_removed": 0.6896551724137931,
+            "mean_added": 0.5517241379310345
           },
           {
             "kind": "weights",
             "name": "momentum+0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8835034013605443,
+            "scenarios": 29,
+            "mean_jaccard": 0.88752052545156,
             "min_jaccard": 0.5714285714285714,
-            "mean_rank_correlation": 0.9939650956913437,
+            "mean_rank_correlation": 0.9939437167940167,
             "changed_scenarios": 12,
-            "mean_removed": 0.4642857142857143,
-            "mean_added": 0.25
+            "mean_removed": 0.4482758620689655,
+            "mean_added": 0.2413793103448276
           },
           {
             "kind": "weights",
             "name": "momentum-0.1",
-            "scenarios": 28,
-            "mean_jaccard": 0.8928571428571429,
+            "scenarios": 29,
+            "mean_jaccard": 0.896551724137931,
             "min_jaccard": 0.6666666666666666,
-            "mean_rank_correlation": 0.9924003995388208,
+            "mean_rank_correlation": 0.9923054352343059,
             "changed_scenarios": 13,
-            "mean_removed": 0.39285714285714285,
-            "mean_added": 0.25
+            "mean_removed": 0.3793103448275862,
+            "mean_added": 0.2413793103448276
           }
         ],
         "details": [
@@ -117854,6 +119938,2003 @@
               "added": [],
               "common_size": 28,
               "rank_correlation": 0.9998630418400754
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "single_factor",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "GAS",
+              "LPB",
+              "MBB",
+              "VRE"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "FPT"
+            ],
+            "added": [
+              "VRE"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.8806412105023627
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "ablation",
+            "name": "momentum",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "HPG",
+              "MBB",
+              "SHB",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 6,
+            "overlap": 3,
+            "jaccard": 0.375,
+            "removed": [
+              "GAS",
+              "LPB"
+            ],
+            "added": [
+              "HPG",
+              "SHB",
+              "VPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.7573739563562085
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "single_factor",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "FPT",
+              "HPG",
+              "SSI",
+              "VIC",
+              "VPB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 1,
+            "jaccard": 0.1111111111111111,
+            "removed": [
+              "BSR",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "added": [
+              "HPG",
+              "SSI",
+              "VIC",
+              "VPB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.47547461853430095
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "ablation",
+            "name": "liquidity",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "GAS",
+              "LPB",
+              "MBB",
+              "VRE"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "FPT"
+            ],
+            "added": [
+              "VRE"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9275239034969326
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "single_factor",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "LPB",
+              "SAB",
+              "SSB",
+              "TCX"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 2,
+            "jaccard": 0.25,
+            "removed": [
+              "FPT",
+              "GAS",
+              "MBB"
+            ],
+            "added": [
+              "SAB",
+              "SSB",
+              "TCX"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.5987184284187752
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "ablation",
+            "name": "foreign",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "MBB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "LPB"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9454658266421686
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "balanced",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "HPG",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "LPB"
+            ],
+            "added": [
+              "HPG"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9632598365699201
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "momentum-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9896464347078902,
+            "weights": {
+              "momentum": 0.4444444444444445,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "momentum+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9933451076688612,
+            "weights": {
+              "momentum": 0.5454545454545454,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "liquidity-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9783066075820802,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.16666666666666666,
+              "foreign": 0.2777777777777778
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "liquidity+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "MBB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "LPB"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 29,
+            "rank_correlation": 0.9889083305130202,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.3181818181818181,
+              "foreign": 0.22727272727272727
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "foreign-0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9832391152583341,
+            "weights": {
+              "momentum": 0.5555555555555556,
+              "liquidity": 0.2777777777777778,
+              "foreign": 0.16666666666666666
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "weights",
+            "name": "foreign+0.1",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 29,
+            "rank_correlation": 0.9844715533571792,
+            "weights": {
+              "momentum": 0.45454545454545453,
+              "liquidity": 0.22727272727272727,
+              "foreign": 0.3181818181818181
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "ACB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9983567644193402,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983567644193402
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "BID",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9991780539822017,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991780539822017
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "BSR",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "BSR"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9990404480430883,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB",
+                "TCB"
+              ],
+              "other_top": [
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990404480430883
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "CTG",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999040711039548,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999040711039548
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "FPT",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "GAS",
+              "LPB",
+              "MBB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "FPT"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9984929536099877,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "GAS",
+                "LPB",
+                "MBB",
+                "TCB"
+              ],
+              "other_top": [
+                "BSR",
+                "GAS",
+                "LPB",
+                "MBB",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984929536099877
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "GAS",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "LPB",
+              "MBB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "GAS"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995891817697222,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "LPB",
+                "MBB",
+                "TCB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "LPB",
+                "MBB",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995891817697222
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "HDB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.998903245667295,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.998903245667295
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "HPG",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9983550470770874,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9983550470770874
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "LPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "MBB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "LPB"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9995890692244813,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "MBB",
+                "TCB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "MBB",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9995890692244813
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MBB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "TCB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 4,
+            "jaccard": 0.6666666666666666,
+            "removed": [
+              "MBB"
+            ],
+            "added": [
+              "TCB"
+            ],
+            "common_size": 28,
+            "rank_correlation": 0.9991774436485377,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "TCB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "TCB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9991774436485377
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MCH",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9972574182781018,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9972574182781018
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MSN",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987662876566882,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987662876566882
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "MWG",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984925405533807,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984925405533807
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SAB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997258771929823,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997258771929823
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SHB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987662876566878,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987662876566878
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SSB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9987667854206631,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9987667854206631
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "SSI",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9989038092628116,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9989038092628116
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "STB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9997260649174737,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9997260649174737
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "TCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990404480430883,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990404480430883
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "TCX",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9984916001012389,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9984916001012389
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VCB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.999178232190401,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.999178232190401
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VHM",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9978080031746025,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9978080031746025
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VIB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993144956269133,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993144956269133
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VIC",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990407110395474,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990407110395474
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VJC",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990412458684664,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990412458684664
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VNM",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9993149183145995,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9993149183145995
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VPB",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9990407110395475,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9990407110395475
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VPL",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9982178632900106,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9982178632900106
+            }
+          },
+          {
+            "date": "2026-11-27",
+            "kind": "missing",
+            "name": "VRE",
+            "cohort_size": 29,
+            "base_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "other_top": [
+              "BSR",
+              "FPT",
+              "GAS",
+              "LPB",
+              "MBB"
+            ],
+            "base_size": 5,
+            "other_size": 5,
+            "overlap": 5,
+            "jaccard": 1.0,
+            "removed": [],
+            "added": [],
+            "common_size": 28,
+            "rank_correlation": 0.9994523548329689,
+            "unranked": false,
+            "common_top_comparison": {
+              "base_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "other_top": [
+                "BSR",
+                "FPT",
+                "GAS",
+                "LPB",
+                "MBB"
+              ],
+              "base_size": 5,
+              "other_size": 5,
+              "overlap": 5,
+              "jaccard": 1.0,
+              "removed": [],
+              "added": [],
+              "common_size": 28,
+              "rank_correlation": 0.9994523548329689
             }
           }
         ],
